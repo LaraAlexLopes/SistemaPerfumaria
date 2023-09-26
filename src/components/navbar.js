@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootswatch/dist/flatly/bootstrap.css';
+import 'bootswatch/dist/minty/bootstrap.css';
 
 import NavbarItem from './navbarItem';
 
