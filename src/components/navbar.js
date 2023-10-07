@@ -40,17 +40,15 @@ function Navbar(props) {
             />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/listagem-alunos' label='Fornecedores' />
+            <NavbarItem render='true' href='/listagem-fornecedores' label='Fornecedores' />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/login' label='Pedidos' />
+            <NavbarItem render='true' href='/listagem-pedidos' label='Pedidos' />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/' label='Produtos' />
+            <NavbarItem render='true' href='/listagem-produtos' label='Produtos' />
           </ul>
-          <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/' label='Estoque' />
-          </ul>
+          
         </div>
       </div>
     </div>
