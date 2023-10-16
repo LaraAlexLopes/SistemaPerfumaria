@@ -13,19 +13,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_FPP} from '../config/bdFPP';
+import {BASE_URL_FT} from '../config/bdFT';
 
-const baseURL = `${BASE_URL_FPP}/produto`;
+const baseURL = `${BASE_URL_FT}/fragrancia`;
 
-function ListagemProdutos() {
+function ListagemFragancias() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-    navigate(`/cadastro-produto`);
+   navigate(`/cadastro-fragancia`);
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-produto${id}`);
+   navigate(`/cadastro-fragancia/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -39,7 +39,7 @@ function ListagemProdutos() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Produto excluído com sucesso!`);
+        mensagemSucesso(`Fragância excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -47,7 +47,7 @@ function ListagemProdutos() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o produto`);
+        mensagemErro(`Erro ao excluir o fragância`);
       });
   }
 
@@ -61,7 +61,7 @@ function ListagemProdutos() {
 
   return (
     <div className='container'>
-      <Card title='Produtos'>
+      <Card title='Fragâncias'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -70,24 +70,18 @@ function ListagemProdutos() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Produto
+                Nova Fragância
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Produto</th>
-                    <th scope='col'>Capacidade Máxima</th>
-                    <th scope='col'>Capacidade Mínima</th>
-                    <th scope='col'>Ponto de Ressuprimento</th>
+                    <th scope='col'>Descrição</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.produto}</td>
-                      <td>{dado.capacidadeMaxima}</td>
-                      <td>{dado.capacidadeMinima}</td>
-                      <td>{dado.PontoRessuprimento}</td>
+                      <td>{dado.descricao}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -98,8 +92,7 @@ function ListagemProdutos() {
                           </IconButton>
                           <IconButton
                             aria-label='delete'
-                            onClick={() => excluir(dado.id)}
-                          >
+                            onClick={() => excluir(dado.id)}>
                             <DeleteIcon />
                           </IconButton>
                         </Stack>
@@ -116,4 +109,4 @@ function ListagemProdutos() {
   );
 }
 
-export default ListagemProdutos;
+export default ListagemFragancias;

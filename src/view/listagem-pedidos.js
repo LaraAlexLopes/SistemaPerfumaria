@@ -21,11 +21,11 @@ function ListagemPedidos() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   // navigate(`/cadastro-fornecedores`);
+   navigate(`/cadastro-pedidos`);
   };
 
   const editar = (id) => {
-   // navigate(`/cadastro-fornecedores${id}`);
+    navigate(`/cadastro-pedidos${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
