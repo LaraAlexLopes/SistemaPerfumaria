@@ -3,6 +3,9 @@ import React from 'react';
 import ListagemPedidos from './view/listagem-pedidos';
 import ListagemFornecedores from './view/listagem-fornecedores';
 import ListagemProdutos from './view/listagem-produtos';
+import ListagemClientes from './view/listagem-clientes';
+import ListagemFuncionarios from './view/listagem-funcionarios';
+import ListagemVendas from './view/listagem-vendas';
 import ListagemClassificao from './view/listagem-classificacoes';
 import ListagemCupons from './view/listagem-cupons';
 import ListagemPerdas from './view/listagem-perdas.js';
@@ -18,6 +21,12 @@ import CadastroCupom from   './view/cadastro-cupom';
 import CadastroFragancia from './view/cadastro-fragancia';
 import CadastroProduto from './view/cadastro-produto';
 import CadastroPedido from './view/cadastro-pedidos';
+import CadastroClientes from './view/cadastro-clientes';
+import CadastroFuncionarios from './view/cadastro-funcionarios';
+import CadastroVendas from './view/cadastro-vendas';
+
+
+
 
 
 function Rotas(props) {
@@ -32,6 +41,9 @@ function Rotas(props) {
         <Route path='/cadastro-fragancia/:idParam?' element={<CadastroFragancia />} />
         <Route path='/cadastro-produto/:idParam?' element={<CadastroProduto/>} />
         <Route path='/cadastro-pedidos/:idParam?' element={<CadastroPedido/>} />
+        <Route path='/cadastro-clientes/:idParam?' element={<CadastroClientes />} />
+        <Route path='/cadastro-funcionarios/:idParam?' element={<CadastroFuncionarios />} />
+        <Route path='/cadastro-vendas/:idParam?' element={<CadastroVendas />} />
         <Route path='/listagem-fornecedores' element={<ListagemFornecedores/>} />
         <Route path='/listagem-pedidos' element={<ListagemPedidos/>} />
         <Route path='/listagem-produtos' element={<ListagemProdutos/>} />
@@ -40,6 +52,9 @@ function Rotas(props) {
         <Route path='/listagem-classificacoes' element={<ListagemClassificao/>} />
         <Route path='/listagem-tamanhos' element={<ListagemTamanhos/>} />
         <Route path='/listagem-fragancias' element={<ListagemFragancias/>} />
+        <Route path='/listagem-clientes' element={<ListagemClientes/>} />
+        <Route path='/listagem-funcionarios' element={<ListagemFuncionarios/>} />
+        <Route path='/listagem-vendas' element={<ListagemVendas/>} />
       </Routes>
     </BrowserRouter>
   );
