@@ -69,12 +69,14 @@ function CadastroCupom() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setDesconto(dados.desconto);
-      setDataExpiracao(dados.dataExpiracao);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setDesconto(dados.desconto);
+        setDataExpiracao(dados.dataExpiracao);
+    }
   }
 
   const [dadosCupom, setDadosCupom] = React.useState(null);

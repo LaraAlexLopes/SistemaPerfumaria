@@ -22,7 +22,7 @@ function CadastroVendas() {
 
   const [id, setId] = useState('');
   const [nomeCliente, setNomeCliente] = useState('');
-  const [data, setData] = useState('');
+  const [dataVenda, setData] = useState('');
   const [listaProdutos, setListaProdutos] = useState('');
   const [cupomDesconto, setCupomDesconto] = useState('');
   const [valorFinal, setValorFinal] = useState('');
@@ -44,7 +44,7 @@ function CadastroVendas() {
     } else {
       setId(dados.id);
       setNomeCliente(dados.nomeCliente);
-      setData(dados.data);
+      setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
       setValorFinal(dados.valorFinal);
@@ -55,7 +55,7 @@ function CadastroVendas() {
   }
 
   async function salvar() {
-    let data = { id,nomeCliente,data,listaProdutos,cupomDesconto,valorFinal,formaPagamento }
+    let data = { id,nomeCliente,dataVenda,listaProdutos,cupomDesconto,valorFinal,formaPagamento }
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -85,16 +85,18 @@ function CadastroVendas() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-    setId(dados.id);
-    setNomeCliente(dados.nomeCliente);
-    setData(dados.data);
-    setListaProdutos(dados.listaProdutos);
-    setCupomDesconto(dados.cupomDesconto);
-    setValorFinal(dados.valorFinal);
-    setFormaPagamento(dados.formaPagamento);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+      setId(dados.id);
+      setNomeCliente(dados.nomeCliente);
+      setData(dados.dataVenda);
+      setListaProdutos(dados.listaProdutos);
+      setCupomDesconto(dados.cupomDesconto);
+      setValorFinal(dados.valorFinal);
+      setFormaPagamento(dados.formaPagamento);
+    }
   }
   const [dadosVendas, setDadosVendas] = React.useState(null);
 
@@ -132,9 +134,9 @@ function CadastroVendas() {
                   type='text'
                   maxLength='18'
                   id='inputData'
-                  value={data}
+                  value={dataVenda}
                   className='form-control'
-                  name='data'
+                  name='dataVenda'
                   onChange={(e) => setData(e.target.value)}
                 />
               </FormGroup>

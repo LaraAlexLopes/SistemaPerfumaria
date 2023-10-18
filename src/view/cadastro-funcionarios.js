@@ -99,22 +99,24 @@ function CadastroFuncionarios() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setNome(dados.nome);
-      setCpf(dados.cpf);
-      setEmail(dados.email);
-      setNumeroTelefone(dados.numeroTelefone);
-      setCargo(dados.cargo);
-      setSalario(dados.salario);
-      setLogradouro(dados.logradouro);
-      setNumero(dados.numero);
-      setComplemento(dados.complemento);
-      setBairro(dados.bairro);
-      setCidade(dados.cidade);
-      setEstado(dados.estado);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setNome(dados.nome);
+        setCpf(dados.cpf);
+        setEmail(dados.email);
+        setNumeroTelefone(dados.numeroTelefone);
+        setCargo(dados.cargo);
+        setSalario(dados.salario);
+        setLogradouro(dados.logradouro);
+        setNumero(dados.numero);
+        setComplemento(dados.complemento);
+        setBairro(dados.bairro);
+        setCidade(dados.cidade);
+        setEstado(dados.estado);
+    }
   }
 
   const [dadosFuncionarios, setDadosFuncionarios] = React.useState(null);

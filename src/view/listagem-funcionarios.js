@@ -88,7 +88,7 @@ function ListagemFuncionarios() {
                       <td>{dado.nome}</td>
                       <td>{dado.cpf}</td>
                       <td>{dado.email}</td>
-                      <td>{dado.numero}</td>
+                      <td>{dado.numeroTelefone}</td>
                       <td>{dado.cargo}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>

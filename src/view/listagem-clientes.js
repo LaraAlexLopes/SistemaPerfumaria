@@ -13,9 +13,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_CFV} from '../config/bdCFV';
+import { BASE_URL_CFV } from '../config/bdCFV';
 
-const baseURL = `${BASE_URL_CFV}/clientes`;
+const baseURL = `${ BASE_URL_CFV }/clientes`;
 
 function ListagemClientes() {
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ function ListagemClientes() {
   };
 
   const [dados, setDados] = React.useState(null);
+
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -50,6 +51,7 @@ function ListagemClientes() {
         mensagemErro(`Erro ao excluir o cliente`);
       });
   }
+
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -87,7 +89,7 @@ function ListagemClientes() {
                       <td>{dado.nome}</td>
                       <td>{dado.cpf}</td>
                       <td>{dado.email}</td>
-                      <td>{dado.numero}</td>
+                      <td>{dado.numeroTelefone}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

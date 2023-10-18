@@ -21,11 +21,11 @@ function ListagemVendas() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   // navigate(`/cadastro-vendas`);
+   navigate(`/cadastro-vendas`);
   };
 
   const editar = (id) => {
-   // navigate(`/cadastro-vendas${id}`);
+   navigate(`/cadastro-vendas${id}`);
   };
 
   const [dados, setDados] = React.useState(null);

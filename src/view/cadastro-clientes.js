@@ -13,12 +13,11 @@ import '../custom.css';
 import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
 
+
 function CadastroClientes() {
   const { idParam } = useParams();
-
-  const navigate = useNavigate();
-
   const baseURL = `${BASE_URL_CFV}/clientes`;
+  const navigate = useNavigate();
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -81,32 +80,24 @@ function CadastroClientes() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setNome(dados.nome);
-      setCpf(dados.cpf);
-      setEmail(dados.email);
-      setNumeroTelefone(dados.numeroTelefone);
-      setDataNascimento(dados.dataNascimento);
-      
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setNome(dados.nome);
+        setCpf(dados.cpf);
+        setEmail(dados.email);
+        setNumeroTelefone(dados.numeroTelefone);
+        setDataNascimento(dados.dataNascimento);
+    } 
   }
-
-  const [dadosClientes, setDadosClientes] = React.useState(null);
-
-  useEffect(() => {
-    axios.get(`${BASE_URL_CFV}/clientes`).then((response) => {
-      setDadosClientes(response.data);
-    });
-  }, []);
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosClientes) return null;
 
   return (
     <div className='container'>

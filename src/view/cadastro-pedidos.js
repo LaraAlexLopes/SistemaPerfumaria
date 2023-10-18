@@ -79,15 +79,17 @@ function CadastroPedido() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setProduto(dados.produto);
-      setValor(dados.valor);
-      setQuantidade(dados.quantidade);
-      setDataEntrega(dados.dataEntrega);
-      setDataPedido(dados.dataPedido);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setProduto(dados.produto);
+        setValor(dados.valor);
+        setQuantidade(dados.quantidade);
+        setDataEntrega(dados.dataEntrega);
+        setDataPedido(dados.dataPedido);
+    }
   }
 
   const [dadosPedido, setDadosPedido] = React.useState(null);

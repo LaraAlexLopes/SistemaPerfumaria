@@ -93,20 +93,22 @@ function CadastroFornecedores() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setNome(dados.nome);
-      setCnpj(dados.cnpj);
-      setEmail(dados.email);
-      setNumeroTelefone(dados.numeroTelefone);
-      setLogradouro(dados.logradouro);
-      setNumero(dados.numero);
-      setComplemento(dados.complemento);
-      setBairro(dados.bairro);
-      setCidade(dados.cidade);
-      setEstado(dados.estado);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setNome(dados.nome);
+        setCnpj(dados.cnpj);
+        setEmail(dados.email);
+        setNumeroTelefone(dados.numeroTelefone);
+        setLogradouro(dados.logradouro);
+        setNumero(dados.numero);
+        setComplemento(dados.complemento);
+        setBairro(dados.bairro);
+        setCidade(dados.cidade);
+        setEstado(dados.estado);
+   }
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);

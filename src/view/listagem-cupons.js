@@ -21,7 +21,7 @@ function ListagemCupons() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   //navigate(`/cadastro-cupom`);
+   navigate(`/cadastro-cupom`);
   };
 
   const editar = (id) => {

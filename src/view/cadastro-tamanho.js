@@ -66,11 +66,13 @@ function CadastroTamanho() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setVolume(dados.volume);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setVolume(dados.volume);
+    }
   }
 
   const [dadosTamanho, setDadosVolume] = React.useState(null);

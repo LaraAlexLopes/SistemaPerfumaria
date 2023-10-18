@@ -25,17 +25,17 @@ function Navbar(props) {
           <ul className='navbar-nav'>
             <NavbarItem
               render='true'
-              href='/listagem-usuarios'
+              href='/listagem-clientes'
               label='Clientes'
             />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/listagem-cursos' label='Funcionários' />
+            <NavbarItem render='true' href='/listagem-funcionarios' label='Funcionários' />
           </ul>
           <ul className='navbar-nav'>
             <NavbarItem
               render='true'
-              href='/listagem-professores'
+              href='/listagem-vendas'
               label='Vendas'
             />
           </ul>

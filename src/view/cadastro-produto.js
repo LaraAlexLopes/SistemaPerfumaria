@@ -97,19 +97,21 @@ function CadastroProduto() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setNome(dados.nome);
-      setCodigoBarras(dados.codigoBarras);
-      setQuantidade(dados.quantidade);
-      setLote(dados.lote);
-      setValidade(dados.validade);
-      setCapacidadeMaxima(dados.capacidadeMaxima);
-      setCapacidadeMinima(dados.capacidadeMinima);
-      setDataInicial(dados.dataInicial);
-      setDataFinal(dados.dataFinal);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setNome(dados.nome);
+        setCodigoBarras(dados.codigoBarras);
+        setQuantidade(dados.quantidade);
+        setLote(dados.lote);
+        setValidade(dados.validade);
+        setCapacidadeMaxima(dados.capacidadeMaxima);
+        setCapacidadeMinima(dados.capacidadeMinima);
+        setDataInicial(dados.dataInicial);
+        setDataFinal(dados.dataFinal);
+    }
   }
 
   const [dadosProduto, setDadosProduto] = React.useState(null);

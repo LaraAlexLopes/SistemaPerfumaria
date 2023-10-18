@@ -66,11 +66,13 @@ function CadastroFragancia() {
   }
 
   async function buscar() {
-    await axios.get(`${baseURL}/${idParam}`).then((response) => {
-      setDados(response.data);
-    });
-      setId(dados.id);
-      setDescricao(dados.descricao);
+    if(idParam != null){
+      await axios.get(`${baseURL}/${idParam}`).then((response) => {
+        setDados(response.data);
+      });
+        setId(dados.id);
+        setDescricao(dados.descricao);
+    }
   }
 
   const [dadosFragancia, setDadosFragancia] = React.useState(null);
