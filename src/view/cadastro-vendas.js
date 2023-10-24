@@ -140,7 +140,7 @@ function CadastroVendas() {
                   onChange={(e) => setData(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Lista Produtos: *' htmlFor='inputListaProdutos'>
+              <FormGroup label='Lista de Produtos: *' htmlFor='inputListaProdutos'>
                 <input
                   type='text'
                   id='inputListaProdutos'
@@ -160,7 +160,7 @@ function CadastroVendas() {
                   onChange={(e) => setCupomDesconto(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Valor Final:' htmlFor='inputValorFinal'>
+              <FormGroup label='Valor Final: *' htmlFor='inputValorFinal'>
                 <input
                   type='text'
                   id='inputValorFinal'
@@ -170,7 +170,7 @@ function CadastroVendas() {
                   onChange={(e) => setValorFinal(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Forma de Pagamento:' htmlFor='inputFormapagamento'>
+              <FormGroup label='Forma de Pagamento: *' htmlFor='inputFormapagamento'>
                 <input
                   type='text'
                   id='inputFormaPagemnto'

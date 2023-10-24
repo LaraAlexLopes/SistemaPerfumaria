@@ -25,7 +25,7 @@ function CadastroFuncionarios() {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [numeroTelefone, setNumeroTelefone] = useState('');
-  const [cargo, setCargo] = useState('');
+  const [idCargo, setIdCargo] = useState(0);
   const [salario, setSalario] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [numero, setNumero] = useState('');
@@ -43,7 +43,7 @@ function CadastroFuncionarios() {
       setCpf('');
       setEmail('');
       setNumeroTelefone('');
-      setCargo('');
+      setIdCargo(0);
       setSalario('');
       setLogradouro('');
       setNumero('');
@@ -57,7 +57,7 @@ function CadastroFuncionarios() {
       setCpf(dados.cpf);
       setEmail(dados.email);
       setNumeroTelefone(dados.numeroTelefone);
-      setCargo(dados.cargo);
+      setIdCargo(dados.idCargo);
       setSalario(dados.salario);
       setLogradouro(dados.logradouro);
       setNumero(dados.numero);
@@ -69,7 +69,7 @@ function CadastroFuncionarios() {
   }
 
   async function salvar() {
-    let data = { id,nome,cpf,email,numeroTelefone,cargo,salario, logradouro, numero, complemento, bairro, cidade, estado };
+    let data = { id,nome,cpf,email,numeroTelefone,idCargo,salario, logradouro, numero, complemento, bairro, cidade, estado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -108,7 +108,7 @@ function CadastroFuncionarios() {
         setCpf(dados.cpf);
         setEmail(dados.email);
         setNumeroTelefone(dados.numeroTelefone);
-        setCargo(dados.cargo);
+        setIdCargo(dados.cargo);
         setSalario(dados.salario);
         setLogradouro(dados.logradouro);
         setNumero(dados.numero);
@@ -171,7 +171,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='NumeroTelefone:' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='NumeroTelefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'
@@ -181,17 +181,25 @@ function CadastroFuncionarios() {
                   onChange={(e) => setNumeroTelefone(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Cargo:' htmlFor='inputCargo'>
-                <input
-                  type='text'
-                  id='inputCargo'
-                  value={cargo}
-                  className='form-control'
-                  name='cargo'
-                  onChange={(e) => setCargo(e.target.value)}
-                />
+              <FormGroup label='Cargo: *' htmlFor='selectCargo'>
+                <select
+                  className='form-select'
+                  id='selectCargo'
+                  name='idCargo'
+                  value={idCargo}
+                  onChange={(e) => setIdCargo(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosFuncionarios.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.cargo}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
-              <FormGroup label='Salario:' htmlFor='inputSalario'>
+              <FormGroup label='Salário: *' htmlFor='inputSalario'>
                 <input
                   type='text'
                   id='inputSalario'
@@ -201,7 +209,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setSalario(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Logradouro:' htmlFor='inputLogradouro'>
+              <FormGroup label='Logradouro: *' htmlFor='inputLogradouro'>
                 <input
                   type='text'
                   id='inputLogradouro'
@@ -211,7 +219,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setLogradouro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Numero:' htmlFor='inputNumero'>
+              <FormGroup label='Número: *' htmlFor='inputNumero'>
                 <input
                   type='text'
                   id='inputNumero'
@@ -221,7 +229,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setNumero(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Complemento:' htmlFor='inputComplemento'>
+              <FormGroup label='Complemento: *' htmlFor='inputComplemento'>
                 <input
                   type='text'
                   id='inputComplemento'
@@ -231,7 +239,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setComplemento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Bairro:' htmlFor='inputBairro'>
+              <FormGroup label='Bairro: *' htmlFor='inputBairro'>
                 <input
                   type='text'
                   id='inputBairro'
@@ -241,7 +249,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setBairro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Cidade:' htmlFor='inputCidade'>
+              <FormGroup label='Cidade: *' htmlFor='inputCidade'>
                 <input
                   type='text'
                   id='inputCidade'
@@ -251,7 +259,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Estado:' htmlFor='inputEstado'>
+              <FormGroup label='Estado: *' htmlFor='inputEstado'>
                 <input
                   type='text'
                   id='inputEstado'

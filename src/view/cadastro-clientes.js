@@ -136,7 +136,7 @@ function CadastroClientes() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='NumeroTelefone:' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='NumeroTelefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'
@@ -146,7 +146,7 @@ function CadastroClientes() {
                   onChange={(e) => setNumeroTelefone(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='DataNascimento:' htmlFor='inputDataNascimento'>
+              <FormGroup label='DataNascimento: *' htmlFor='inputDataNascimento'>
                 <input
                   type='text'
                   id='iinputDataNascimento'

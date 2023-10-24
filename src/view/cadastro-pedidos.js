@@ -21,6 +21,7 @@ function CadastroPedido() {
   const baseURL = `${BASE_URL_FPP}/pedido`;
 
   const [id, setId] = useState('');
+  const [idFornecedor, setIdFornecedor] = useState(0);
   const [produto, setProduto] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [valor, setValor] = useState('');
@@ -33,6 +34,7 @@ function CadastroPedido() {
   function inicializar() {
     if (idParam == null) {
         setId('');
+        setIdFornecedor(0);
         setProduto('');
         setQuantidade('');
         setValor('');
@@ -84,6 +86,7 @@ function CadastroPedido() {
         setDados(response.data);
       });
         setId(dados.id);
+        setIdFornecedor(dados.fornecedor);
         setProduto(dados.produto);
         setValor(dados.valor);
         setQuantidade(dados.quantidade);
@@ -92,11 +95,11 @@ function CadastroPedido() {
     }
   }
 
-  const [dadosPedido, setDadosPedido] = React.useState(null);
+  const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/pedido`).then((response) => {
-      setDadosPedido(response.data);
+      setDadosFornecedores(response.data);
     });
   }, []);
 
@@ -105,7 +108,7 @@ function CadastroPedido() {
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosPedido) return null;
+  if (!dadosFornecedores) return null;
 
   return (
     <div className='container'>
@@ -113,6 +116,25 @@ function CadastroPedido() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
+           
+            <FormGroup label='Fornecedor: *' htmlFor='selectForncedor'>
+                <select
+                  className='form-select'
+                  id='selectFornecedor'
+                  name='idFornecedor'
+                  value={idFornecedor}
+                  onChange={(e) => setIdFornecedor(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosFornecedores.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.nome}
+                    </option>
+                  ))}
+                </select>
+              </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputProduto'>
                 <input
                   type='text'
