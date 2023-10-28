@@ -23,15 +23,9 @@ function CadastroProduto() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
-  const [quantidade, setQuantidade] = useState('');
-  const [lote, setLote] = useState('');
-  const [validade, setValidade] = useState('');
-  const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
-  const [capacidadeMinima, setCapacidadeMinima] = useState('');
-  const [pontoRessuprimento, setPontoRessuprimento] = useState('');
-  const [metaMensal, setMetaMensal] = useState('');
-  const [dataInicial, setDataInicial] = useState('');
-  const [dataFinal, setDataFinal] = useState('');
+  const [classificacao, setClassificacao] = useState('');
+  const [tamanho, setTamanho] = useState('');
+  const [fragrancia, setFragrancia] = useState('');
   
 
   const [dados, setDados] = React.useState([]);
@@ -41,33 +35,24 @@ function CadastroProduto() {
         setId('');
         setNome('');
         setCodigoBarras('');
-        setQuantidade('');
-        setLote('');
-        setValidade('');
-        setCapacidadeMaxima('');
-        setCapacidadeMinima('');
-        setPontoRessuprimento('');
-        setMetaMensal('');
-        setDataInicial('');
-        setDataFinal('');
+        setClassificacao('');
+        setTamanho('');
+        setFragrancia('');
+       
     } else {
         setId(dados.id);
         setNome(dados.nome);
         setCodigoBarras(dados.codigoBarras);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
-        setCapacidadeMaxima(dados.capacidadeMaxima);
-        setCapacidadeMinima(dados.capacidadeMinima);
-        setPontoRessuprimento(dados.pontoRessuprimento);
-        setMetaMensal(dados.metaMensal);
-        setDataInicial(dados.dataInicial);
-        setDataFinal(dados.dataFinal);
+        setClassificacao(dados.classificacao);
+        setTamanho(dados.tamanho);
+        setFragrancia(dados.fragrancia);
+       
+       
     }
   }
 
   async function salvar() {
-    let data = { id, nome, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal,dataInicial, dataFinal};
+    let data = { id, nome, codigoBarras, classificacao,tamanho,fragrancia};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -104,13 +89,10 @@ function CadastroProduto() {
         setId(dados.id);
         setNome(dados.nome);
         setCodigoBarras(dados.codigoBarras);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
-        setCapacidadeMaxima(dados.capacidadeMaxima);
-        setCapacidadeMinima(dados.capacidadeMinima);
-        setDataInicial(dados.dataInicial);
-        setDataFinal(dados.dataFinal);
+        setClassificacao(dados.classificacao);
+        setTamanho(dados.tamanho);
+        setFragrancia(dados.fragrancia);
+        
     }
   }
 
@@ -155,96 +137,38 @@ function CadastroProduto() {
                   onChange={(e) => setCodigoBarras(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Quantidade : *' htmlFor='inputQuantidade'>
+              <FormGroup label='Classificação : *' htmlFor='inputClassificao'>
                 <input
                   type='text'
-                  id='inputQuantidade'
-                  value={quantidade}
+                  id='inputClassificao'
+                  value={classificacao}
                   className='form-control'
-                  name='quantidade'
-                  onChange={(e) => setQuantidade(e.target.value)}
+                  name='classsificacao'
+                  onChange={(e) => setClassificacao(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Lote: *' htmlFor='inputLote'>
+              <FormGroup label='Tamanho: *' htmlFor='inputTamanho'>
                 <input
                   type='text'
-                  id='inputLote'
-                  value={lote}
+                  id='inputTamanho'
+                  value={tamanho}
                   className='form-control'
-                  name='lote'
-                  onChange={(e) => setLote(e.target.value)}
+                  name='tamanho'
+                  onChange={(e) => setTamanho(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Validade: *' htmlFor='inputValidade'>
+              
+              <FormGroup label='Fragrancia: *' htmlFor='inputFragrancia'>
                 <input
                   type='text'
-                  id='inputValidade'
-                  value={validade}
+                  id='inputFragrancia'
+                  value={fragrancia}
                   className='form-control'
-                  name='validade'
-                  onChange={(e) => setValidade(e.target.value)}
+                  name='fragrancia'
+                  onChange={(e) => setFragrancia(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Capacidade Maxima: *' htmlFor='inputCapacidadeMaxima'>
-                <input
-                  type='text'
-                  id='inputCapacidadeMaxima'
-                  value={capacidadeMaxima}
-                  className='form-control'
-                  name='capacidadeMaxima'
-                  onChange={(e) => setCapacidadeMaxima(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Capacidade Minima: *' htmlFor='inputCapacidadeMinima'>
-                <input
-                  type='text'
-                  id='inputCapacidadeMinima'
-                  value={capacidadeMinima}
-                  className='form-control'
-                  name='capacidadeMinima'
-                  onChange={(e) => setCapacidadeMinima(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Ponto de Ressuprimento: *' htmlFor='inputPontoRessuprimento'>
-                <input
-                  type='text'
-                  id='inputPontoRessuprimento'
-                  value={pontoRessuprimento}
-                  className='form-control'
-                  name='pontoRessuprimento'
-                  onChange={(e) => setPontoRessuprimento(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Meta Mensal: *' htmlFor='inputMetaMensal'>
-                <input
-                  type='text'
-                  id='inputMetaMensal'
-                  value={metaMensal}
-                  className='form-control'
-                  name='metaMensal'
-                  onChange={(e) => setMetaMensal(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Data Inicial da Meta Mensal: *' htmlFor='inputDataInicial'>
-                <input
-                  type='text'
-                  id='inputDataInicial'
-                  value={dataInicial}
-                  className='form-control'
-                  name='dataInicial'
-                  onChange={(e) => setDataInicial(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Data Final da Meta Mensal: *' htmlFor='inputDataFinal'>
-                <input
-                  type='text'
-                  id='inputDataFinal'
-                  value={dataFinal}
-                  className='form-control'
-                  name='dataFinal'
-                  onChange={(e) => setDataFinal(e.target.value)}
-                />
-              </FormGroup>
+             
               <Stack spacing={1} padding={1} direction='row'>
                 <button
                   onClick={salvar}

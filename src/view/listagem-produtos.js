@@ -23,6 +23,9 @@ function ListagemProdutos() {
   const cadastrar = () => {
     navigate(`/cadastro-produto`);
   };
+  const verEstoque= () => {
+    navigate(`/listagem-estoque`);
+  };
 
   const editar = (id) => {
     navigate(`/cadastro-produto${id}`);
@@ -71,23 +74,30 @@ function ListagemProdutos() {
                 onClick={() => cadastrar()}
               >
                 Novo Produto
-              </button>
+              </button>   
+              &nbsp;
+              <button  
+                  
+                  type='button'
+                  className='btn btn-warning'
+                  onClick={() => verEstoque()}
+                >
+                 Ver Estoque
+                </button> 
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Produto</th>
-                    <th scope='col'>Capacidade Máxima</th>
-                    <th scope='col'>Capacidade Mínima</th>
-                    <th scope='col'>Ponto de Ressuprimento</th>
+                    <th scope='col'>Classificação</th>
+                    <th scope='col'>Fragrancia</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.produto}</td>
-                      <td>{dado.capacidadeMaxima}</td>
-                      <td>{dado.capacidadeMinima}</td>
-                      <td>{dado.PontoRessuprimento}</td>
+                      <td>{dado.classificacao}</td>
+                      <td>{dado.fragrancia}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -111,7 +121,9 @@ function ListagemProdutos() {
             </div>
           </div>
         </div>
+     
       </Card>
+      
     </div>
   );
 }

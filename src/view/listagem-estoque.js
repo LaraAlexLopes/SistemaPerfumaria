@@ -13,19 +13,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_CFV} from '../config/bdCFV';
+import {BASE_URL_FPP} from '../config/bdFPP';
 
-const baseURL = `${BASE_URL_CFV}/vendas`;
+const baseURL = `${BASE_URL_FPP}/estoque`;
 
-function ListagemVendas() {
+function ListagemEstoque() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   navigate(`/cadastro-vendas`);
+    navigate(`/cadastro-estoque`);
   };
 
   const editar = (id) => {
-   navigate(`/cadastro-vendas${id}`);
+    navigate(`/cadastro-estoque${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -39,7 +39,7 @@ function ListagemVendas() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Venda excluída com sucesso!`);
+        mensagemSucesso(`Produto excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -47,7 +47,7 @@ function ListagemVendas() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir a venda`);
+        mensagemErro(`Erro ao excluir o produto`);
       });
   }
 
@@ -61,7 +61,7 @@ function ListagemVendas() {
 
   return (
     <div className='container'>
-      <Card title='Vendas'>
+      <Card title='Produtos'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -70,24 +70,24 @@ function ListagemVendas() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Nova Venda
-              </button>
+                Novo Produto
+              </button>   
+             
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Data venda</th>
-                    <th scope='col'>Valor</th>
-                    <th scope='col'>Cliente</th>
-                    
+                    <th scope='col'>Produto</th>
+                    <th scope='col'>Quantidade</th>
+                 
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.dataVenda}</td>
-                      <td>{dado.valor}</td>
-                      <td>{dado.cliente}</td>
+                      <td>{dado.produto}</td>
+                      <td>{dado.quantidade}</td>
                       
+            
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -111,9 +111,11 @@ function ListagemVendas() {
             </div>
           </div>
         </div>
+     
       </Card>
+      
     </div>
   );
 }
 
-export default ListagemVendas;
+export default ListagemEstoque;

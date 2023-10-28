@@ -21,7 +21,7 @@ function CadastroVendas() {
   const baseURL = `${BASE_URL_CFV}/vendas`;
 
   const [id, setId] = useState('');
-  const [nomeCliente, setNomeCliente] = useState('');
+  const [idNomeCliente, setIdNomeCliente] = useState(0);
   const [dataVenda, setData] = useState('');
   const [listaProdutos, setListaProdutos] = useState('');
   const [cupomDesconto, setCupomDesconto] = useState('');
@@ -34,7 +34,7 @@ function CadastroVendas() {
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setNomeCliente('');
+      setIdNomeCliente(0);
       setData('');
       setListaProdutos('');
       setCupomDesconto('');
@@ -43,7 +43,7 @@ function CadastroVendas() {
       
     } else {
       setId(dados.id);
-      setNomeCliente(dados.nomeCliente);
+      setIdNomeCliente(dados.idNomeCliente);
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
@@ -55,7 +55,7 @@ function CadastroVendas() {
   }
 
   async function salvar() {
-    let data = { id,nomeCliente,dataVenda,listaProdutos,cupomDesconto,valorFinal,formaPagamento }
+    let data = { id,idNomeCliente,dataVenda,listaProdutos,cupomDesconto,valorFinal,formaPagamento }
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -90,7 +90,7 @@ function CadastroVendas() {
         setDados(response.data);
       });
       setId(dados.id);
-      setNomeCliente(dados.nomeCliente);
+      setIdNomeCliente(dados.nome);
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
@@ -98,11 +98,11 @@ function CadastroVendas() {
       setFormaPagamento(dados.formaPagamento);
     }
   }
-  const [dadosVendas, setDadosVendas] = React.useState(null);
+  const [dadosClientes, setDadosClientes] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_CFV}/vendas`).then((response) => {
-      setDadosVendas(response.data);
+    axios.get(`${BASE_URL_CFV}/clientes`).then((response) => {
+      setDadosClientes(response.data);
     });
   }, []);
 
@@ -111,7 +111,7 @@ function CadastroVendas() {
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosVendas) return null;
+  if (!dadosClientes) return null;
 
   return (
     <div className='container'>
@@ -119,19 +119,28 @@ function CadastroVendas() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Nome do cliente: *' htmlFor='inputNomeCliente'>
-                <input
-                  type='text'
-                  id='inputNomeCliente'
-                  value={nomeCliente}
-                  className='form-control'
-                  name='nomeCliente'
-                  onChange={(e) => setNomeCliente(e.target.value)}
-                />
+              
+              <FormGroup label='Nome do cliente:  *' htmlFor='selectNomeCliente'>
+                <select
+                  className='form-select'
+                  id='selectNomeCliente'
+                  name='idNomeCliente'
+                  value={idNomeCliente}
+                  onChange={(e) => setIdNomeCliente(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosClientes.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.nome}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
               <FormGroup label='Data: *' htmlFor='inputData'>
                 <input
-                  type='text'
+                  type='date'
                   maxLength='18'
                   id='inputData'
                   value={dataVenda}

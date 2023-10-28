@@ -98,7 +98,7 @@ function CadastroPedido() {
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/pedido`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
       setDadosFornecedores(response.data);
     });
   }, []);
@@ -167,7 +167,7 @@ function CadastroPedido() {
               </FormGroup>
               <FormGroup label='Data de Pedido: *' htmlFor='inputDataPedido'>
                 <input
-                  type='text'
+                  type='date'
                   id='inputDataPedido'
                   value={dataPedido}
                   className='form-control'
@@ -200,6 +200,7 @@ function CadastroPedido() {
                 >
                   Cancelar
                 </button>
+                
               </Stack>
             </div>
           </div>
