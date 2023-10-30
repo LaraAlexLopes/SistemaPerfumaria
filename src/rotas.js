@@ -11,6 +11,7 @@ import ListagemCupons from './view/listagem-cupons';
 import ListagemPerdas from './view/listagem-perdas.js';
 import ListagemFragancias from './view/listagem-fragancias';
 import ListagemTamanhos from './view/listagem-tamanhos';
+import ListagemEstoque from './view/listagem-estoque';
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import CadastroFornecedores from './view/cadastro-fornecedores';
@@ -24,6 +25,7 @@ import CadastroPedido from './view/cadastro-pedidos';
 import CadastroClientes from './view/cadastro-clientes';
 import CadastroFuncionarios from './view/cadastro-funcionarios';
 import CadastroVendas from './view/cadastro-vendas';
+import CadastroEstoque from './view/cadastro-estoque';
 
 
 
@@ -44,6 +46,7 @@ function Rotas(props) {
         <Route path='/cadastro-clientes/:idParam?' element={<CadastroClientes />} />
         <Route path='/cadastro-funcionarios/:idParam?' element={<CadastroFuncionarios />} />
         <Route path='/cadastro-vendas/:idParam?' element={<CadastroVendas />} />
+        <Route path='/cadastro-estoque/:idParam?' element={<CadastroEstoque />} />
         <Route path='/listagem-fornecedores' element={<ListagemFornecedores/>} />
         <Route path='/listagem-pedidos' element={<ListagemPedidos/>} />
         <Route path='/listagem-produtos' element={<ListagemProdutos/>} />
@@ -55,6 +58,7 @@ function Rotas(props) {
         <Route path='/listagem-clientes' element={<ListagemClientes/>} />
         <Route path='/listagem-funcionarios' element={<ListagemFuncionarios/>} />
         <Route path='/listagem-vendas' element={<ListagemVendas/>} />
+        <Route path='/listagem-estoque' element={<ListagemEstoque/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -12,6 +12,7 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
+import { BASE_URL_FT } from '../config/bdFT';
 
 function CadastroProduto() {
   const { idParam } = useParams();
@@ -95,12 +96,30 @@ function CadastroProduto() {
         
     }
   }
-
   const [dadosProduto, setDadosProduto] = React.useState(null);
+  const [dadosFragancia, setDadosFragancia] = React.useState(null);
+  const [dadosTamanho, setDadosTamanho] = React.useState(null);
+  const [dadosClassificacao, setDadosClassificacao] = React.useState(null);
+  
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
       setDadosProduto(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/fragrancia`).then((response) => {
+      setDadosFragancia(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+      setDadosTamanho(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/classificacao`).then((response) => {
+      setDadosClassificacao(response.data);
     });
   }, []);
 
@@ -110,6 +129,9 @@ function CadastroProduto() {
 
   if (!dados) return null;
   if (!dadosProduto) return null;
+  if (!dadosClassificacao) return null;
+  if (!dadosFragancia) return null;
+  if (!dadosTamanho) return null;
 
   return (
     <div className='container'>
@@ -138,35 +160,59 @@ function CadastroProduto() {
                 />
               </FormGroup>
               <FormGroup label='Classificação : *' htmlFor='inputClassificao'>
-                <input
-                  type='text'
-                  id='inputClassificao'
-                  value={classificacao}
-                  className='form-control'
-                  name='classsificacao'
-                  onChange={(e) => setClassificacao(e.target.value)}
-                />
+                <select
+                id='inputClassificao'
+                value={fragrancia}
+                className='form-select'
+                name='classificacao'
+                onChange={(e) => setDadosClassificacao(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosClassificacao.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.descricao}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='Tamanho: *' htmlFor='inputTamanho'>
-                <input
-                  type='text'
-                  id='inputTamanho'
-                  value={tamanho}
-                  className='form-control'
-                  name='tamanho'
-                  onChange={(e) => setTamanho(e.target.value)}
-                />
+                <select
+                id='inputTamanho'
+                value={tamanho}
+                className='form-select'
+                name='tamanho'
+                onChange={(e) => setDadosTamanho(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosTamanho.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.volume}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               
               <FormGroup label='Fragrancia: *' htmlFor='inputFragrancia'>
-                <input
-                  type='text'
-                  id='inputFragrancia'
-                  value={fragrancia}
-                  className='form-control'
-                  name='fragrancia'
-                  onChange={(e) => setFragrancia(e.target.value)}
-                />
+                <select
+                id='inputFragrancia'
+                value={fragrancia}
+                className='form-select'
+                name='fragrancia'
+                onChange={(e) => setDadosFragancia(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosFragancia.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.descricao}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
              
               <Stack spacing={1} padding={1} direction='row'>

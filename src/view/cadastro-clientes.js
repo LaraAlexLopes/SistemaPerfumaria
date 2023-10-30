@@ -93,11 +93,6 @@ function CadastroClientes() {
     } 
   }
 
-  useEffect(() => {
-    buscar(); // eslint-disable-next-line
-  }, [id]);
-
-  if (!dados) return null;
 
   return (
     <div className='container'>
@@ -136,7 +131,7 @@ function CadastroClientes() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Numero de Telefone: *' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='Telefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'

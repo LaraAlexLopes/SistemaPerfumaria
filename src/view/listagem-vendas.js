@@ -75,19 +75,17 @@ function ListagemVendas() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Data venda</th>
-                    <th scope='col'>Valor</th>
                     <th scope='col'>Cliente</th>
-                    
+                    <th scope='col'>Valor</th>
+                    <th scope='col'>Data venda</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.dataVenda}</td>
+                      <td>{dado.nomeCliente}</td>
                       <td>{dado.valor}</td>
-                      <td>{dado.cliente}</td>
-                      
+                      <td>{dado.dataVenda}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

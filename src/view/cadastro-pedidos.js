@@ -96,10 +96,16 @@ function CadastroPedido() {
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
+  const [dadosProdutos, setDadosProdutos] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
       setDadosFornecedores(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+      setDadosProdutos(response.data);
     });
   }, []);
 
@@ -109,6 +115,7 @@ function CadastroPedido() {
 
   if (!dados) return null;
   if (!dadosFornecedores) return null;
+  if (!dadosProdutos) return null;
 
   return (
     <div className='container'>
@@ -136,14 +143,22 @@ function CadastroPedido() {
                 </select>
               </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputProduto'>
-                <input
-                  type='text'
-                  id='inputProduto'
-                  value={produto}
-                  className='form-control'
-                  name='produto'
-                  onChange={(e) => setProduto(e.target.value)}
-                />
+                <select
+                id='inputProduto'
+                value={produto}
+                className='form-select'
+                name='produto'
+                onChange={(e) => setDadosProdutos(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='Quantidade: *' htmlFor='inputQuantidade'>
                 <input
@@ -177,7 +192,7 @@ function CadastroPedido() {
               </FormGroup>
               <FormGroup label='Data de Entrega: *' htmlFor='inputDataEntrega'>
                 <input
-                  type='text'
+                  type='date'
                   id='inputDataEntrega'
                   value={dataEntrega}
                   className='form-control'

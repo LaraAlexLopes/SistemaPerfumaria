@@ -11,14 +11,14 @@ import { mensagemSucesso, mensagemErro } from '../components/toastr';
 import '../custom.css';
 
 import axios from 'axios';
-import {BASE_URL_FPP} from '../config/bdFPP';
+import {BASE_URL_C} from '../config/bdC';
 
-function CadastroProduto() {
+function CadastroEstoque() {
   const { idParam } = useParams();
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FPP}/estoque`;
+  const baseURL = `${BASE_URL_C}/estoque`;
 
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -117,7 +117,7 @@ function CadastroProduto() {
   const [dadosProduto, setDadosProduto] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_C}/estoque`).then((response) => {
       setDadosProduto(response.data);
     });
   }, []);
@@ -131,7 +131,7 @@ function CadastroProduto() {
 
   return (
     <div className='container'>
-      <Card title='Cadastro de Produtos'>
+      <Card title='Cadastro de Produtos no Estoque'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -227,7 +227,7 @@ function CadastroProduto() {
               </FormGroup>
               <FormGroup label='Data Inicial da Meta Mensal: *' htmlFor='inputDataInicial'>
                 <input
-                  type='text'
+                  type='date'
                   id='inputDataInicial'
                   value={dataInicial}
                   className='form-control'
@@ -237,7 +237,7 @@ function CadastroProduto() {
               </FormGroup>
               <FormGroup label='Data Final da Meta Mensal: *' htmlFor='inputDataFinal'>
                 <input
-                  type='text'
+                  type='date'
                   id='inputDataFinal'
                   value={dataFinal}
                   className='form-control'

@@ -13,9 +13,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_FPP} from '../config/bdFPP';
+import {BASE_URL_C} from '../config/bdC';
 
-const baseURL = `${BASE_URL_FPP}/estoque`;
+const baseURL = `${BASE_URL_C}/estoque`;
 
 function ListagemEstoque() {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ function ListagemEstoque() {
 
   return (
     <div className='container'>
-      <Card title='Produtos'>
+      <Card title='Estoque'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -70,24 +70,24 @@ function ListagemEstoque() {
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Produto
-              </button>   
-             
+                Novo Produto no Estoque
+              </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
                     <th scope='col'>Produto</th>
-                    <th scope='col'>Quantidade</th>
-                 
+                    <th scope='col'>Capacidade Máxima</th>
+                    <th scope='col'>Capacidade Mínima</th>
+                    <th scope='col'>Ponto de Ressuprimento</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.produto}</td>
-                      <td>{dado.quantidade}</td>
-                      
-            
+                      <td>{dado.capacidadeMaxima}</td>
+                      <td>{dado.capacidadeMinima}</td>
+                      <td>{dado.PontoRessuprimento}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
@@ -111,9 +111,7 @@ function ListagemEstoque() {
             </div>
           </div>
         </div>
-     
       </Card>
-      
     </div>
   );
 }

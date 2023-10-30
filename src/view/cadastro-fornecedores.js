@@ -12,6 +12,7 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
+import { BASE_URL_C } from '../config/bdC';
 
 function CadastroFornecedores() {
   const { idParam } = useParams();
@@ -112,10 +113,16 @@ function CadastroFornecedores() {
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
+  const [dadosEstado, setDadosEstado] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
       setDadosFornecedores(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_C}/estado`).then((response) => {
+      setDadosEstado(response.data);
     });
   }, []);
 
@@ -125,6 +132,7 @@ function CadastroFornecedores() {
 
   if (!dados) return null;
   if (!dadosFornecedores) return null;
+  if (!dadosEstado) return null;
 
   return (
     <div className='container'>
@@ -163,7 +171,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Numero de Telefone: *' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='Telefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'
@@ -224,14 +232,22 @@ function CadastroFornecedores() {
                 />
               </FormGroup>
               <FormGroup label='Estado: *' htmlFor='inputEstado'>
-                <input
-                  type='text'
-                  id='inputEstado'
-                  value={estado}
-                  className='form-control'
-                  name='estado'
-                  onChange={(e) => setEstado(e.target.value)}
-                />
+              <select
+                id='inputEstado'
+                value={estado}
+                className='form-select'
+                name='estado'
+                onChange={(e) => setEstado(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosEstado.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.nome}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>

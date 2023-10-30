@@ -78,18 +78,18 @@ function ListagemClientes() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
-                    <th scope='col'>CPF</th>
                     <th scope='col'>Email</th>
                     <th scope='col'>Numero</th>
+                    <th scope='col'>CPF</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
-                      <td>{dado.cpf}</td>
                       <td>{dado.email}</td>
                       <td>{dado.numeroTelefone}</td>
+                      <td>{dado.cpf}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton

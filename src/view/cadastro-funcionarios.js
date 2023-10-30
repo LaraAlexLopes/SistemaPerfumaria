@@ -12,6 +12,7 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
+import {BASE_URL_C} from '../config/bdC';
 
 function CadastroFuncionarios() {
   const { idParam } = useParams();
@@ -124,11 +125,17 @@ function CadastroFuncionarios() {
     }
   }
 
-  const [dadosFuncionarios, setDadosFuncionarios] = React.useState(null);
+  const [dadosCargo, setDadosCargo] = React.useState(null);
+  const [dadosEstado, setDadosEstado] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_CFV}/funcionarios`).then((response) => {
-      setDadosFuncionarios(response.data);
+    axios.get(`${BASE_URL_C}/cargo`).then((response) => {
+      setDadosCargo(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_C}/estado`).then((response) => {
+      setDadosEstado(response.data);
     });
   }, []);
 
@@ -137,7 +144,8 @@ function CadastroFuncionarios() {
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosFuncionarios) return null;
+  if (!dadosCargo) return null;
+  if (!dadosEstado) return null;
 
   return (
     <div className='container'>
@@ -186,7 +194,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='NumeroTelefone: *' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='Telefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'
@@ -207,7 +215,7 @@ function CadastroFuncionarios() {
                   <option key='0' value='0'>
                     {' '}
                   </option>
-                  {dadosFuncionarios.map((dado) => (
+                  {dadosCargo.map((dado) => (
                     <option key={dado.id} value={dado.id}>
                       {dado.cargo}
                     </option>
@@ -275,14 +283,22 @@ function CadastroFuncionarios() {
                 />
               </FormGroup>
               <FormGroup label='Estado: *' htmlFor='inputEstado'>
-                <input
-                  type='text'
-                  id='inputEstado'
-                  value={estado}
-                  className='form-control'
-                  name='estado'
-                  onChange={(e) => setEstado(e.target.value)}
-                />
+                <select
+                id='inputEstado'
+                value={estado}
+                className='form-select'
+                name='estado'
+                onChange={(e) => setEstado(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosEstado.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.nome}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>

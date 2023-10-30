@@ -12,6 +12,8 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
+import { BASE_URL_CPC } from '../config/bdCPC'; 
+import { BASE_URL_FPP} from '../config/bdFPP'; 
 
 function CadastroVendas() {
   const { idParam } = useParams();
@@ -99,12 +101,35 @@ function CadastroVendas() {
     }
   }
   const [dadosClientes, setDadosClientes] = React.useState(null);
+  const [dadosCupom, setDadosCupom] = React.useState(null);
+  const [dadosFormaPagamento, setDadosFormaPagamento] = React.useState(null);
+  const [dadosProduto, setDadosProduto] = React.useState(null);
 
+  useEffect(() => {
+    axios.get(`${BASE_URL_CPC}/formaPagamento`).then((response) => {
+      setDadosFormaPagamento(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+      setDadosProduto(response.data);
+    });
+  }, []);
   useEffect(() => {
     axios.get(`${BASE_URL_CFV}/clientes`).then((response) => {
       setDadosClientes(response.data);
     });
   }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_CPC}/cupomDesconto`).then((response) => {
+      setDadosCupom(response.data);
+    });
+  }, []);
+  
+  
+  useEffect(() => {
+    buscar(); // eslint-disable-next-line
+  }, [id]);
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line
@@ -112,6 +137,9 @@ function CadastroVendas() {
 
   if (!dados) return null;
   if (!dadosClientes) return null;
+  if (!dadosCupom) return null;
+  if (!dadosFormaPagamento) return null;
+  if (!dadosProduto) return null;
 
   return (
     <div className='container'>
@@ -120,7 +148,7 @@ function CadastroVendas() {
           <div className='col-lg-12'>
             <div className='bs-component'>
               
-              <FormGroup label='Nome do cliente:  *' htmlFor='selectNomeCliente'>
+              <FormGroup label='Nome do Cliente:  *' htmlFor='selectNomeCliente'>
                 <select
                   className='form-select'
                   id='selectNomeCliente'
@@ -149,25 +177,41 @@ function CadastroVendas() {
                   onChange={(e) => setData(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Lista de Produtos: *' htmlFor='inputListaProdutos'>
-                <input
-                  type='text'
-                  id='inputListaProdutos'
-                  value={listaProdutos}
-                  className='form-control'
-                  name='listaProdutos'
-                  onChange={(e) => setListaProdutos(e.target.value)}
-                />
+              <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
+                <select
+                id='inputListaProdutos'
+                value={listaProdutos}
+                className='form-select'
+                name='listaProdutos'
+                onChange={(e) => setListaProdutos(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosProduto.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='Cupom De Desconto:' htmlFor='inputCupomDesconto'>
-                <input
-                  type='text'
-                  id='inputCupomDesconto'
-                  value={cupomDesconto}
-                  className='form-control'
-                  name='cupomDesconto'
-                  onChange={(e) => setCupomDesconto(e.target.value)}
-                />
+                <select
+                id='inputCupomDesconto'
+                value={cupomDesconto}
+                className='form-select'
+                name='cupomDesconto'
+                onChange={(e) => setCupomDesconto(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosCupom.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.desconto}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='Valor Final: *' htmlFor='inputValorFinal'>
                 <input
@@ -180,14 +224,22 @@ function CadastroVendas() {
                 />
               </FormGroup>
               <FormGroup label='Forma de Pagamento: *' htmlFor='inputFormapagamento'>
-                <input
-                  type='text'
-                  id='inputFormaPagemnto'
+                <select
+                  id='inputFormaPagamento'
                   value={formaPagamento}
-                  className='form-control'
+                  className='form-select'
                   name='formaPagamento'
                   onChange={(e) => setFormaPagamento(e.target.value)}
-                />
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosFormaPagamento.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.tipo}
+                    </option>
+                  ))}
+              </select>
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>

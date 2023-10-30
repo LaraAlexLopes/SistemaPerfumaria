@@ -61,7 +61,7 @@ function ListagemFornecedores() {
 
   return (
     <div className='container'>
-      <Card title='Listagem de Fornecedor'>
+      <Card title='Fornecedoress'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -76,18 +76,18 @@ function ListagemFornecedores() {
                 <thead>
                   <tr>
                     <th scope='col'>Nome</th>
-                    <th scope='col'>CNPJ</th>
                     <th scope='col'>Email</th>
-                    <th scope='col'>Numero</th>
+                    <th scope='col'>Telefone</th>
+                    <th scope='col'>CNPJ</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.nome}</td>
-                      <td>{dado.cnpj}</td>
                       <td>{dado.email}</td>
                       <td>{dado.numeroTelefone}</td>
+                      <td>{dado.cnpj}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                           <IconButton
