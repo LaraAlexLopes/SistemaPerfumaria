@@ -302,14 +302,14 @@ function CadastroFuncionarios() {
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>
-                <button
+                <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
                   type='button'
                   className='btn btn-success'
                 >
                   Salvar
                 </button>
-                <button
+                <button style={{ backgroundColor: 'red', color: 'white',borderColor : 'red', fontWeight : "500" }}
                   onClick={inicializar}
                   type='button'
                   className='btn btn-danger'

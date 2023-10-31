@@ -6,10 +6,9 @@ import NavbarItem from './navbarItem';
 function Navbar(props) {
   return (
     <div>
-      
-    <div className='navbar navbar-expand-lg fixed-top navbar-dark bg-primary'>
+    <div className='navbar navbar-expand-lg fixed-top '>
       <div className='container'>
-        <a href='/' className='navbar-brand'>
+        <a href='/index' className='navbar-brand' style={{ color: 'white' }}>
           Perfumaria
         </a>
         <button
@@ -22,16 +21,17 @@ function Navbar(props) {
           aria-label='Toggle navigation'
         >
           <span className='navbar-toggler-icon'></span>
-        </button>
-        <div className='collapse navbar-collapse' id='navbarResponsive'>
-          <ul className='navbar-nav'>
+        </button >
+        <div className='collapse navbar-collapse' id='navbarResponsive' style={{ color: 'white',fontWeight: "500" }}>
+          <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>
             <NavbarItem
               render='true'
               href='/listagem-clientes'
-              label='Clientes'
+              label ='Clientes'
+              
             />
           </ul>
-          <ul className='navbar-nav'>
+          <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>
             <NavbarItem render='true' href='/listagem-funcionarios' label='Funcionários' />
           </ul>
           <ul className='navbar-nav'>

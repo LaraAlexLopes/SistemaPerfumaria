@@ -27,6 +27,9 @@ function ListagemFuncionarios() {
   const editar = (id) => {
    navigate(`/cadastro-funcionarios/${id}`);
   };
+  const verMelhoresFuncionarios= () => {
+    navigate(`/listagem-metas`);
+  };
 
   const [dados, setDados] = React.useState(null);
 
@@ -65,40 +68,47 @@ function ListagemFuncionarios() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button
+              <button style={{ backgroundColor: '#4AA228', color: 'white' ,borderColor : '#4AA228', fontWeight : "500"}}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Novo Funcionário
               </button>
+              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verMelhoresFuncionarios()}
+              >
+                Melhores Funcionários
+              </button>
               <table className='table table-hover'>
                 <thead>
-                  <tr>
-                    <th scope='col'>Nome</th>
-                    <th scope='col'>CPF</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Numero</th>
-                    <th scope='col'>Cargo</th>
+                  <tr >
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }}scope='col'>Nome</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }}scope='col'>CPF</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }}scope='col'>Email</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }}scope='col'>Numero</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }}cope='col'>Cargo</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.nome}</td>
-                      <td>{dado.cpf}</td>
-                      <td>{dado.email}</td>
-                      <td>{dado.numeroTelefone}</td>
-                      <td>{dado.cargo}</td>
-                      <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.nome}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.cpf}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.email}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.numeroTelefone}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.cargo}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}> 
+                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
+                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton
+                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >

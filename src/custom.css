@@ -1,9 +1,13 @@
 body {
     padding-top: 120px;
+    background-color: #000000;
+    color: white;
   }
   pre {
     background: #f7f7f9;
+  
   }
+  
   @media (min-width: 768px) {
     body > .navbar-transparent {
       box-shadow: none;
@@ -12,9 +16,19 @@ body {
       box-shadow: none;
     }
   }
+  a{
+    color: white !important;
+  }
+  .textoBranco{
+    color: white !important;
+  }
   #home,
   #help {
     font-size: 0.9rem;
+  }
+  .navbar{
+    background-color: #4AA228;
+    color: white !important;
   }
   #home .navbar,
   #help .navbar {
@@ -64,6 +78,23 @@ body {
     display: flex;
     width: 420px;
     flex-wrap: wrap;
+    
+  }
+  .card{
+    background-color: #0c0c0c;
+     /* border-color: rgb(236, 233, 233);  */
+    color: white;
+  }
+  .table{
+    background-color: #0c0c0c;
+    border-color: white;
+  }
+  #inputEmail,#inputNome,#inputCpf,#inputNumeroTelefone,#inputDataNascimento,#selectCargo,#inputSalario,#inputLogradouro,#inputNumero,#inputEstado,#inputCidade,#inputBairro,#inputComplemento,#selectNomeCliente,#inputData,#inputListaProdutos,#inputCupomDesconto,#inputValorFinal,#inputFormaPagamento,#inputCnpj,#selectFornecedor,#inputProduto,#inputQuantidade,#inputValor,#inputDataPedido,#inputDataEntrega,#inputCodigoBarras,#inputClassificao,#inputFragrancia,#inputTamanho{
+    background-color: black;
+    border-color: #0c0c0c;
+  }
+  label{
+    font-weight: 500;
   }
   .dropdown-menu.show[aria-labelledby='themes'] .dropdown-item {
     width: 33.333%;
@@ -105,6 +136,10 @@ body {
     right: 0;
     z-index: 100;
     font-weight: bold;
+  }
+  .bs-component button{
+    margin-right: 5px;
+    margin-bottom: 10px;
   }
   .source-button:hover {
     cursor: pointer;

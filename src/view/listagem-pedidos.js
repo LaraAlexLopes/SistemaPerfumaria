@@ -65,7 +65,7 @@ function ListagemPedidos() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button
+              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
@@ -75,26 +75,26 @@ function ListagemPedidos() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Fornecedor</th>
-                    <th scope='col'>Data de Pedido</th>
-                    <th scope='col'>Data de Entrega</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Fornecedor</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Data de Pedido</th>
+                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Data de Entrega</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.fornecedor}</td>
-                      <td>{new Date(dado['data de pedido']).toLocaleDateString()}</td>
-                      <td>{new Date(dado['data de entrega']).toLocaleDateString()}</td>
-                      <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.fornecedor}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{new Date(dado['data de pedido']).toLocaleDateString()}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{new Date(dado['data de entrega']).toLocaleDateString()}</td>
+                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
+                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
+                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton
+                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >
