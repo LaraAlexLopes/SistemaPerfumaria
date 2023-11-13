@@ -70,14 +70,14 @@ function ListagemClientes() {
         <div className='row'>
           <div className='col-lg-12' >
             <div className='bs-component' >
-              <button style={{ backgroundColor: '#4AA228', color: 'white' ,borderColor : '#4AA228', fontWeight : "500"}}
+              <button style={{ backgroundColor: 'black', color: 'white' ,borderColor : '#4AA228', fontWeight : "500"}}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Novo Cliente
               </button>
-              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => verMelhoresClientes()}
@@ -87,28 +87,28 @@ function ListagemClientes() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Nome</th>
-                    <th scope='col'style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Email</th>
-                    <th scope='col' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Numero</th>
-                    <th scope='col'style={{ backgroundColor: '#0c0c0c', color: 'white' }}>CPF</th>
+                    <th scope='col'>Nome</th>
+                    <th scope='col'>Email</th>
+                    <th scope='col'>Numero</th>
+                    <th scope='col'>CPF</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.nome}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.email}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.numeroTelefone}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.cpf}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                      <td>{dado.nome}</td>
+                      <td>{dado.email}</td>
+                      <td>{dado.numeroTelefone}</td>
+                      <td>{dado.cpf}</td>
+                      <td>
+                        <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                          <IconButton style={{color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >

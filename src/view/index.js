@@ -1,5 +1,4 @@
 import React from 'react';
-//import minhaImagem from '//imagem.jpg';
 
 function Imagem() {
       const imagemStyle = {
@@ -11,7 +10,7 @@ function Imagem() {
           };
   return (
     <div style={imagemStyle} >
-      <img src='http://www.luvparfum.com/blog/menu/R&G-Jade.jpg' style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+      <img src='https://i.pinimg.com/564x/41/e8/28/41e828130a43aa54f0101eb92980ec58.jpg' style={{ maxWidth: '100%', maxHeight: '100%' }}/>
       {/* Outros componentes e conteúdo da página de listagem */}
     </div>
   );

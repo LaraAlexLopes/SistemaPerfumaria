@@ -1,7 +1,7 @@
 body {
     padding-top: 120px;
-    background-color: #000000;
-    color: white;
+    background-color: #eeeee2;
+    color: black;
   }
   pre {
     background: #f7f7f9;
@@ -27,7 +27,7 @@ body {
     font-size: 0.9rem;
   }
   .navbar{
-    background-color: #4AA228;
+    background-color: #0c0c0c;
     color: white !important;
   }
   #home .navbar,
@@ -81,16 +81,14 @@ body {
     
   }
   .card{
-    background-color: #0c0c0c;
      /* border-color: rgb(236, 233, 233);  */
-    color: white;
+    color: black;
   }
   .table{
-    background-color: #0c0c0c;
+    /*background-color: #0c0c0c;*/
     border-color: white;
   }
   #inputEmail,#inputNome,#inputCpf,#inputNumeroTelefone,#inputDataNascimento,#selectCargo,#inputSalario,#inputLogradouro,#inputNumero,#inputEstado,#inputCidade,#inputBairro,#inputComplemento,#selectNomeCliente,#inputData,#inputListaProdutos,#inputCupomDesconto,#inputValorFinal,#inputFormaPagamento,#inputCnpj,#selectFornecedor,#inputProduto,#inputQuantidade,#inputValor,#inputDataPedido,#inputDataEntrega,#inputCodigoBarras,#inputClassificao,#inputFragrancia,#inputTamanho{
-    background-color: black;
     border-color: #0c0c0c;
   }
   label{

@@ -70,7 +70,7 @@ function ListagemProdutos() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
@@ -78,14 +78,14 @@ function ListagemProdutos() {
                 Novo Produto
               </button>   
               &nbsp;
-              <button  style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button  style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                   type='button'
                   className='btn btn-warning'
                   onClick={() => maisVendidos()}
                 >
                  Mais Vendidos
                 </button>
-              <button  style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button  style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                   type='button'
                   className='btn btn-warning'
                   onClick={() => verEstoque()}
@@ -95,26 +95,26 @@ function ListagemProdutos() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Produto</th>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Classificação</th>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Fragrancia</th>
+                    <th  scope='col'>Produto</th>
+                    <th  scope='col'>Classificação</th>
+                    <th scope='col'>Fragrancia</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.produto}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.classificacao}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.fragrancia}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                      <td >{dado.produto}</td>
+                      <td >{dado.classificacao}</td>
+                      <td >{dado.fragrancia}</td>
+                      <td >
+                        <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                          <IconButton style={{ color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >

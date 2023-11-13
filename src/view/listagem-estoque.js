@@ -68,14 +68,14 @@ function ListagemEstoque() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Novo Produto no Estoque
               </button>
-              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => verProdutos()}
@@ -85,28 +85,28 @@ function ListagemEstoque() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Produto</th>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Capacidade Máxima</th>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Capacidade Mínima</th>
-                    <th style={{ backgroundColor: '#0c0c0c', color: 'white' }} scope='col'>Ponto de Ressuprimento</th>
+                    <th  scope='col'>Produto</th>
+                    <th  scope='col'>Capacidade Máxima</th>
+                    <th  scope='col'>Capacidade Mínima</th>
+                    <th  scope='col'>Ponto de Ressuprimento</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.produto}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.capacidadeMaxima}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.capacidadeMinima}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.PontoRessuprimento}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                      <td >{dado.produto}</td>
+                      <td >{dado.capacidadeMaxima}</td>
+                      <td >{dado.capacidadeMinima}</td>
+                      <td >{dado.PontoRessuprimento}</td>
+                      <td >
+                        <Stack spacing={1} padding={0} direction='row' style={{color: '#4AA228' }}>
+                          <IconButton style={{color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                          <IconButton style={{ color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >

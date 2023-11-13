@@ -65,7 +65,7 @@ function ListagemVendas() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
@@ -75,26 +75,26 @@ function ListagemVendas() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Cliente</th>
-                    <th scope='col' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Valor</th>
-                    <th scope='col' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>Data de Venda</th>
+                    <th scope='col' >Cliente</th>
+                    <th scope='col' >Valor</th>
+                    <th scope='col' >Data de Venda</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.nomeCliente}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{dado.valor}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>{new Date(dado['dataVenda']).toLocaleDateString()}</td>
-                      <td style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                        <Stack spacing={1} padding={0} direction='row' style={{ backgroundColor: '#0c0c0c', color: 'white' }}>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                      <td >{dado.nomeCliente}</td>
+                      <td >{dado.valor}</td>
+                      <td >{new Date(dado['dataVenda']).toLocaleDateString()}</td>
+                      <td >
+                        <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ backgroundColor: '#0c0c0c', color: '#4AA228' }}
+                          <IconButton style={{  color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >
