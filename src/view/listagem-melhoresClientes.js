@@ -13,24 +13,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_C} from '../config/bdC';
+import { BASE_URL_CFV } from '../config/bdCFV';
 
-const baseURL = `${BASE_URL_C}/estoque`;
+const baseURL = `${ BASE_URL_CFV }/clientes`;
 
-function ListagemProdutosMaisVendido() {
+function ListagemMelhoresClientes() {
   const navigate = useNavigate();
 
-  const verProduto= () => {
-    navigate(`/listagem-produtos`);
-  };
-  
-  const editar = (id) => {
-    navigate(`/cadastro-produto${id}`);
-  };
 
   const [dados, setDados] = React.useState(null);
 
-  
+
+
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -42,36 +36,28 @@ function ListagemProdutosMaisVendido() {
 
   return (
     <div className='container'>
-      <Card title='Produtos Mais Vendidos'>
+      <Card title='Melhores Clientes'>
         <div className='row'>
-          <div className='col-lg-12'>
-            <div className='bs-component'>   
-              &nbsp;
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}  
-                  type='button'
-                  className='btn btn-warning'
-                  onClick={() => verProduto()}
-                >
-                 Ver Produtos
-                </button> 
+          <div className='col-lg-12' >
+            <div className='bs-component' >
+             
+              
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th  scope='col'>Posição</th>
-                    <th  scope='col'>Produto</th>
-                    <th  scope='col'>Código de Barras</th>
-                    <th  scope='col'>Preço</th>
+                    <th scope='col'>Nome</th>
+                    <th scope='col'>Número</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.id}</td>
-                      <td>{dado.produto}</td>
-                      <td>{dado.codigoBarras}</td>
-                      <td>{dado.preco}</td>
+                      <td>{dado.nome}</td>
+                      <td>{dado.numeroTelefone}</td>
                       <td>
-                        
+                        <Stack spacing={1} padding={0} direction='row'>
+                          
+                        </Stack>
                       </td>
                     </tr>
                   ))}
@@ -80,11 +66,9 @@ function ListagemProdutosMaisVendido() {
             </div>
           </div>
         </div>
-     
       </Card>
-      
     </div>
   );
 }
 
-export default ListagemProdutosMaisVendido;
+export default ListagemMelhoresClientes;

@@ -24,7 +24,7 @@ function ListagemClientes() {
    navigate(`/cadastro-clientes`);
   };
   const verMelhoresClientes = () => {
-    navigate(`/cadastro-clientes`);
+    navigate(`/listagem-melhoresClientes`);
    };
 
   const editar = (id) => {

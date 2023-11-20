@@ -27,7 +27,13 @@ function ListagemVendas() {
   const editar = (id) => {
    navigate(`/cadastro-vendas/${id}`);
   };
+  const listagemMetasProdutos = (id) => {
+    navigate(`/listagem-metasProdutos`);
+   };
 
+   const listagemCupons = (id) => {
+    navigate(`/listagem-cupons`);
+   };
   const [dados, setDados] = React.useState(null);
 
   async function excluir(id) {
@@ -71,6 +77,20 @@ function ListagemVendas() {
                 onClick={() => cadastrar()}
               >
                 Nova Venda
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => listagemMetasProdutos()}
+              >
+                Ver Metas de venda Mensais
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => listagemCupons()}
+              >
+                Cupons Disponíveis
               </button>
               <table className='table table-hover'>
                 <thead>

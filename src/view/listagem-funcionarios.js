@@ -17,6 +17,7 @@ import {BASE_URL_CFV} from '../config/bdCFV';
 
 const baseURL = `${BASE_URL_CFV}/funcionarios`;
 
+
 function ListagemFuncionarios() {
   const navigate = useNavigate();
 
@@ -28,8 +29,11 @@ function ListagemFuncionarios() {
    navigate(`/cadastro-funcionarios/${id}`);
   };
   const verMelhoresFuncionarios= () => {
-    navigate(`/listagem-metas`);
+    navigate(`/listagem-melhoresFuncionarios`);
   };
+  const listagemMetasProdutos = (id) => {
+    navigate(`/listagem-metasProdutos`);
+   };
 
   const [dados, setDados] = React.useState(null);
 
@@ -81,6 +85,13 @@ function ListagemFuncionarios() {
                 onClick={() => verMelhoresFuncionarios()}
               >
                 Melhores Funcionários
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => listagemMetasProdutos()}
+              >
+                Ver Metas Mensais
               </button>
               <table className='table table-hover'>
                 <thead>

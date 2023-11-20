@@ -22,6 +22,8 @@ function CadastroPerda() {
 
   const [id, setId] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [codigoDeBarras, setCodigoDeBarras] = useState('');
+  const [data, setData] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -29,14 +31,18 @@ function CadastroPerda() {
     if (idParam == null) {
       setId('');
       setDescricao('');
+      setCodigoDeBarras('');
+      setData('');
     } else {
       setId(dados.id);
       setDescricao(dados.descricao);
+      setCodigoDeBarras(dados.codigoDeBarras);
+      setData(dados.data);
     }
   }
 
   async function salvar() {
-    let data = { id, descricao};
+    let data = { id, descricao,codigoDeBarras,data};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -106,6 +112,27 @@ function CadastroPerda() {
                   onChange={(e) => setDescricao(e.target.value)}
                 />
               </FormGroup>
+              <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
+                <input
+                  type='text'
+                  id='inputCodigoDeBarras'
+                  value={codigoDeBarras}
+                  className='form-control'
+                  name='codigoDeBarras'
+                  onChange={(e) => setCodigoDeBarras(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Data: *' htmlFor='inputData'>
+                <input
+                  type='date'
+                  id='inputData'
+                  value={data}
+                  className='form-control'
+                  name='data'
+                  onChange={(e) => setData(e.target.value)}
+                />
+              </FormGroup>
+
               <Stack spacing={1} padding={1} direction='row'>
                 <button
                   onClick={salvar}

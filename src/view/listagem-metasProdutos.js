@@ -13,19 +13,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_CPC} from '../config/bdCPC';
+import {BASE_URL_M} from '../config/bdM';
 
-const baseURL = `${BASE_URL_CPC}/perdaProduto`;
+const baseURL = `${BASE_URL_M}/metaVendasProdutos`;
 
-function ListagemPerdas() {
+function ListagemMetasProdutos() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   navigate(`/cadastro-perda`);
+   navigate(`/cadastro-metasProdutos`);
   };
 
   const editar = (id) => {
-   navigate(`/cadastro-perda/${id}`);
+   navigate(`/cadastro-metasProdutos/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -39,7 +39,7 @@ function ListagemPerdas() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Perda excluído com sucesso!`);
+        mensagemSucesso(`Cupom excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -47,7 +47,7 @@ function ListagemPerdas() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o perda`);
+        mensagemErro(`Erro ao excluir o cupom`);
       });
   }
 
@@ -61,39 +61,42 @@ function ListagemPerdas() {
 
   return (
     <div className='container'>
-      <Card title='Perdas'>
+      <Card title='Metas de Venda Mensais'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-            <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+            <button style={{ backgroundColor: 'black', color: 'white' ,borderColor : '#4AA228', fontWeight : "500"}}
+                type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Nova Perda
+                Nova Meta
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Código Barras</th>
-                    <th scope='col'>Data de Perda</th>
-                    <th scope='col'>Descrição da Perda</th>
+                    <th scope='col'>Produto</th>
+                    <th scope='col'>Valor da Meta</th>
+                    <th scope='col'>Data de Inicio</th>
+                    <th scope='col'>Data Final</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.codigoBarras}</td>
-                      <td>{new Date(dado['dataPerda']).toLocaleDateString()}</td>
-                      <td>{dado.descricaoPerda}</td>
+                      <td>{dado.produto}</td>
+                      <td>{dado.valorMetaMensal}</td>
+                      <td>{new Date(dado['dataInicio']).toLocaleDateString()}</td>
+                      <td >{new Date(dado['dataFinal']).toLocaleDateString()}</td>
                       <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                        <IconButton style={{ color: 'black' }}
+                      <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ color: 'black' }}
+                          <IconButton style={{color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >
@@ -113,4 +116,4 @@ function ListagemPerdas() {
   );
 }
 
-export default ListagemPerdas;
+export default ListagemMetasProdutos;

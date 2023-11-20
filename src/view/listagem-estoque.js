@@ -30,6 +30,9 @@ function ListagemEstoque() {
   const editar = (id) => {
     navigate(`/cadastro-estoque${id}`);
   };
+  const verPerdas = () => {
+    navigate(`/listagem-perdas`);
+  };
 
   const [dados, setDados] = React.useState(null);
 
@@ -81,6 +84,13 @@ function ListagemEstoque() {
                 onClick={() => verProdutos()}
               >
                 Ver Produtos
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verPerdas()}
+              >
+                Perdas
               </button>
               <table className='table table-hover'>
                 <thead>

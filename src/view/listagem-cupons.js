@@ -25,7 +25,7 @@ function ListagemCupons() {
   };
 
   const editar = (id) => {
-   //navigate(`/cadastro-cupom/${id}`);
+   navigate(`/cadastro-cupom/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -65,8 +65,7 @@ function ListagemCupons() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button
-                type='button'
+            <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
@@ -85,14 +84,14 @@ function ListagemCupons() {
                       <td>{dado.desconto}</td>
                       <td>{new Date(dado['dataExpiração']).toLocaleDateString()}</td>
                       <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
+                      <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton
+                          <IconButton style={{  color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >
