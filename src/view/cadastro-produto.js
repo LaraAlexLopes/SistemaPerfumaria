@@ -19,10 +19,10 @@ function CadastroProduto() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FPP}/produtos`;
+  const baseURL = `${BASE_URL_FPP}/produto`;
 
   const [id, setId] = useState('');
-  const [nome, setNome] = useState('');
+  const [produto, setProduto] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
   const [classificacao, setClassificacao] = useState('');
   const [tamanho, setTamanho] = useState('');
@@ -34,26 +34,24 @@ function CadastroProduto() {
   function inicializar() {
     if (idParam == null) {
         setId('');
-        setNome('');
+        setProduto('');
         setCodigoBarras('');
         setClassificacao('');
         setTamanho('');
         setFragrancia('');
        
-    } else {
+    } else{
         setId(dados.id);
-        setNome(dados.nome);
+        setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
         setClassificacao(dados.classificacao);
         setTamanho(dados.tamanho);
-        setFragrancia(dados.fragrancia);
-       
-       
+        setFragrancia(dados.fragrancia);     
     }
   }
 
   async function salvar() {
-    let data = { id, nome, codigoBarras, classificacao,tamanho,fragrancia};
+    let data = { id, produto, codigoBarras, classificacao,tamanho,fragrancia};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -61,7 +59,7 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produtos ${nome} cadastrado com sucesso!`);
+          mensagemSucesso(`Funcionario ${produto} cadastrado com sucesso!`);
           navigate(`/listagem-produtos`);
         })
         .catch(function (error) {
@@ -73,8 +71,8 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${nome} alterado com sucesso!`);
-          navigate(`/listagem-produtos`);
+          mensagemSucesso(`Funcionario ${produto} alterado com sucesso!`);
+         navigate(`/listagem-produtos`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -88,7 +86,7 @@ function CadastroProduto() {
         setDados(response.data);
       });
         setId(dados.id);
-        setNome(dados.nome);
+        setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
         setClassificacao(dados.classificacao);
         setTamanho(dados.tamanho);
@@ -97,7 +95,7 @@ function CadastroProduto() {
     }
   }
   const [dadosProduto, setDadosProduto] = React.useState(null);
-  const [dadosFragancia, setDadosFragancia] = React.useState(null);
+  const [dadosFragrancia, setDadosFragancia] = React.useState(null);
   const [dadosTamanho, setDadosTamanho] = React.useState(null);
   const [dadosClassificacao, setDadosClassificacao] = React.useState(null);
   
@@ -130,7 +128,7 @@ function CadastroProduto() {
   if (!dados) return null;
   if (!dadosProduto) return null;
   if (!dadosClassificacao) return null;
-  if (!dadosFragancia) return null;
+  if (!dadosFragrancia) return null;
   if (!dadosTamanho) return null;
 
   return (
@@ -143,10 +141,10 @@ function CadastroProduto() {
                 <input
                   type='text'
                   id='inputNome'
-                  value={nome}
+                  value={produto}
                   className='form-control'
                   name='nome'
-                  onChange={(e) => setNome(e.target.value)}
+                  onChange={(e) => setProduto(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
@@ -162,17 +160,17 @@ function CadastroProduto() {
               <FormGroup label='Classificação : *' htmlFor='inputClassificao'>
                 <select
                 id='inputClassificao'
-                value={fragrancia}
+                value={classificacao}
                 className='form-select'
                 name='classificacao'
-                onChange={(e) => setDadosClassificacao(e.target.value)}
+                onChange={(e) => setClassificacao(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
                     </option>
                     {dadosClassificacao.map((dado) => (
                       <option key={dado.id} value={dado.id}>
-                        {dado.descricao}
+                        {dado.classificacao}
                       </option>
                     ))}
                 </select>
@@ -183,7 +181,7 @@ function CadastroProduto() {
                 value={tamanho}
                 className='form-select'
                 name='tamanho'
-                onChange={(e) => setDadosTamanho(e.target.value)}
+                onChange={(e) => setTamanho(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
@@ -195,19 +193,18 @@ function CadastroProduto() {
                     ))}
                 </select>
               </FormGroup>
-              
               <FormGroup label='Fragrancia: *' htmlFor='inputFragrancia'>
                 <select
                 id='inputFragrancia'
                 value={fragrancia}
                 className='form-select'
                 name='fragrancia'
-                onChange={(e) => setDadosFragancia(e.target.value)}
+                onChange={(e) => setFragrancia(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
                     </option>
-                    {dadosFragancia.map((dado) => (
+                    {dadosFragrancia.map((dado) => (
                       <option key={dado.id} value={dado.id}>
                         {dado.descricao}
                       </option>

@@ -13,21 +13,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_FT} from '../config/bdFT';
+import {BASE_URL_C} from '../config/bdC';
 
-const baseURL = `${BASE_URL_FT}/tamanho`;
+const baseURL = `${BASE_URL_C}/estoque`;
 
-function ListagemTamanhos() {
+function ListagemCadastro() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   navigate(`/cadastro-tamanho`);
+    navigate(`/cadastro-estoque`);
   };
-  const verCadastro = () => {
-    navigate(`/listagem-cadastro`);
-   };
-  const editar = (id) => {
-   navigate(`/cadastro-tamanho/${id}`);
+  
+  const verPerdas = () => {
+    navigate(`/listagem-perdas`);
+  };
+  const verFragancia = () => {
+    navigate(`/listagem-fragancias`);
+  };
+  const verTamanho = () => {
+    navigate(`/listagem-tamanhos`);
+  };
+  const verClassificacao = () => {
+    navigate(`/listagem-classificacoes`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -41,7 +48,7 @@ function ListagemTamanhos() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Volume excluído com sucesso!`);
+        mensagemSucesso(`Produto excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -49,7 +56,7 @@ function ListagemTamanhos() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o volume`);
+        mensagemErro(`Erro ao excluir o produto`);
       });
   }
 
@@ -63,54 +70,38 @@ function ListagemTamanhos() {
 
   return (
     <div className='container'>
-      <Card title='Tamanhos'>
+      <Card title='Cadastros'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
               <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
-                onClick={() => cadastrar()}
+                onClick={() => verClassificacao()}
               >
-                Novo Tamanho
+                Classificações
               </button>
               <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
-                onClick={() => verCadastro()}
+                onClick={() => verFragancia()}
               >
-                Cadastro
+                Fragâncias
               </button>
-              <table className='table table-hover'>
-                <thead>
-                  <tr>
-                    <th scope='col'>Volume</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {dados.map((dado) => (
-                    <tr key={dado.id}>
-                      <td>{dado.volume}</td>
-                      <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
-                            aria-label='edit'
-                            onClick={() => editar(dado.id)}
-                          >
-                            <EditIcon />
-                          </IconButton>
-                          <IconButton
-                            aria-label='delete'
-                            onClick={() => excluir(dado.id)}
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </Stack>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>{' '}
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verTamanho()}
+              >
+                Tamanhos
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verPerdas()}
+              >
+              Perdas
+              </button>
             </div>
           </div>
         </div>
@@ -119,4 +110,4 @@ function ListagemTamanhos() {
   );
 }
 
-export default ListagemTamanhos;
+export default ListagemCadastro;

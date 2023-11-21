@@ -21,9 +21,9 @@ function CadastroPerda() {
   const baseURL = `${BASE_URL_CPC}/perdaProduto`;
 
   const [id, setId] = useState('');
-  const [descricao, setDescricao] = useState('');
+  const [descricaoPerda, setDescricao] = useState('');
   const [codigoDeBarras, setCodigoDeBarras] = useState('');
-  const [data, setData] = useState('');
+  const [dataPerda, setData] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -35,14 +35,14 @@ function CadastroPerda() {
       setData('');
     } else {
       setId(dados.id);
-      setDescricao(dados.descricao);
+      setDescricao(dados.descricaoPerda);
       setCodigoDeBarras(dados.codigoDeBarras);
-      setData(dados.data);
+      setData(dados.dataPerda);
     }
   }
 
   async function salvar() {
-    let data = { id, descricao,codigoDeBarras,data};
+    let data = { id, descricaoPerda,codigoDeBarras,dataPerda};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -50,7 +50,7 @@ function CadastroPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda ${descricao} cadastrado com sucesso!`);
+          mensagemSucesso(`Perda ${descricaoPerda} cadastrado com sucesso!`);
           navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
@@ -62,7 +62,7 @@ function CadastroPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda ${descricao} alterado com sucesso!`);
+          mensagemSucesso(`Perda ${descricaoPerda} alterado com sucesso!`);
           navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
@@ -106,7 +106,7 @@ function CadastroPerda() {
                 <input
                   type='text'
                   id='inputDescricao'
-                  value={descricao}
+                  value={descricaoPerda}
                   className='form-control'
                   name='descricao'
                   onChange={(e) => setDescricao(e.target.value)}
@@ -126,7 +126,7 @@ function CadastroPerda() {
                 <input
                   type='date'
                   id='inputData'
-                  value={data}
+                  value={dataPerda}
                   className='form-control'
                   name='data'
                   onChange={(e) => setData(e.target.value)}
@@ -134,14 +134,14 @@ function CadastroPerda() {
               </FormGroup>
 
               <Stack spacing={1} padding={1} direction='row'>
-                <button
+                <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
                   type='button'
                   className='btn btn-success'
                 >
                   Salvar
                 </button>
-                <button
+                <button style={{ backgroundColor: 'red', color: 'white',borderColor : 'red', fontWeight : "500" }}
                   onClick={inicializar}
                   type='button'
                   className='btn btn-danger'

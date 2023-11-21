@@ -28,7 +28,7 @@ function ListagemEstoque() {
   };
 
   const editar = (id) => {
-    navigate(`/cadastro-estoque${id}`);
+    navigate(`/cadastro-estoque/${id}`);
   };
   const verPerdas = () => {
     navigate(`/listagem-perdas`);
@@ -45,7 +45,7 @@ function ListagemEstoque() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Produto excluído com sucesso!`);
+        mensagemSucesso(`Produto excluído do Estoque com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -53,7 +53,7 @@ function ListagemEstoque() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o produto`);
+        mensagemErro(`Erro ao excluir  produto`);
       });
   }
 
@@ -77,20 +77,6 @@ function ListagemEstoque() {
                 onClick={() => cadastrar()}
               >
                 Novo Produto no Estoque
-              </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => verProdutos()}
-              >
-                Ver Produtos
-              </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => verPerdas()}
-              >
-                Perdas
               </button>
               <table className='table table-hover'>
                 <thead>

@@ -88,7 +88,7 @@ body {
     /*background-color: #0c0c0c;*/
     border-color: white;
   }
-  #inputEmail,#inputNome,#inputCpf,#inputNumeroTelefone,#inputDataNascimento,#selectCargo,#inputSalario,#inputLogradouro,#inputNumero,#inputEstado,#inputCidade,#inputBairro,#inputComplemento,#selectNomeCliente,#inputData,#inputListaProdutos,#inputCupomDesconto,#inputValorFinal,#inputFormaPagamento,#inputCnpj,#selectFornecedor,#inputProduto,#inputQuantidade,#inputValor,#inputDataPedido,#inputDataEntrega,#inputCodigoBarras,#inputClassificao,#inputFragrancia,#inputTamanho{
+  #inputEmail,#inputNome,#inputCpf,#inputNumeroTelefone,#inputDataNascimento,#selectCargo,#inputSalario,#inputLogradouro,#inputNumero,#inputEstado,#inputCidade,#inputBairro,#inputComplemento,#selectNomeCliente,#inputData,#inputListaProdutos,#inputCupomDesconto,#inputValorFinal,#inputFormaPagamento,#inputCnpj,#selectFornecedor,#inputProduto,#inputQuantidade,#inputValor,#inputDataPedido,#inputDataEntrega,#inputCodigoBarras,#inputClassificao,#inputFragrancia,#inputTamanho,#inputDataInicial,#inputDataFinal,#inputLote,#inputValidade,#inputCapacidadeMaxima,#inputCapacidadeMinima,#inputPontoRessuprimento,#inputMetaMensal{
     border-color: #0c0c0c;
   }
   label{

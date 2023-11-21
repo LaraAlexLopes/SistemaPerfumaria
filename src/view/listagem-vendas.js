@@ -78,20 +78,6 @@ function ListagemVendas() {
               >
                 Nova Venda
               </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => listagemMetasProdutos()}
-              >
-                Ver Metas de venda Mensais
-              </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => listagemCupons()}
-              >
-                Cupons Disponíveis
-              </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>

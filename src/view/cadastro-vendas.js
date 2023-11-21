@@ -27,7 +27,7 @@ function CadastroVendas() {
   const [dataVenda, setData] = useState('');
   const [listaProdutos, setListaProdutos] = useState('');
   const [cupomDesconto, setCupomDesconto] = useState('');
-  const [valorFinal, setValorFinal] = useState('');
+  const [valor, setValor] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
   
 
@@ -40,7 +40,7 @@ function CadastroVendas() {
       setData('');
       setListaProdutos('');
       setCupomDesconto('');
-      setValorFinal('');
+      setValor('');
       setFormaPagamento('');
       
     } else {
@@ -49,7 +49,7 @@ function CadastroVendas() {
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
-      setValorFinal(dados.valorFinal);
+      setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
       
       
@@ -57,7 +57,7 @@ function CadastroVendas() {
   }
 
   async function salvar() {
-    let data = { id,idNomeCliente,dataVenda,listaProdutos,cupomDesconto,valorFinal,formaPagamento }
+    let data = { id,idNomeCliente,dataVenda,listaProdutos,cupomDesconto,valor,formaPagamento }
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -96,7 +96,7 @@ function CadastroVendas() {
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
-      setValorFinal(dados.valorFinal);
+      setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
     }
   }
@@ -217,10 +217,10 @@ function CadastroVendas() {
                 <input
                   type='text'
                   id='inputValorFinal'
-                  value={valorFinal}
+                  value={valor}
                   className='form-control'
                   name='valorFinal'
-                  onChange={(e) => setValorFinal(e.target.value)}
+                  onChange={(e) => setValor(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Forma de Pagamento: *' htmlFor='inputFormapagamento'>

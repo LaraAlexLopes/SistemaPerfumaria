@@ -92,6 +92,11 @@ function CadastroClientes() {
         setDataNascimento(dados.dataNascimento);
     } 
   }
+  useEffect(() => {
+    buscar(); // eslint-disable-next-line
+  }, [id]);
+
+  if (!dados) return null;
 
 
   return (

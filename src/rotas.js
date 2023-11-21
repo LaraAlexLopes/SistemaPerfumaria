@@ -16,6 +16,7 @@ import ListagemMelhoresFuncionarios from './view/listagem-melhoresFuncionarios';
 import ListagemProdutosMaisVendido from './view/listagem-produtos-mais-vendidos';
 import ListagemMelhoresClientes from './view/listagem-melhoresClientes';
 import ListagemMetasProdutos from './view/listagem-metasProdutos';
+import ListagemCadastro from './view/listagem-cadastro.js';
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import CadastroFornecedores from './view/cadastro-fornecedores';
@@ -73,6 +74,7 @@ function Rotas(props) {
         <Route path='/listagem-produtos-mais-vendidos' element={<ListagemProdutosMaisVendido/>} />
         <Route path='/listagem-melhoresClientes' element={<ListagemMelhoresClientes/>} />
         <Route path='/listagem-metasProdutos' element={<ListagemMetasProdutos/>} />
+        <Route path='/listagem-cadastro' element={<ListagemCadastro/>} />
         <Route path='/index' element={<Imagem/>} />
       </Routes>
     </BrowserRouter>

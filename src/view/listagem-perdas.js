@@ -23,6 +23,9 @@ function ListagemPerdas() {
   const cadastrar = () => {
    navigate(`/cadastro-perda`);
   };
+  const verCadastro = () => {
+    navigate(`/listagem-cadastro`);
+   };
 
   const editar = (id) => {
    navigate(`/cadastro-perda/${id}`);
@@ -70,6 +73,13 @@ function ListagemPerdas() {
                 onClick={() => cadastrar()}
               >
                 Nova Perda
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verCadastro()}
+              >
+                Cadastro
               </button>
               <table className='table table-hover'>
                 <thead>

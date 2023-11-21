@@ -23,7 +23,9 @@ function ListagemFragancias() {
   const cadastrar = () => {
    navigate(`/cadastro-fragancia`);
   };
-
+  const verCadastro = () => {
+    navigate(`/listagem-cadastro`);
+   };
   const editar = (id) => {
    navigate(`/cadastro-fragancia/${id}`);
   };
@@ -65,12 +67,19 @@ function ListagemFragancias() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Nova Fragância
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verCadastro()}
+              >
+                Cadastro
               </button>
               <table className='table table-hover'>
                 <thead>

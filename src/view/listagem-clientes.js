@@ -43,7 +43,7 @@ function ListagemClientes() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Cliente excluído com sucesso!`);
+        mensagemSucesso(`Produto excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -51,7 +51,7 @@ function ListagemClientes() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o cliente`);
+        mensagemErro(`Erro ao excluir o produto`);
       });
   }
 

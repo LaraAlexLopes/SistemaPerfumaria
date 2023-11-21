@@ -18,7 +18,7 @@ function CadastroFragancia() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FT}/fragancia`;
+  const baseURL = `${BASE_URL_FT}/fragrancia`;
 
   const [id, setId] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -45,7 +45,7 @@ function CadastroFragancia() {
         })
         .then(function (response) {
           mensagemSucesso(`Fragancia ${descricao} cadastrado com sucesso!`);
-          navigate(`/listagem-fragancia`);
+          navigate(`/listagem-fragancias`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -57,7 +57,7 @@ function CadastroFragancia() {
         })
         .then(function (response) {
           mensagemSucesso(`Fragancia ${descricao} alterado com sucesso!`);
-          navigate(`/listagem-fragancia`);
+          navigate(`/listagem-fragancias`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -78,7 +78,7 @@ function CadastroFragancia() {
   const [dadosFragancia, setDadosFragancia] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/fragancia`).then((response) => {
+    axios.get(`${BASE_URL_FT}/fragrancia`).then((response) => {
       setDadosFragancia(response.data);
     });
   }, []);
@@ -107,14 +107,14 @@ function CadastroFragancia() {
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
-                <button
+                <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
                   type='button'
                   className='btn btn-success'
                 >
                   Salvar
                 </button>
-                <button
+                <button style={{ backgroundColor: 'red', color: 'white',borderColor : 'red', fontWeight : "500" }}
                   onClick={inicializar}
                   type='button'
                   className='btn btn-danger'

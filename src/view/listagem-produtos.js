@@ -23,15 +23,13 @@ function ListagemProdutos() {
   const cadastrar = () => {
     navigate(`/cadastro-produto`);
   };
-  const verEstoque= () => {
-    navigate(`/listagem-estoque`);
+  const editar = (id) => {
+    navigate(`/cadastro-produto/${id}`);
   };
   const maisVendidos= () => {
     navigate(`/listagem-produtos-mais-vendidos`);
   };
-  const editar = (id) => {
-    navigate(`/cadastro-produto${id}`);
-  };
+ 
 
   const [dados, setDados] = React.useState(null);
 
@@ -85,13 +83,6 @@ function ListagemProdutos() {
                 >
                  Mais Vendidos
                 </button>
-              <button  style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                  type='button'
-                  className='btn btn-warning'
-                  onClick={() => verEstoque()}
-                >
-                 Ver Estoque
-                </button> 
               <table className='table table-hover'>
                 <thead>
                   <tr>

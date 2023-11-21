@@ -21,7 +21,7 @@ function CadastroEstoque() {
   const baseURL = `${BASE_URL_C}/estoque`;
 
   const [id, setId] = useState('');
-  const [nome, setNome] = useState('');
+  const [produto, setProduto] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [lote, setLote] = useState('');
@@ -39,7 +39,7 @@ function CadastroEstoque() {
   function inicializar() {
     if (idParam == null) {
         setId('');
-        setNome('');
+        setProduto('');
         setCodigoBarras('');
         setQuantidade('');
         setLote('');
@@ -52,7 +52,7 @@ function CadastroEstoque() {
         setDataFinal('');
     } else {
         setId(dados.id);
-        setNome(dados.nome);
+        setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
         setQuantidade(dados.quantidade);
         setLote(dados.lote);
@@ -67,7 +67,7 @@ function CadastroEstoque() {
   }
 
   async function salvar() {
-    let data = { id, nome, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal,dataInicial, dataFinal};
+    let data = { id, produto, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal,dataInicial, dataFinal};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -75,8 +75,8 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produtos ${nome} cadastrado com sucesso!`);
-          navigate(`/listagem-produtos`);
+          mensagemSucesso(`Produtos ${produto} cadastrado com sucesso!`);
+          navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -87,8 +87,8 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${nome} alterado com sucesso!`);
-          navigate(`/listagem-produtos`);
+          mensagemSucesso(`Produto ${produto} alterado com sucesso!`);
+          navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -102,7 +102,7 @@ function CadastroEstoque() {
         setDados(response.data);
       });
         setId(dados.id);
-        setNome(dados.nome);
+        setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
         setQuantidade(dados.quantidade);
         setLote(dados.lote);
@@ -139,10 +139,10 @@ function CadastroEstoque() {
                 <input
                   type='text'
                   id='inputNome'
-                  value={nome}
+                  value={produto}
                   className='form-control'
                   name='nome'
-                  onChange={(e) => setNome(e.target.value)}
+                  onChange={(e) => setProduto(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
@@ -246,14 +246,14 @@ function CadastroEstoque() {
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
-                <button
+                <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
                   type='button'
                   className='btn btn-success'
                 >
                   Salvar
                 </button>
-                <button
+                <button style={{ backgroundColor: 'red', color: 'white',borderColor : 'red', fontWeight : "500" }}
                   onClick={inicializar}
                   type='button'
                   className='btn btn-danger'

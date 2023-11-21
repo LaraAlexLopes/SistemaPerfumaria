@@ -31,10 +31,7 @@ function ListagemFuncionarios() {
   const verMelhoresFuncionarios= () => {
     navigate(`/listagem-melhoresFuncionarios`);
   };
-  const listagemMetasProdutos = (id) => {
-    navigate(`/listagem-metasProdutos`);
-   };
-
+  
   const [dados, setDados] = React.useState(null);
 
   async function excluir(id) {
@@ -85,13 +82,6 @@ function ListagemFuncionarios() {
                 onClick={() => verMelhoresFuncionarios()}
               >
                 Melhores Funcionários
-              </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => listagemMetasProdutos()}
-              >
-                Ver Metas Mensais
               </button>
               <table className='table table-hover'>
                 <thead>

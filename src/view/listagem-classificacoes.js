@@ -23,6 +23,9 @@ function ListagemClassificao() {
   const cadastrar = () => {
    navigate(`/cadastro-classificacao`);
   };
+  const verCadastro = () => {
+    navigate(`/listagem-cadastro`);
+   };
 
   const editar = (id) => {
    navigate(`/cadastro-classificacao/${id}`);
@@ -65,12 +68,19 @@ function ListagemClassificao() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Nova Classificação
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verCadastro()}
+              >
+                Cadastro
               </button>
               <table className='table table-hover'>
                 <thead>
