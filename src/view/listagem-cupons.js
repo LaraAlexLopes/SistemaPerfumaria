@@ -76,6 +76,7 @@ function ListagemCupons() {
                   <tr>
                     <th scope='col'>Desconto</th>
                     <th scope='col'>Data de Expiração</th>
+                    <th scope='col'>Código</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,6 +84,7 @@ function ListagemCupons() {
                     <tr key={dado.id}>
                       <td>{dado.desconto}</td>
                       <td>{new Date(dado['dataExpiração']).toLocaleDateString()}</td>
+                      <td>{dado.codigo}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
                           <IconButton style={{ color: 'black' }}

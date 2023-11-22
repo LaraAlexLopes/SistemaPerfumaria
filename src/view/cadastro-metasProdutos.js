@@ -23,9 +23,9 @@ function CadastroMetasProdutos() {
 
   const [id, setId] = useState('');
   const [produto, setProduto] = useState(0);
-  const [valorMetaMensal, setValorMetaMensal] = useState('');
-  const [dataInicio, setDataInicio] = useState('');
-  const [dataFinal, setDataFinal] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [mes, setMes] = useState('');
+  
   
 
   const [dados, setDados] = React.useState([]);
@@ -34,21 +34,21 @@ function CadastroMetasProdutos() {
     if (idParam == null) {
         setId('');
         setProduto(0);
-        setValorMetaMensal('');
-        setDataInicio('');
-        setDataFinal('');
+        setQuantidade('');
+        setMes('');
+        
         
     } else {
         setId(dados.id);
-        setValorMetaMensal(dados.valorMetaMensal);
+        setQuantidade(dados.quantidade);
         setProduto(dados.produto);
-        setDataInicio(dados.dataInicio);
-        setDataFinal(dados.dataFinal);
+        setMes(dados.mes);
+       
     }
   }
 
   async function salvar() {
-    let data = { id, produto, valorMetaMensal, dataInicio, dataFinal};
+    let data = { id, produto,quantidade, mes};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -84,9 +84,9 @@ function CadastroMetasProdutos() {
       });
       setId(dados.id);
       setProduto(dados.produto);
-      setValorMetaMensal(dados.valorMetaMensal);
-      setDataInicio(dados.dataInicio);
-      setDataFinal(dados.dataFinal);
+      setQuantidade(dados.quantidade);
+      setMes(dados.mes);
+      
     }
   }
 
@@ -130,36 +130,27 @@ function CadastroMetasProdutos() {
                     ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Valor Da Meta: *' htmlFor='inputValorMetaMensal'>
+              <FormGroup label='Valor Da Meta: *' htmlFor='inputQuantidade'>
                             <input
                             type='text'
-                            id='inputValorMetaMensal'
-                            value={valorMetaMensal}
+                            id='inputQuantidade'
+                            value={quantidade}
                             className='form-control'
-                            name='valorMetaMensal'
-                            onChange={(e) => setValorMetaMensal(e.target.value)}
+                            name='quantidade'
+                            onChange={(e) => setQuantidade(e.target.value)}
                             />
                             </FormGroup>
-                            <FormGroup label='Data de Inicio da Meta: *' htmlFor='inputDataInicio'>
+                            <FormGroup label='Mês*' htmlFor='inputMes'>
                             <input
-                            type='date'
-                            id='inputDataInicio'
-                            value={dataInicio}
+                            type='month'
+                            id='inputMes'
+                            value={mes}
                             className='form-control'
-                            name='dataInicio'
-                            onChange={(e) => setDataInicio(e.target.value)}
+                            name='mes'
+                            onChange={(e) => setMes(e.target.value)}
                             />
                             </FormGroup>
-                            <FormGroup label='Data Final da Meta *' htmlFor='inputDataFinal'>
-                            <input
-                            type='date'
-                            id='inputDataFinal'
-                            value={dataFinal}
-                            className='form-control'
-                            name='dataFinal'
-                            onChange={(e) => setDataFinal(e.target.value)}
-                            />
-                            </FormGroup>
+                            
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}

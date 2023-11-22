@@ -21,7 +21,7 @@ function CadastroPerda() {
   const baseURL = `${BASE_URL_CPC}/perdaProduto`;
 
   const [id, setId] = useState('');
-  const [descricaoPerda, setDescricao] = useState('');
+  const [idPerdaProduto, setIdPerdaProduto] = useState(0);
   const [codigoDeBarras, setCodigoDeBarras] = useState('');
   const [dataPerda, setData] = useState('');
 
@@ -30,19 +30,19 @@ function CadastroPerda() {
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setDescricao('');
+      setIdPerdaProduto(0);
       setCodigoDeBarras('');
       setData('');
     } else {
       setId(dados.id);
-      setDescricao(dados.descricaoPerda);
+  
       setCodigoDeBarras(dados.codigoDeBarras);
       setData(dados.dataPerda);
     }
   }
 
   async function salvar() {
-    let data = { id, descricaoPerda,codigoDeBarras,dataPerda};
+    let data = { id,codigoDeBarras,dataPerda};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -50,7 +50,7 @@ function CadastroPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda ${descricaoPerda} cadastrado com sucesso!`);
+          mensagemSucesso(`Perda cadastrado com sucesso!`);
           navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
@@ -62,7 +62,7 @@ function CadastroPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda ${descricaoPerda} alterado com sucesso!`);
+          mensagemSucesso(`Perda alterado com sucesso!`);
           navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
@@ -77,15 +77,23 @@ function CadastroPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-        setDescricao(dados.descricao);
+       setIdPerdaProduto(dados.perdaProduto);
+       setCodigoDeBarras(dados.codigoDeBarras);
+       setData(dados.dataPerda);
     }
   }
 
   const [dadosPerda, setDadosPerda] = React.useState(null);
+  const [dadosPerdaProduto, setDadosPerdaProduto] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
       setDadosPerda(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
+      setDadosPerdaProduto(response.data);
     });
   }, []);
 
@@ -95,6 +103,7 @@ function CadastroPerda() {
 
   if (!dados) return null;
   if (!dadosPerda) return null;
+  if (!dadosPerdaProduto) return null;
 
   return (
     <div className='container'>
@@ -102,16 +111,25 @@ function CadastroPerda() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Descrição: *' htmlFor='inputDescricao'>
-                <input
-                  type='text'
-                  id='inputDescricao'
-                  value={descricaoPerda}
-                  className='form-control'
-                  name='descricao'
-                  onChange={(e) => setDescricao(e.target.value)}
-                />
+            <FormGroup label='Descrição: *' htmlFor='selectPerdaProduto'>
+                <select
+                  className='form-select'
+                  id='selectPerdaProduto'
+                  name='idPerdaProduto'
+                  value={idPerdaProduto}
+                  onChange={(e) => setIdPerdaProduto(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosPerdaProduto.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.descricaoPerda}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
+
               <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
                 <input
                   type='text'

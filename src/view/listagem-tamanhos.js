@@ -92,14 +92,14 @@ function ListagemTamanhos() {
                     <tr key={dado.id}>
                       <td>{dado.volume}</td>
                       <td>
-                        <Stack spacing={1} padding={0} direction='row'>
-                          <IconButton
+                      <Stack spacing={1} padding={0} direction='row'>
+                          <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton
+                          <IconButton style={{color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >

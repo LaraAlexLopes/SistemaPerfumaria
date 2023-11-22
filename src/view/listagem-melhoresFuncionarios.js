@@ -55,7 +55,8 @@ function ListagemMelhoresFuncionarios() {
                     <th scope='col'>Posição</th>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Quantidade de Vendas</th>
-                    <th scope='col'>Data de Venda</th>
+                    <th scope='col'>Data de Inicio</th>
+                    <th scope='col'>Data de Fim</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,7 +65,8 @@ function ListagemMelhoresFuncionarios() {
                       <td>{dado.id}</td>
                       <td>{dado.nome}</td>
                       <td>{dado.quantidadeVendas}</td>
-                      <td>{new Date(dado['dataMelhorFuncionario']).toLocaleDateString()}</td>
+                      <td>{new Date(dado['dataInicioMelhorFuncionario']).toLocaleDateString()}</td>
+                      <td>{new Date(dado['dataFimMelhorFuncionario']).toLocaleDateString()}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
                          

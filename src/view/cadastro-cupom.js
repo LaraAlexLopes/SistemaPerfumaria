@@ -23,6 +23,7 @@ function CadastroCupom() {
   const [id, setId] = useState('');
   const [desconto, setDesconto] = useState('');
   const [dataExpiracao, setDataExpiracao] = useState('');
+  const [dataCodigo, setCodigo] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -31,15 +32,17 @@ function CadastroCupom() {
       setId('');
       setDesconto('');
       setDataExpiracao('');
+      setCodigo('');
     } else {
       setId(dados.id);
       setDesconto(dados.desconto);
       setDataExpiracao(dados.dataExpiracao)
+      setCodigo(dados.codigo)
     }
   }
 
   async function salvar() {
-    let data = { id, desconto,dataExpiracao};
+    let data = { id, desconto,dataExpiracao,codigo};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -118,6 +121,16 @@ function CadastroCupom() {
                   className='form-control'
                   name='dataExpiracao'
                   onChange={(e) => setDataExpiracao(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Código: *' htmlFor='inputCodigo'>
+                <input
+                  type='text'
+                  id='inputCodigo'
+                  value={codigo}
+                  className='form-control'
+                  name='codigo'
+                  onChange={(e) => setCodigo(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>

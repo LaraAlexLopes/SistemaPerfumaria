@@ -23,7 +23,7 @@ function CadastroPedido() {
   const [id, setId] = useState('');
   const [idFornecedor, setIdFornecedor] = useState(0);
   const [produto, setProduto] = useState('');
-  const [quantidade, setQuantidade] = useState('');
+  const [listaPedidos, setListaPedidos] = useState('');
   const [valor, setValor] = useState('');
   const [dataEntrega, setDataEntrega] = useState('');
   const [dataPedido, setDataPedido] = useState('');
@@ -36,14 +36,14 @@ function CadastroPedido() {
         setId('');
         setIdFornecedor(0);
         setProduto('');
-        setQuantidade('');
+        setListaPedidos('');
         setValor('');
         setDataEntrega('');
         setDataPedido('');
     } else {
         setId(dados.id);
         setProduto(dados.produto);
-        setQuantidade(dados.quantidade);
+        setListaPedidos(dados.listaPedidos);
         setValor(dados.valor);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
@@ -51,7 +51,7 @@ function CadastroPedido() {
   }
 
   async function salvar() {
-    let data = { id, produto, quantidade, dataPedido, valor, dataEntrega};
+    let data = { id, produto, listaPedidos, dataPedido, valor, dataEntrega};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -89,7 +89,7 @@ function CadastroPedido() {
         setIdFornecedor(dados.fornecedor);
         setProduto(dados.produto);
         setValor(dados.valor);
-        setQuantidade(dados.quantidade);
+        setListaPedidos(dados.listaPedidos);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
     }
@@ -124,7 +124,7 @@ function CadastroPedido() {
           <div className='col-lg-12'>
             <div className='bs-component'>
            
-            <FormGroup label='Fornecedor: *' htmlFor='selectForncedor'>
+            <FormGroup label='Fornecedor: *' htmlFor='selectFornecedor'>
                 <select
                   className='form-select'
                   id='selectFornecedor'
@@ -160,14 +160,14 @@ function CadastroPedido() {
                     ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Quantidade: *' htmlFor='inputQuantidade'>
+              <FormGroup label='Lista de Pedidos: *' htmlFor='inputListaPedidos'>
                 <input
                   type='text'
-                  id='inputQuantidade'
-                  value={quantidade}
+                  id='inputListaPedidos'
+                  value={listaPedidos}
                   className='form-control'
-                  name='quantidade'
-                  onChange={(e) => setQuantidade(e.target.value)}
+                  name='listaPedidos'
+                  onChange={(e) => setListaPedidos(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Valor : *' htmlFor='inputValor'>

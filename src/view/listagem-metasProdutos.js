@@ -76,18 +76,18 @@ function ListagemMetasProdutos() {
                 <thead>
                   <tr>
                     <th scope='col'>Produto</th>
-                    <th scope='col'>Valor da Meta</th>
-                    <th scope='col'>Data de Inicio</th>
-                    <th scope='col'>Data Final</th>
+                    <th scope='col'>Quantidade</th>
+                    <th scope='col'>Mês</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.produto}</td>
-                      <td>{dado.valorMetaMensal}</td>
-                      <td>{new Date(dado['dataInicio']).toLocaleDateString()}</td>
-                      <td >{new Date(dado['dataFinal']).toLocaleDateString()}</td>
+                      <td>{dado.quantidade}</td>
+                      <td>{dado.mes}</td>
+                     
                       <td>
                       <Stack spacing={1} padding={0} direction='row'>
                           <IconButton style={{ color: 'black' }}
