@@ -1,0 +1,1 @@
+export const BASE_URL_FPP = "https://my-json-server.typicode.com/LaraAlexLopes/DataBaseFPP";
