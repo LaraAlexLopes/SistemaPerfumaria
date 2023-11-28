@@ -111,7 +111,7 @@ function CadastroVendas() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/pedido`).then((response) => {
       setDadosProduto(response.data);
     });
   }, []);
@@ -177,23 +177,15 @@ function CadastroVendas() {
                   onChange={(e) => setData(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
-                <select
-                id='inputListaProdutos'
-                value={listaProdutos}
-                className='form-select'
-                name='listaProdutos'
-                onChange={(e) => setListaProdutos(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosProduto.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.produto}
-                      </option>
-                    ))}
-                </select>
+              <FormGroup label='Produtos: *' htmlFor='inputListaProdutos'>
+                <input
+                  type='text'
+                  id='inputListaPedidos'
+                  value={listaProdutos}
+                  className='form-control'
+                  name='listaPedidos'
+                  onChange={(e) => setListaProdutos(e.target.value)}
+                />
               </FormGroup>
               <FormGroup label='Cupom De Desconto:' htmlFor='inputCupomDesconto'>
                 <select
