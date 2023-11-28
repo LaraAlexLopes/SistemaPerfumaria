@@ -22,8 +22,7 @@ function CadastroPedido() {
 
   const [id, setId] = useState('');
   const [idFornecedor, setIdFornecedor] = useState(0);
-  const [produto, setProduto] = useState('');
-  const [listaPedidos, setListaPedidos] = useState('');
+  const [listaPedido, setListaPedidos] = useState('');
   const [valor, setValor] = useState('');
   const [dataEntrega, setDataEntrega] = useState('');
   const [dataPedido, setDataPedido] = useState('');
@@ -35,15 +34,13 @@ function CadastroPedido() {
     if (idParam == null) {
         setId('');
         setIdFornecedor(0);
-        setProduto('');
         setListaPedidos('');
         setValor('');
         setDataEntrega('');
         setDataPedido('');
     } else {
         setId(dados.id);
-        setProduto(dados.produto);
-        setListaPedidos(dados.listaPedidos);
+        setListaPedidos(dados.listaPedido);
         setValor(dados.valor);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
@@ -51,7 +48,7 @@ function CadastroPedido() {
   }
 
   async function salvar() {
-    let data = { id, produto, listaPedidos, dataPedido, valor, dataEntrega};
+    let data = { id, listaPedido, dataPedido, valor, dataEntrega};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -59,7 +56,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${produto} cadastrado com sucesso!`);
+          mensagemSucesso(`Pedido ${listaPedido} cadastrado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -71,7 +68,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${produto} alterado com sucesso!`);
+          mensagemSucesso(`Pedido ${listaPedido} alterado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -87,9 +84,8 @@ function CadastroPedido() {
       });
         setId(dados.id);
         setIdFornecedor(dados.fornecedor);
-        setProduto(dados.produto);
         setValor(dados.valor);
-        setListaPedidos(dados.listaPedidos);
+        setListaPedidos(dados.listaPedido);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
     }
@@ -142,29 +138,11 @@ function CadastroPedido() {
                   ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Produto: *' htmlFor='inputProduto'>
-                <select
-                id='inputProduto'
-                value={produto}
-                className='form-select'
-                name='produto'
-                onChange={(e) => setDadosProdutos(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosProdutos.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.produto}
-                      </option>
-                    ))}
-                </select>
-              </FormGroup>
               <FormGroup label='Lista de Pedidos: *' htmlFor='inputListaPedidos'>
                 <input
                   type='text'
                   id='inputListaPedidos'
-                  value={listaPedidos}
+                  value={listaPedido}
                   className='form-control'
                   name='listaPedidos'
                   onChange={(e) => setListaPedidos(e.target.value)}
