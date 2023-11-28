@@ -116,7 +116,7 @@ function CadastroCupom() {
               </FormGroup>
               <FormGroup label='Data de Expiração: *' htmlFor='inputDataExpiracao'>
                 <input
-                  type='date'
+                  type='text'
                   id='inputDataExpiracao'
                   value={dataExpiracao}
                   className='form-control'
