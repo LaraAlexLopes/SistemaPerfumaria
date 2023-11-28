@@ -93,7 +93,7 @@ function ListagemEstoque() {
                       <td >{dado.produto}</td>
                       <td >{dado.capacidadeMaxima}</td>
                       <td >{dado.capacidadeMinima}</td>
-                      <td >{dado.PontoRessuprimento}</td>
+                      <td >{dado.pontoRessuprimento}</td>
                       <td >
                         <Stack spacing={1} padding={0} direction='row' style={{color: '#4AA228' }}>
                           <IconButton style={{color: 'black' }}
