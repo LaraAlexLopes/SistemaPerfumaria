@@ -29,6 +29,7 @@ function CadastroFuncionarios() {
   const [numeroTelefone, setNumeroTelefone] = useState('');
   const [idCargo, setIdCargo] = useState(0);
   const [salario, setSalario] = useState('');
+  const [cep, setCep] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [numero, setNumero] = useState('');
   const [complemento, setComplemento] = useState('');
@@ -48,6 +49,7 @@ function CadastroFuncionarios() {
       setNumeroTelefone('');
       setIdCargo(0);
       setSalario('');
+      setCep('');
       setLogradouro('');
       setNumero('');
       setComplemento('');
@@ -64,6 +66,7 @@ function CadastroFuncionarios() {
       setNumeroTelefone(dados.numeroTelefone);
       setIdCargo(dados.idCargo);
       setSalario(dados.salario);
+      setCep(dados.cep);
       setLogradouro(dados.logradouro);
       setNumero(dados.numero);
       setComplemento(dados.complemento);
@@ -74,7 +77,7 @@ function CadastroFuncionarios() {
   }
 
   async function salvar() {
-    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario, logradouro, numero, complemento, bairro, cidade, estado };
+    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario,cep,logradouro, numero, complemento, bairro, cidade, estado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -116,6 +119,7 @@ function CadastroFuncionarios() {
         setNumeroTelefone(dados.numeroTelefone);
         setIdCargo(dados.cargo);
         setSalario(dados.salario);
+        setCep(dados.cep);
         setLogradouro(dados.logradouro);
         setNumero(dados.numero);
         setComplemento(dados.complemento);
@@ -230,6 +234,16 @@ function CadastroFuncionarios() {
                   className='form-control'
                   name='salario'
                   onChange={(e) => setSalario(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Cep: *' htmlFor='inputCep'>
+                <input
+                  type='text'
+                  id='inputCep'
+                  value={cep}
+                  className='form-control'
+                  name='cep'
+                  onChange={(e) => setCep(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Logradouro: *' htmlFor='inputLogradouro'>
