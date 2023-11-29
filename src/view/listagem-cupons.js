@@ -83,7 +83,7 @@ function ListagemCupons() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td>{dado.desconto}</td>
-                      <td>{new Date(dado['dataExpiração']).toLocaleDateString()}</td>
+                      <td>{new Date(dado['dataExpiracao']).toLocaleDateString()}</td>
                       <td>{dado.codigo}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>

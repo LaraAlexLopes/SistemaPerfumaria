@@ -22,7 +22,7 @@ function CadastroPerda() {
 
   const [id, setId] = useState('');
   const [idPerdaProduto, setIdPerdaProduto] = useState(0);
-  const [codigoDeBarras, setCodigoDeBarras] = useState('');
+  const [codigoBarras, setCodigoDeBarras] = useState('');
   const [dataPerda, setData] = useState('');
 
   const [dados, setDados] = React.useState([]);
@@ -35,14 +35,14 @@ function CadastroPerda() {
       setData('');
     } else {
       setId(dados.id);
-  
-      setCodigoDeBarras(dados.codigoDeBarras);
+      setIdPerdaProduto(dados.idPerdaProduto);
+      setCodigoDeBarras(dados.codigoBarras);
       setData(dados.dataPerda);
     }
   }
 
   async function salvar() {
-    let data = { id,codigoDeBarras,dataPerda};
+    let data = { id,codigoBarras,dataPerda,idPerdaProduto};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -77,8 +77,8 @@ function CadastroPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-       setIdPerdaProduto(dados.perdaProduto);
-       setCodigoDeBarras(dados.codigoDeBarras);
+       setIdPerdaProduto(dados.idPerdaProduto);
+       setCodigoDeBarras(dados.codigoBarras);
        setData(dados.dataPerda);
     }
   }
@@ -134,7 +134,7 @@ function CadastroPerda() {
                 <input
                   type='text'
                   id='inputCodigoDeBarras'
-                  value={codigoDeBarras}
+                  value={codigoBarras}
                   className='form-control'
                   name='codigoDeBarras'
                   onChange={(e) => setCodigoDeBarras(e.target.value)}

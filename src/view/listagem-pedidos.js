@@ -84,8 +84,8 @@ function ListagemPedidos() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td >{dado.fornecedor}</td>
-                      <td >{new Date(dado['data de pedido']).toLocaleDateString()}</td>
-                      <td >{new Date(dado['data de entrega']).toLocaleDateString()}</td>
+                      <td >{new Date(dado['dataPedido']).toLocaleDateString()}</td>
+                      <td >{new Date(dado['dataEntrega']).toLocaleDateString()}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
                           <IconButton style={{color: 'black' }}

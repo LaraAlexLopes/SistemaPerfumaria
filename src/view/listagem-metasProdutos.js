@@ -65,7 +65,7 @@ function ListagemMetasProdutos() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-            <button style={{ backgroundColor: 'black', color: 'white' ,borderColor : '#4AA228', fontWeight : "500"}}
+            <button style={{ backgroundColor: 'black', color: 'white' ,borderColor : 'black', fontWeight : "500"}}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}

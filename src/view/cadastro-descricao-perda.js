@@ -13,36 +13,30 @@ import '../custom.css';
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
 
-function CadastroCupom() {
+function CadastroDescricaoPerda() {
   const { idParam } = useParams();
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_CPC}/cupomDesconto`;
+  const baseURL = `${BASE_URL_CPC}/perdaProduto`;
 
   const [id, setId] = useState('');
-  const [desconto, setDesconto] = useState('');
-  const [dataExpiracao, setDataExpiracao] = useState('');
-  const [codigo, setCodigo] = useState('');
-
+  const [idPerdaProduto, setIdPerdaProduto] = useState('');
+  
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setDesconto('');
-      setDataExpiracao('');
-      setCodigo('');
+      setIdPerdaProduto('');
     } else {
       setId(dados.id);
-      setDesconto(dados.desconto);
-      setDataExpiracao(dados.dataExpiracao)
-      setCodigo(dados.codigo)
+        setIdPerdaProduto(dados.idPerdaProduto);
     }
   }
 
   async function salvar() {
-    let data = { id, desconto,dataExpiracao,codigo};
+    let data = { id,idPerdaProduto};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -50,8 +44,8 @@ function CadastroCupom() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Cupom ${desconto} cadastrado com sucesso!`);
-          navigate(`/listagem-cupons`);
+          mensagemSucesso(`Perda cadastrado com sucesso!`);
+          navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -62,8 +56,8 @@ function CadastroCupom() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Cupom ${desconto} alterado com sucesso!`);
-          navigate(`/listagem-cupons`);
+          mensagemSucesso(`Perda alterado com sucesso!`);
+          navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -77,61 +71,38 @@ function CadastroCupom() {
         setDados(response.data);
       });
         setId(dados.id);
-        setDesconto(dados.desconto);
-        setDataExpiracao(dados.dataExpiracao);
-        setCodigo(dados.codigo);
+       setIdPerdaProduto(dados.perdaProduto);
     }
   }
-
-  const [dadosCupom, setDadosCupom] = React.useState(null);
-
+  const [dadosPerda, setDadosPerda] = React.useState(null);
+  
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/cupomDesconto`).then((response) => {
-      setDadosCupom(response.data);
+    axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
+      setDadosPerda(response.data);
     });
   }, []);
-
+  
   useEffect(() => {
     buscar(); // eslint-disable-next-line
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosCupom) return null;
+  if (!dadosPerda) return null;
 
   return (
     <div className='container'>
-      <Card title='Cadastro de Cupom'>
+      <Card title='Cadastro de Descrição de Perda'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Desconto: *' htmlFor='inputDesconto'>
+            <FormGroup label='Descrição: *' htmlFor='selectPerdaProduto'>
                 <input
                   type='text'
-                  id='inputDesconto'
-                  value={desconto}
+                  id='inputIdPerdaProduto'
+                  value={idPerdaProduto}
                   className='form-control'
-                  name='desconto'
-                  onChange={(e) => setDesconto(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Data de Expiração: *' htmlFor='inputDataExpiracao'>
-                <input
-                  type='date'
-                  id='inputDataExpiracao'
-                  value={dataExpiracao}
-                  className='form-control'
-                  name='dataExpiracao'
-                  onChange={(e) => setDataExpiracao(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Código: *' htmlFor='inputCodigo'>
-                <input
-                  type='text'
-                  id='inputCodigo'
-                  value={codigo}
-                  className='form-control'
-                  name='codigo'
-                  onChange={(e) => setCodigo(e.target.value)}
+                  name='idPerdaProduto'
+                  onChange={(e) => setIdPerdaProduto(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
@@ -157,4 +128,4 @@ function CadastroCupom() {
     </div>
   );
 }
-export default CadastroCupom;
+export default CadastroDescricaoPerda;

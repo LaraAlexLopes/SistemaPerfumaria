@@ -13,26 +13,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import { BASE_URL_CFV } from '../config/bdCFV';
+import {BASE_URL_CPC} from '../config/bdCPC';
 
-const baseURL = `${ BASE_URL_CFV }/clientes`;
+const baseURL = `${BASE_URL_CPC}/perdaProduto`;
 
-function ListagemClientes() {
+function ListagemDescricao() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   navigate(`/cadastro-clientes`);
+   navigate(`/cadastro-descricao-perda`);
   };
-  const verMelhoresClientes = () => {
-    navigate(`/listagem-melhoresClientes`);
+  const verCadastro = () => {
+    navigate(`/listagem-cadastro`);
    };
 
   const editar = (id) => {
-   navigate(`/cadastro-clientes/${id}`);
+   navigate(`/cadastro-descricao-perda/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
-
 
   async function excluir(id) {
     let data = JSON.stringify({ id });
@@ -43,7 +42,7 @@ function ListagemClientes() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Produto excluído com sucesso!`);
+        mensagemSucesso(`Descrição excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -51,10 +50,9 @@ function ListagemClientes() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o produto`);
+        mensagemErro(`Erro ao excluir a descrição`);
       });
   }
-
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -66,42 +64,36 @@ function ListagemClientes() {
 
   return (
     <div className='container'>
-      <Card title='Clientes'>
+      <Card title='Descrição de Perdas'>
         <div className='row'>
-          <div className='col-lg-12' >
-            <div className='bs-component' >
-              <button style={{ backgroundColor: 'black', color: 'white' ,borderColor : 'black', fontWeight : "500"}}
+          <div className='col-lg-12'>
+            <div className='bs-component'>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
-                Novo Cliente
+                Nova Descrição
               </button>
               <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
                 type='button'
                 className='btn btn-warning'
-                onClick={() => verMelhoresClientes()}
+                onClick={() => verCadastro()}
               >
-                Melhores Clientes
+                Cadastro
               </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Nome</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Numero</th>
-                    <th scope='col'>CPF</th>
+                    <th scope='col'>Descrição</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
-                    <tr key={dado.id}>
-                      <td>{dado.nome}</td>
-                      <td>{dado.email}</td>
-                      <td>{dado.numeroTelefone}</td>
-                      <td>{dado.cpf}</td>
+                    <tr key={dado.idPerdaProduto}>
+                      <td>{dado.descricaoPerda}</td>
                       <td>
-                        <Stack spacing={1} padding={0} direction='row'>
+                      <Stack spacing={1} padding={0} direction='row'>
                           <IconButton style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
@@ -128,4 +120,4 @@ function ListagemClientes() {
   );
 }
 
-export default ListagemClientes;
+export default ListagemDescricao;

@@ -24,7 +24,7 @@ function ListagemPerdas() {
    navigate(`/cadastro-perda`);
   };
   const verCadastro = () => {
-    navigate(`/listagem-cadastro`);
+    navigate(`/cadastro-descricao-perda`);
    };
 
   const editar = (id) => {

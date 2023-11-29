@@ -28,7 +28,7 @@ function CadastroEstoque() {
   const [validade, setValidade] = useState('');
   const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
   const [capacidadeMinima, setCapacidadeMinima] = useState('');
-  const [pontoRessuprimento, setPontoRessuprimento] = useState('');
+  const [PontoRessuprimento, setPontoRessuprimento] = useState('');
   const [metaMensal, setMetaMensal] = useState('');
   const [dataInicial, setDataInicial] = useState('');
   const [dataFinal, setDataFinal] = useState('');
@@ -59,7 +59,7 @@ function CadastroEstoque() {
         setValidade(dados.validade);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
-        setPontoRessuprimento(dados.pontoRessuprimento);
+        setPontoRessuprimento(dados.PontoRessuprimento);
         setMetaMensal(dados.metaMensal);
         setDataInicial(dados.dataInicial);
         setDataFinal(dados.dataFinal);
@@ -67,7 +67,7 @@ function CadastroEstoque() {
   }
 
   async function salvar() {
-    let data = { id, produto, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal,dataInicial, dataFinal};
+    let data = { id, produto, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,PontoRessuprimento,metaMensal,dataInicial, dataFinal};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -109,6 +109,8 @@ function CadastroEstoque() {
         setValidade(dados.validade);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
+        setPontoRessuprimento(dados.PontoRessuprimento);
+        setMetaMensal(dados.metaMensal);
         setDataInicial(dados.dataInicial);
         setDataFinal(dados.dataFinal);
     }
@@ -177,7 +179,7 @@ function CadastroEstoque() {
               </FormGroup>
               <FormGroup label='Validade: *' htmlFor='inputValidade'>
                 <input
-                  type='date'
+                  type='text'
                   id='inputValidade'
                   value={validade}
                   className='form-control'
@@ -209,7 +211,7 @@ function CadastroEstoque() {
                 <input
                   type='text'
                   id='inputPontoRessuprimento'
-                  value={pontoRessuprimento}
+                  value={PontoRessuprimento}
                   className='form-control'
                   name='pontoRessuprimento'
                   onChange={(e) => setPontoRessuprimento(e.target.value)}
