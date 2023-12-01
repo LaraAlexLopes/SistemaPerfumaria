@@ -23,17 +23,11 @@ function CadastroEstoque() {
   const [id, setId] = useState('');
   const [produto, setProduto] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
-  const [quantidade, setQuantidade] = useState('');
-  const [lote, setLote] = useState('');
-  const [validade, setValidade] = useState('');
   const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
   const [capacidadeMinima, setCapacidadeMinima] = useState('');
-  const [PontoRessuprimento, setPontoRessuprimento] = useState('');
+  const [pontoRessuprimento, setPontoRessuprimento] = useState('');
   const [metaMensal, setMetaMensal] = useState('');
-  const [dataInicial, setDataInicial] = useState('');
-  const [dataFinal, setDataFinal] = useState('');
   
-
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
@@ -41,33 +35,23 @@ function CadastroEstoque() {
         setId('');
         setProduto('');
         setCodigoBarras('');
-        setQuantidade('');
-        setLote('');
-        setValidade('');
+        setPontoRessuprimento('');
         setCapacidadeMaxima('');
         setCapacidadeMinima('');
-        setPontoRessuprimento('');
         setMetaMensal('');
-        setDataInicial('');
-        setDataFinal('');
     } else {
         setId(dados.id);
         setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
+        setPontoRessuprimento(dados.pontoRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
-        setPontoRessuprimento(dados.PontoRessuprimento);
         setMetaMensal(dados.metaMensal);
-        setDataInicial(dados.dataInicial);
-        setDataFinal(dados.dataFinal);
     }
   }
 
   async function salvar() {
-    let data = { id, produto, codigoBarras, quantidade,lote,validade,capacidadeMaxima,capacidadeMinima,PontoRessuprimento,metaMensal,dataInicial, dataFinal};
+    let data = { id, produto, codigoBarras,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -104,15 +88,10 @@ function CadastroEstoque() {
         setId(dados.id);
         setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
+        setPontoRessuprimento(dados.pontoRessuprimento);
+        setMetaMensal(dados.metaMensal);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
-        setPontoRessuprimento(dados.PontoRessuprimento);
-        setMetaMensal(dados.metaMensal);
-        setDataInicial(dados.dataInicial);
-        setDataFinal(dados.dataFinal);
     }
   }
 
@@ -137,15 +116,23 @@ function CadastroEstoque() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Nome: *' htmlFor='inputNome'>
-                <input
-                  type='text'
-                  id='inputNome'
-                  value={produto}
-                  className='form-control'
-                  name='nome'
-                  onChange={(e) => setProduto(e.target.value)}
-                />
+              <FormGroup label='Produto: *' htmlFor='inputNome'>
+                <select
+                id='inputNome'
+                value={produto}
+                className='form-select'
+                name='produto'
+                onChange={(e) => setProduto(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosProduto.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
                 <input
@@ -155,36 +142,6 @@ function CadastroEstoque() {
                   className='form-control'
                   name='codigoBarras'
                   onChange={(e) => setCodigoBarras(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Quantidade : *' htmlFor='inputQuantidade'>
-                <input
-                  type='text'
-                  id='inputQuantidade'
-                  value={quantidade}
-                  className='form-control'
-                  name='quantidade'
-                  onChange={(e) => setQuantidade(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Lote: *' htmlFor='inputLote'>
-                <input
-                  type='text'
-                  id='inputLote'
-                  value={lote}
-                  className='form-control'
-                  name='lote'
-                  onChange={(e) => setLote(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Validade: *' htmlFor='inputValidade'>
-                <input
-                  type='text'
-                  id='inputValidade'
-                  value={validade}
-                  className='form-control'
-                  name='validade'
-                  onChange={(e) => setValidade(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Capacidade Maxima: *' htmlFor='inputCapacidadeMaxima'>
@@ -211,7 +168,7 @@ function CadastroEstoque() {
                 <input
                   type='text'
                   id='inputPontoRessuprimento'
-                  value={PontoRessuprimento}
+                  value={pontoRessuprimento}
                   className='form-control'
                   name='pontoRessuprimento'
                   onChange={(e) => setPontoRessuprimento(e.target.value)}
@@ -225,26 +182,6 @@ function CadastroEstoque() {
                   className='form-control'
                   name='metaMensal'
                   onChange={(e) => setMetaMensal(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Data Inicial da Meta Mensal: *' htmlFor='inputDataInicial'>
-                <input
-                  type='date'
-                  id='inputDataInicial'
-                  value={dataInicial}
-                  className='form-control'
-                  name='dataInicial'
-                  onChange={(e) => setDataInicial(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Data Final da Meta Mensal: *' htmlFor='inputDataFinal'>
-                <input
-                  type='date'
-                  id='inputDataFinal'
-                  value={dataFinal}
-                  className='form-control'
-                  name='dataFinal'
-                  onChange={(e) => setDataFinal(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>

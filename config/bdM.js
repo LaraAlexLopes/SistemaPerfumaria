@@ -1,1 +1,0 @@
-export const BASE_URL_M = "https://my-json-server.typicode.com/larabsi/bdM" ;

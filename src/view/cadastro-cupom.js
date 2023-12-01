@@ -104,6 +104,16 @@ function CadastroCupom() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
+            <FormGroup label='Código: *' htmlFor='inputCodigo'>
+                <input
+                  type='text'
+                  id='inputCodigo'
+                  value={codigo}
+                  className='form-control'
+                  name='codigo'
+                  onChange={(e) => setCodigo(e.target.value)}
+                />
+              </FormGroup>
               <FormGroup label='Desconto: *' htmlFor='inputDesconto'>
                 <input
                   type='text'
@@ -116,22 +126,12 @@ function CadastroCupom() {
               </FormGroup>
               <FormGroup label='Data de Expiração: *' htmlFor='inputDataExpiracao'>
                 <input
-                  type='date'
+                  type='text'
                   id='inputDataExpiracao'
                   value={dataExpiracao}
                   className='form-control'
                   name='dataExpiracao'
                   onChange={(e) => setDataExpiracao(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Código: *' htmlFor='inputCodigo'>
-                <input
-                  type='text'
-                  id='inputCodigo'
-                  value={codigo}
-                  className='form-control'
-                  name='codigo'
-                  onChange={(e) => setCodigo(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>

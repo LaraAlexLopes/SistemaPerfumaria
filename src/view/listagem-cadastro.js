@@ -23,6 +23,10 @@ function ListagemCadastro() {
   const cadastrar = () => {
     navigate(`/cadastro-estoque`);
   };
+  
+  const verPerdas = () => {
+    navigate(`/listagem-descricao-perda`);
+  };
   const verFragancia = () => {
     navigate(`/listagem-fragancias`);
   };
@@ -90,6 +94,13 @@ function ListagemCadastro() {
                 onClick={() => verTamanho()}
               >
                 Tamanhos
+              </button>
+              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => verPerdas()}
+              >
+              Descrição Perda
               </button>
             </div>
           </div>

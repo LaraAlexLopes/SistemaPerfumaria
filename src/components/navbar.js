@@ -28,7 +28,6 @@ function Navbar(props) {
               render='true'
               href='/listagem-clientes'
               label ='Clientes'
-              
             />
           </ul>
           <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>

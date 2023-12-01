@@ -24,6 +24,7 @@ function CadastroVendas() {
 
   const [id, setId] = useState('');
   const [idNomeCliente, setIdNomeCliente] = useState(0);
+  const [idNomeFuncionario, setIdNomeFuncionario] = useState(0);
   const [dataVenda, setData] = useState('');
   const [listaProdutos, setListaProdutos] = useState('');
   const [cupomDesconto, setCupomDesconto] = useState('');
@@ -37,6 +38,7 @@ function CadastroVendas() {
     if (idParam == null) {
       setId('');
       setIdNomeCliente(0);
+      setIdNomeFuncionario(0);
       setData('');
       setListaProdutos('');
       setCupomDesconto('');
@@ -46,6 +48,7 @@ function CadastroVendas() {
     } else {
       setId(dados.id);
       setIdNomeCliente(dados.idNomeCliente);
+      setIdNomeFuncionario(dados.idNomeFuncionario);
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
@@ -57,7 +60,7 @@ function CadastroVendas() {
   }
 
   async function salvar() {
-    let data = { id,idNomeCliente,dataVenda,listaProdutos,cupomDesconto,valor,formaPagamento }
+    let data = { id,idNomeCliente,idNomeFuncionario,dataVenda,listaProdutos,cupomDesconto,valor,formaPagamento }
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -93,6 +96,7 @@ function CadastroVendas() {
       });
       setId(dados.id);
       setIdNomeCliente(dados.nome);
+      setIdNomeFuncionario(dados.nome);
       setData(dados.dataVenda);
       setListaProdutos(dados.listaProdutos);
       setCupomDesconto(dados.cupomDesconto);
@@ -101,9 +105,10 @@ function CadastroVendas() {
     }
   }
   const [dadosClientes, setDadosClientes] = React.useState(null);
+  const [dadosFuncionario, setDadosFuncionario] = React.useState(null);
   const [dadosCupom, setDadosCupom] = React.useState(null);
   const [dadosFormaPagamento, setDadosFormaPagamento] = React.useState(null);
-  const [dadosProduto, setDadosProduto] = React.useState(null);
+  const [dadosListaProdutos, setDadosListaProdutos] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_CPC}/formaPagamento`).then((response) => {
@@ -111,13 +116,18 @@ function CadastroVendas() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
-      setDadosProduto(response.data);
+    axios.get(`${BASE_URL_CFV}/clientes`).then((response) => {
+      setDadosClientes(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_CFV}/clientes`).then((response) => {
-      setDadosClientes(response.data);
+    axios.get(`${BASE_URL_CFV}/funcionarios`).then((response) => {
+      setDadosFuncionario(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_CFV}/vendas`).then((response) => {
+      setDadosListaProdutos(response.data);
     });
   }, []);
   useEffect(() => {
@@ -137,9 +147,10 @@ function CadastroVendas() {
 
   if (!dados) return null;
   if (!dadosClientes) return null;
+  if (!dadosFuncionario) return null;
   if (!dadosCupom) return null;
   if (!dadosFormaPagamento) return null;
-  if (!dadosProduto) return null;
+  if (!dadosListaProdutos) return null;
 
   return (
     <div className='container'>
@@ -147,7 +158,6 @@ function CadastroVendas() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              
               <FormGroup label='Nome do Cliente:  *' htmlFor='selectNomeCliente'>
                 <select
                   className='form-select'
@@ -166,16 +176,23 @@ function CadastroVendas() {
                   ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Data: *' htmlFor='inputData'>
-                <input
-                  type='date'
-                  maxLength='18'
-                  id='inputData'
-                  value={dataVenda}
-                  className='form-control'
-                  name='dataVenda'
-                  onChange={(e) => setData(e.target.value)}
-                />
+              <FormGroup label='Nome do Funcionário:  *' htmlFor='selectNomeFuncionario'>
+                <select
+                  className='form-select'
+                  id='selectNomeFuncionario'
+                  name='idNomeFuncionario'
+                  value={idNomeFuncionario}
+                  onChange={(e) => setIdNomeFuncionario(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosFuncionario.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.nome}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
                 <select
@@ -188,9 +205,9 @@ function CadastroVendas() {
                   <option key='0' value='0'>
                       {' '}
                     </option>
-                    {dadosProduto.map((dado) => (
+                    {dadosListaProdutos.map((dado) => (
                       <option key={dado.id} value={dado.id}>
-                        {dado.produto}
+                        {dado.listaProdutos}
                       </option>
                     ))}
                 </select>
@@ -241,7 +258,17 @@ function CadastroVendas() {
                   ))}
               </select>
               </FormGroup>
-              
+              <FormGroup label='Data da Venda: *' htmlFor='inputData'>
+                <input
+                  type='date'
+                  maxLength='18'
+                  id='inputData'
+                  value={dataVenda}
+                  className='form-control'
+                  name='dataVenda'
+                  onChange={(e) => setData(e.target.value)}
+                />
+              </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}

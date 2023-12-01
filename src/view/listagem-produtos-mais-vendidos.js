@@ -60,7 +60,6 @@ function ListagemProdutosMaisVendido() {
                     <th  scope='col'>Posição</th>
                     <th  scope='col'>Produto</th>
                     <th  scope='col'>Código de Barras</th>
-                    <th  scope='col'>Preço</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -69,7 +68,6 @@ function ListagemProdutosMaisVendido() {
                       <td >{dado.id}</td>
                       <td>{dado.produto}</td>
                       <td>{dado.codigoBarras}</td>
-                      <td>{dado.preco}</td>
                       <td>
                         
                       </td>

@@ -32,6 +32,7 @@ function CadastroFornecedores() {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
+  const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -48,6 +49,7 @@ function CadastroFornecedores() {
       setBairro('');
       setCidade('');
       setEstado('');
+      setCep('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
@@ -60,11 +62,12 @@ function CadastroFornecedores() {
       setBairro(dados.bairro);
       setCidade(dados.cidade);
       setEstado(dados.estado);
+      setCep(dados.cep);
     }
   }
 
   async function salvar() {
-    let data = { id,  nome, cnpj, email, numeroTelefone, logradouro, numero, complemento, bairro, cidade, estado };
+    let data = { id,  nome, cnpj, email, numeroTelefone, logradouro, cep,numero, complemento, bairro, cidade, estado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -109,6 +112,7 @@ function CadastroFornecedores() {
         setBairro(dados.bairro);
         setCidade(dados.cidade);
         setEstado(dados.estado);
+        setCep(dados.cep);
    }
   }
 
@@ -248,6 +252,16 @@ function CadastroFornecedores() {
                       </option>
                     ))}
                 </select>
+              </FormGroup>
+              <FormGroup label='CEP: *' htmlFor='inputCep'>
+                <input
+                  type='text'
+                  id='inputCep'
+                  value={cep}
+                  className='form-control'
+                  name='cep'
+                  onChange={(e) => setCep(e.target.value)}
+                />
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>

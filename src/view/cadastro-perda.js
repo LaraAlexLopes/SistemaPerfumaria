@@ -35,14 +35,14 @@ function CadastroPerda() {
       setData('');
     } else {
       setId(dados.id);
-      setIdPerdaProduto(dados.idPerdaProduto);
+  
       setCodigoDeBarras(dados.codigoBarras);
       setData(dados.dataPerda);
     }
   }
 
   async function salvar() {
-    let data = { id,codigoBarras,dataPerda,idPerdaProduto};
+    let data = { id,codigoBarras,dataPerda};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -77,7 +77,7 @@ function CadastroPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-       setIdPerdaProduto(dados.idPerdaProduto);
+       setIdPerdaProduto(dados.perdaProduto);
        setCodigoDeBarras(dados.codigoBarras);
        setData(dados.dataPerda);
     }

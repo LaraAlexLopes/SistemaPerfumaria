@@ -35,6 +35,7 @@ function CadastroFuncionarios() {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
+  const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
@@ -54,6 +55,7 @@ function CadastroFuncionarios() {
       setBairro('');
       setCidade('');
       setEstado('');
+      setCep('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
@@ -70,11 +72,12 @@ function CadastroFuncionarios() {
       setBairro(dados.bairro);
       setCidade(dados.cidade);
       setEstado(dados.estado);
+      setCep(dados.cep);
     }
   }
 
   async function salvar() {
-    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario, logradouro, numero, complemento, bairro, cidade, estado };
+    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario, cep,logradouro, numero, complemento, bairro, cidade, estado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -122,9 +125,9 @@ function CadastroFuncionarios() {
         setBairro(dados.bairro);
         setCidade(dados.cidade);
         setEstado(dados.estado);
+        setCep(dados.cep);
     }
   }
-
   const [dadosCargo, setDadosCargo] = React.useState(null);
   const [dadosEstado, setDadosEstado] = React.useState(null);
 
@@ -184,7 +187,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setDataNascimento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Email: *' htmlFor='inputEmail'>
+              <FormGroup label='E-mail: *' htmlFor='inputEmail'>
                 <input
                   type='email'
                   id='inputEmail'
@@ -202,34 +205,6 @@ function CadastroFuncionarios() {
                   className='form-control'
                   name='numeroTelefone'
                   onChange={(e) => setNumeroTelefone(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Cargo: *' htmlFor='selectCargo'>
-                <select
-                  className='form-select'
-                  id='selectCargo'
-                  name='idCargo'
-                  value={idCargo}
-                  onChange={(e) => setIdCargo(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                    {' '}
-                  </option>
-                  {dadosCargo.map((dado) => (
-                    <option key={dado.id} value={dado.id}>
-                      {dado.cargo}
-                    </option>
-                  ))}
-                </select>
-              </FormGroup>
-              <FormGroup label='Salário: *' htmlFor='inputSalario'>
-                <input
-                  type='text'
-                  id='inputSalario'
-                  value={salario}
-                  className='form-control'
-                  name='salario'
-                  onChange={(e) => setSalario(e.target.value)}
                 />
               </FormGroup>
               <FormGroup label='Logradouro: *' htmlFor='inputLogradouro'>
@@ -300,7 +275,44 @@ function CadastroFuncionarios() {
                     ))}
                 </select>
               </FormGroup>
-              
+              <FormGroup label='CEP: *' htmlFor='inputCep'>
+                <input
+                  type='text'
+                  id='inputCep'
+                  value={cep}
+                  className='form-control'
+                  name='cep'
+                  onChange={(e) => setCep(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup label='Cargo: *' htmlFor='selectCargo'>
+                <select
+                  className='form-select'
+                  id='selectCargo'
+                  name='idCargo'
+                  value={idCargo}
+                  onChange={(e) => setIdCargo(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosCargo.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.cargo}
+                    </option>
+                  ))}
+                </select>
+              </FormGroup>
+              <FormGroup label='Salário: *' htmlFor='inputSalario'>
+                <input
+                  type='text'
+                  id='inputSalario'
+                  value={salario}
+                  className='form-control'
+                  name='salario'
+                  onChange={(e) => setSalario(e.target.value)}
+                />
+              </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}

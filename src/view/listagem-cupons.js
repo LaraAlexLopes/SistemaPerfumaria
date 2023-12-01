@@ -74,17 +74,17 @@ function ListagemCupons() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
+                  <th scope='col'>Código</th>
                     <th scope='col'>Desconto</th>
                     <th scope='col'>Data de Expiração</th>
-                    <th scope='col'>Código</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
+                      <td>{dado.codigo}</td>                      
                       <td>{dado.desconto}</td>
                       <td>{new Date(dado['dataExpiracao']).toLocaleDateString()}</td>
-                      <td>{dado.codigo}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
                           <IconButton style={{ color: 'black' }}
