@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+
 
 import Card from '../components/card';
 import FormGroup from '../components/form-group';
@@ -14,6 +18,8 @@ import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
 import { BASE_URL_CPC } from '../config/bdCPC'; 
 import { BASE_URL_FPP} from '../config/bdFPP'; 
+import { BASE_URL_FT} from '../config/bdFT'; 
+
 
 function CadastroVendas() {
   const { idParam } = useParams();
@@ -21,18 +27,22 @@ function CadastroVendas() {
   const navigate = useNavigate();
 
   const baseURL = `${BASE_URL_CFV}/vendas`;
+  
 
   const [id, setId] = useState('');
   const [idNomeCliente, setIdNomeCliente] = useState(0);
   const [idNomeFuncionario, setIdNomeFuncionario] = useState(0);
   const [dataVenda, setData] = useState('');
-  const [listaProdutos, setListaProdutos] = useState('');
+  const [produto, setListaProdutos] = useState('');
   const [cupomDesconto, setCupomDesconto] = useState('');
   const [valor, setValor] = useState('');
+  const [volume, setVolume] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
   
 
   const [dados, setDados] = React.useState([]);
+  const [tabela, setTabela] = useState([]);
+
 
   function inicializar() {
     if (idParam == null) {
@@ -44,23 +54,25 @@ function CadastroVendas() {
       setCupomDesconto('');
       setValor('');
       setFormaPagamento('');
+      setVolume('');
+      setTabela([]);
       
     } else {
       setId(dados.id);
       setIdNomeCliente(dados.idNomeCliente);
       setIdNomeFuncionario(dados.idNomeFuncionario);
       setData(dados.dataVenda);
-      setListaProdutos(dados.listaProdutos);
+      setListaProdutos(dados.produto);
       setCupomDesconto(dados.cupomDesconto);
       setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
-      
-      
+      setVolume(dados.volume);
+      setTabela(dados.produto);
     }
   }
 
   async function salvar() {
-    let data = { id,idNomeCliente,idNomeFuncionario,dataVenda,listaProdutos,cupomDesconto,valor,formaPagamento }
+    let data = { id,idNomeCliente,idNomeFuncionario,dataVenda,volume,produto,cupomDesconto,valor,formaPagamento }
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -68,7 +80,7 @@ function CadastroVendas() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Venda ${listaProdutos} cadastrada com sucesso!`);
+          mensagemSucesso(`Venda ${produto} cadastrada com sucesso!`);
           navigate(`/listagem-vendas`);
         })
         .catch(function (error) {
@@ -80,7 +92,7 @@ function CadastroVendas() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Venda ${listaProdutos} alterada com sucesso!`);
+          mensagemSucesso(`Venda ${produto} alterada com sucesso!`);
           navigate(`/listagem-vendas`);
         })
         .catch(function (error) {
@@ -98,10 +110,12 @@ function CadastroVendas() {
       setIdNomeCliente(dados.nome);
       setIdNomeFuncionario(dados.nome);
       setData(dados.dataVenda);
-      setListaProdutos(dados.listaProdutos);
+      setListaProdutos(dados.produto);
       setCupomDesconto(dados.cupomDesconto);
       setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
+      setVolume(dados.volume);
+      setTabela(dados.produto)
     }
   }
   const [dadosClientes, setDadosClientes] = React.useState(null);
@@ -109,6 +123,7 @@ function CadastroVendas() {
   const [dadosCupom, setDadosCupom] = React.useState(null);
   const [dadosFormaPagamento, setDadosFormaPagamento] = React.useState(null);
   const [dadosListaProdutos, setDadosListaProdutos] = React.useState(null);
+  const [dadosVolume, setDadosVolume] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_CPC}/formaPagamento`).then((response) => {
@@ -126,7 +141,7 @@ function CadastroVendas() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_CFV}/vendas`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
       setDadosListaProdutos(response.data);
     });
   }, []);
@@ -135,6 +150,11 @@ function CadastroVendas() {
       setDadosCupom(response.data);
     });
   }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+      setDadosVolume(response.data);
+    });
+  }, []);
   
   
   useEffect(() => {
@@ -145,6 +165,111 @@ function CadastroVendas() {
     buscar(); // eslint-disable-next-line
   }, [id]);
 
+  const InteractiveTable = () => {
+    // const [tableData, setTableData] = useState([]);
+    //setTableData = var16;
+    const addRow = () => {
+  
+      const newRow = {
+        id: tabela.length + 1,
+        produto: "",
+        quantidade: 0,
+        volume : 0,
+       
+      };
+  
+      setTabela([...tabela, newRow]);
+    };
+  
+    const removeRow = (id) => {
+  
+      const updatedTabela = tabela.filter(row => row.id !== id);
+  
+      setTabela(updatedTabela);
+    };
+  
+    const handleChange = (id, column, value) => {
+      const updatedRows = tabela.map((row) =>
+        row.id === id ? { ...row, [column]: value } : row
+      );
+      setTabela(updatedRows);
+    };
+  
+    if (!tabela) return null;
+    return (
+      <div>
+        <table className="table table-hover">
+          <thead>
+            <tr className="table-dark">
+              <th scope="col">Produto</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Tamanho</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tabela.map(row => (
+              <tr key={row.id} className="table-light">
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.produto}
+                    onChange={(e) => handleChange(row.id, 'produto', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type='number'
+                    className='form-control'
+                    value = {row.quantidade}
+                    onChange={(e) => handleChange(row.id, 'quantidade', e.target.value)}>
+                  </input>
+                </td>
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.volume}
+                    onChange={(e) => handleChange(row.id, 'volume', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosVolume.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.volume}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <IconButton
+                    aria-label='delete'
+                    onClick={() => removeRow(row.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+          <IconButton
+            aria-label='add'
+            onClick={() => addRow()}
+          >
+            <AddBoxIcon />
+          </IconButton>
+      </div>
+    );
+  };
   if (!dados) return null;
   if (!dadosClientes) return null;
   if (!dadosFuncionario) return null;
@@ -195,11 +320,11 @@ function CadastroVendas() {
                 </select>
               </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
-                <select
+                {/* <select
                 id='inputListaProdutos'
-                value={listaProdutos}
+                value={produto}
                 className='form-select'
-                name='listaProdutos'
+                name='produto'
                 onChange={(e) => setListaProdutos(e.target.value)}
                 >
                   <option key='0' value='0'>
@@ -207,10 +332,15 @@ function CadastroVendas() {
                     </option>
                     {dadosListaProdutos.map((dado) => (
                       <option key={dado.id} value={dado.id}>
-                        {dado.listaProdutos}
+                        {dado.produto}
                       </option>
                     ))}
-                </select>
+                </select> */}
+                <div class = "card">
+                  <div class = "card-body">
+                        <InteractiveTable/>
+                  </div>
+                </div>
               </FormGroup>
               <FormGroup label='Cupom De Desconto:' htmlFor='inputCupomDesconto'>
                 <select
