@@ -53,9 +53,6 @@ function Navbar(props) {
             />
           </ul>
           <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/listagem-metasProdutos' label='Metas ' />
-          </ul>
-          <ul className='navbar-nav'>
             <NavbarItem render='true' href='/listagem-cadastro' label='Cadastros ' />
           </ul>
           <ul className='navbar-nav'>
