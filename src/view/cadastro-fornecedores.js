@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import Card from '../components/card';
 import FormGroup from '../components/form-group';
@@ -35,6 +38,7 @@ function CadastroFornecedores() {
   const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
+  const [tabela, setTabela] = useState([]);
 
   function inicializar() {
     if (idParam == null) {
@@ -50,6 +54,7 @@ function CadastroFornecedores() {
       setCidade('');
       setEstado('');
       setCep('');
+      setTabela('');
     } else {
       setId(dados.id);
       setNome(dados.nome);
@@ -63,6 +68,7 @@ function CadastroFornecedores() {
       setCidade(dados.cidade);
       setEstado(dados.estado);
       setCep(dados.cep);
+      setTabela(dados.produto)
     }
   }
 
@@ -113,11 +119,13 @@ function CadastroFornecedores() {
         setCidade(dados.cidade);
         setEstado(dados.estado);
         setCep(dados.cep);
+        setTabela(dados.produto)
    }
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
   const [dadosEstado, setDadosEstado] = React.useState(null);
+  const [dadosListaProdutos, setDadosListaProdutos] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
@@ -129,14 +137,96 @@ function CadastroFornecedores() {
       setDadosEstado(response.data);
     });
   }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+      setDadosListaProdutos(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line
   }, [id]);
-
+  const InteractiveTable = () => {
+    // const [tableData, setTableData] = useState([]);
+    //setTableData = var16;
+    const addRow = () => {
+  
+      const newRow = {
+        id: tabela.length + 1,
+        produto: "",
+       
+      };
+  
+      setTabela([...tabela, newRow]);
+    };
+  
+    const removeRow = (id) => {
+  
+      const updatedTabela = tabela.filter(row => row.id !== id);
+  
+      setTabela(updatedTabela);
+    };
+  
+    const handleChange = (id, column, value) => {
+      const updatedRows = tabela.map((row) =>
+        row.id === id ? { ...row, [column]: value } : row
+      );
+      setTabela(updatedRows);
+    };
+  
+    if (!tabela) return null;
+    return (
+      <div>
+        <table className="table table-hover">
+          <thead>
+            <tr className="table-dark">
+              <th scope="col">Produtos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tabela.map(row => (
+              <tr key={row.id} className="table-light">
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.produto}
+                    onChange={(e) => handleChange(row.id, 'produto', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <IconButton
+                    aria-label='delete'
+                    onClick={() => removeRow(row.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+          <IconButton
+            aria-label='add'
+            onClick={() => addRow()}
+          >
+            <AddBoxIcon />
+          </IconButton>
+      </div>
+    );
+  };
   if (!dados) return null;
   if (!dadosFornecedores) return null;
   if (!dadosEstado) return null;
+
 
   return (
     <div className='container'>
@@ -262,6 +352,29 @@ function CadastroFornecedores() {
                   name='cep'
                   onChange={(e) => setCep(e.target.value)}
                 />
+              </FormGroup>
+              <FormGroup label='Produtos: *' htmlFor='inputListaProdutos'>
+                {/* <select
+                id='inputListaProdutos'
+                value={produto}
+                className='form-select'
+                name='produto'
+                onChange={(e) => setListaProdutos(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                </select> */}
+                <div class = "card">
+                  <div class = "card-body">
+                        <InteractiveTable/>
+                  </div>
+                </div>
               </FormGroup>
               
               <Stack spacing={1} padding={1} direction='row'>
