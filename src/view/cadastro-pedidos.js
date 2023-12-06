@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import Card from '../components/card';
 import FormGroup from '../components/form-group';
@@ -13,6 +16,7 @@ import '../custom.css';
 import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
 import {BASE_URL_C} from '../config/bdC';
+import { BASE_URL_FT} from '../config/bdFT'; 
 
 function CadastroPedido() {
   const { idParam } = useParams();
@@ -23,16 +27,18 @@ function CadastroPedido() {
 
   const [id, setId] = useState('');
   const [idFornecedor, setIdFornecedor] = useState(0);
-  const [listaPedido, setListaPedidos] = useState('');
+  const [produto, setListaPedidos] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [lote, setLote] = useState('');
   const [validade, setValidade] = useState('');
   const [valor, setValor] = useState('');
+  const [volume, setVolume] = useState('');
   const [dataEntrega, setDataEntrega] = useState('');
   const [dataPedido, setDataPedido] = useState('');
   
 
   const [dados, setDados] = React.useState([]);
+  const [tabela, setTabela] = useState([]);
 
   function inicializar() {
     if (idParam == null) {
@@ -45,20 +51,24 @@ function CadastroPedido() {
         setValidade('');
         setDataEntrega('');
         setDataPedido('');
+        setVolume('');
+      setTabela([])
     } else {
         setId(dados.id);
-        setListaPedidos(dados.listaPedido);
+        setListaPedidos(dados.produto);
         setValor(dados.valor);
         setQuantidade(dados.quantidade);
         setLote(dados.lote);
         setValidade(dados.validade);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
+        setVolume(dados.volume);
+      setTabela(dados.produto)
     }
   }
 
   async function salvar() {
-    let data = { id, listaPedido, dataPedido, valor, dataEntrega, quantidade,lote,validade};
+    let data = { id, produto, dataPedido, valor, dataEntrega, quantidade,lote,validade, volume};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -66,7 +76,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${listaPedido} cadastrado com sucesso!`);
+          mensagemSucesso(`Pedido ${produto} cadastrado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -78,7 +88,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${listaPedido} alterado com sucesso!`);
+          mensagemSucesso(`Pedido ${produto} alterado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -95,18 +105,23 @@ function CadastroPedido() {
         setId(dados.id);
         setIdFornecedor(dados.fornecedor);
         setValor(dados.valor);
-        setListaPedidos(dados.listaPedido);
+        setListaPedidos(dados.produto);
         setQuantidade(dados.quantidade);
         setLote(dados.lote);
         setValidade(dados.validade);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
+        setVolume(dados.volume);
+      setTabela(dados.produto)
     }
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
   const [dadosEstoque, setDadosEstoque] = React.useState(null);
   const [dadosProdutos, setDadosProdutos] = React.useState(null);
+  const [dadosListaProdutos, setDadosListaProdutos] = React.useState(null);
+  const [dadosListaPedidos, setDadosListaPedidos] = React.useState(null);
+  const [dadosVolume, setDadosVolume] = React.useState(null);
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
@@ -123,11 +138,169 @@ function CadastroPedido() {
       setDadosProdutos(response.data);
     });
   }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+      setDadosVolume(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+      setDadosListaProdutos(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FT}/listaPedido`).then((response) => {
+      setDadosListaPedidos(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line
   }, [id]);
+  
 
+  const InteractiveTable = () => {
+    // const [tableData, setTableData] = useState([]);
+    //setTableData = var16;
+    const addRow = () => {
+  
+      const newRow = {
+        id: tabela.length + 1,
+        produto: "",
+        quantidade: 0,
+        volume : 0,
+        lote:0,
+        validade:0,
+       
+      };
+  
+      setTabela([...tabela, newRow]);
+    };
+  
+    const removeRow = (id) => {
+  
+      const updatedTabela = tabela.filter(row => row.id !== id);
+  
+      setTabela(updatedTabela);
+    };
+  
+    const handleChange = (id, column, value) => {
+      const updatedRows = tabela.map((row) =>
+        row.id === id ? { ...row, [column]: value } : row
+      );
+      setTabela(updatedRows);
+    };
+  
+    if (!tabela) return null;
+    return (
+      <div>
+        <table className="table table-hover" >
+          <thead>
+            <tr className="table-dark">
+              <th scope="col">Produto</th>
+              <th scope="col">Validade</th>
+              <th scope="col">Lote</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Tamanho</th>
+              <th scope="col">Valor Unitário</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tabela.map(row => (
+              <tr key={row.id} className="table-light">
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.produto}
+                    onChange={(e) => handleChange(row.id, 'produto', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type='month'
+                    className='form-control'
+                    value = {row.validade}
+                    onChange={(e) => handleChange(row.id, 'validade', e.target.value)}>
+                  </input>
+                </td>
+                <td>
+                  <input
+                    type='text'
+                    className='form-control'
+                    value = {row.lote}
+                    onChange={(e) => handleChange(row.id, 'lote', e.target.value)}>
+                  </input>
+                </td>
+                <td>
+                  <input
+                    type='number'
+                    className='form-control'
+                    value = {row.quantidade}
+                    onChange={(e) => handleChange(row.id, 'quantidade', e.target.value)}>
+                  </input>
+                </td>
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.volume}
+                    onChange={(e) => handleChange(row.id, 'volume', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosVolume.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.volume}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <select
+                    className='form-select'
+                    value={row.listaPedido}
+                    onChange={(e) => handleChange(row.id, 'listaPedido', e.target.value)}
+                  >
+                    <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaPedidos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.valor}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <IconButton
+                    aria-label='delete'
+                    onClick={() => removeRow(row.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+          <IconButton
+            aria-label='add'
+            onClick={() => addRow()}
+          >
+            <AddBoxIcon />
+          </IconButton>
+      </div>
+    );
+  };
   if (!dados) return null;
   if (!dadosFornecedores) return null;
   if (!dadosProdutos) return null;
@@ -158,47 +331,30 @@ function CadastroPedido() {
                   ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Lista de Produtos: *' htmlFor='inputListaPedidos'>
-                <input
-                  type='text'
-                  id='inputListaPedidos'
-                  value={listaPedido}
-                  className='form-control'
-                  name='listaPedidos'
-                  onChange={(e) => setListaPedidos(e.target.value)}
-                />
+              <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
+                {/* <select
+                id='inputListaProdutos'
+                value={produto}
+                className='form-select'
+                name='produto'
+                onChange={(e) => setListaProdutos(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosListaProdutos.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.produto}
+                      </option>
+                    ))}
+                </select> */}
+                <div class = "card">
+                  <div class = "card-body">
+                        <InteractiveTable/>
+                  </div>
+                </div>
               </FormGroup>
-              <FormGroup label='Quantidade : *' htmlFor='inputQuantidade'>
-                <input
-                  type='text'
-                  id='inputQuantidade'
-                  value={quantidade}
-                  className='form-control'
-                  name='quantidade'
-                  onChange={(e) => setQuantidade(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Lote: *' htmlFor='inputLote'>
-                <input
-                  type='text'
-                  id='inputLote'
-                  value={lote}
-                  className='form-control'
-                  name='lote'
-                  onChange={(e) => setLote(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Validade: *' htmlFor='inputValidade'>
-                <input
-                  type='date'
-                  id='inputValidade'
-                  value={validade}
-                  className='form-control'
-                  name='validade'
-                  onChange={(e) => setValidade(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup label='Valor : *' htmlFor='inputValor'>
+              <FormGroup label='Valor Total: *' htmlFor='inputValor'>
                 <input
                   type='text'
                   id='inputValor'
