@@ -89,7 +89,7 @@ function ListagemFuncionarios() {
                     <th scope='col'>Nome</th>
                     <th scope='col'>CPF</th>
                     <th scope='col'>E-mail</th>
-                    <th scope='col'>Número</th>
+                    <th scope='col'>Número de Telefone</th>
                     <th scope='col'>Cargo</th>
                   </tr>
                 </thead>

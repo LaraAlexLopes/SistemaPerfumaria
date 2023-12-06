@@ -89,8 +89,8 @@ function ListagemClientes() {
                   <tr>
                     <th scope='col'>Nome</th>
                     <th scope='col'>CPF</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Numero</th>
+                    <th scope='col'>E-mail</th>
+                    <th scope='col'>Número de Telefone</th>
                   </tr>
                 </thead>
                 <tbody>

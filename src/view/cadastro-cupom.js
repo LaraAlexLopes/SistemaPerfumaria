@@ -105,14 +105,22 @@ function CadastroCupom() {
           <div className='col-lg-12'>
             <div className='bs-component'>
             <FormGroup label='Código: *' htmlFor='inputCodigo'>
-                <input
-                  type='text'
+                <select
+                  className='form-select'
                   id='inputCodigo'
-                  value={codigo}
-                  className='form-control'
                   name='codigo'
+                  value={codigo}
                   onChange={(e) => setCodigo(e.target.value)}
-                />
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosCupom.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.codigo}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
               <FormGroup label='Desconto: *' htmlFor='inputDesconto'>
                 <input

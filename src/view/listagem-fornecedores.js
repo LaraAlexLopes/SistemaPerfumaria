@@ -77,7 +77,7 @@ function ListagemFornecedores() {
                   <tr>
                     <th  scope='col'>Nome</th>
                     <th  scope='col'>CNPJ</th>
-                    <th  scope='col'>Email</th>
+                    <th  scope='col'>E-mail</th>
                     <th   scope='col'>Telefone</th>
                   </tr>
                 </thead>

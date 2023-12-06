@@ -45,14 +45,16 @@ function ListagemMelhoresClientes() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
+                  <th scope='col'>Posição</th>
                     <th scope='col'>Nome</th>
                     <th scope='col'>E-mail</th>
-                    <th scope='col'>Número</th>
+                    <th scope='col'>Número de Telefone</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
+                      <td>{dado.id}</td>
                       <td>{dado.nome}</td>
                       <td>{dado.email}</td>
                       <td>{dado.numeroTelefone}</td>

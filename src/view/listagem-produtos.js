@@ -88,7 +88,7 @@ function ListagemProdutos() {
                   <tr>
                     <th  scope='col'>Produto</th>
                     <th  scope='col'>Classificação</th>
-                    <th scope='col'>Fragrancia</th>
+                    <th scope='col'>Fragrância</th>
                   </tr>
                 </thead>
                 <tbody>

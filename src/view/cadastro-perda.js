@@ -131,14 +131,22 @@ function CadastroPerda() {
               </FormGroup>
 
               <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
-                <input
-                  type='text'
+                <select
+                  className='form-select'
                   id='inputCodigoDeBarras'
+                  name='codigoBarras'
                   value={codigoBarras}
-                  className='form-control'
-                  name='codigoDeBarras'
                   onChange={(e) => setCodigoDeBarras(e.target.value)}
-                />
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosPerdaProduto.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.codigoBarras}
+                    </option>
+                  ))}
+                </select>
               </FormGroup>
               <FormGroup label='Data: *' htmlFor='inputData'>
                 <input
