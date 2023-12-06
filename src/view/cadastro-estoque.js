@@ -22,11 +22,11 @@ function CadastroEstoque() {
 
   const [id, setId] = useState('');
   const [produto, setProduto] = useState('');
-  const [codigoBarras, setCodigoBarras] = useState('');
   const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
   const [capacidadeMinima, setCapacidadeMinima] = useState('');
   const [pontoRessuprimento, setPontoRessuprimento] = useState('');
-  const [metaMensal, setMetaMensal] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+ 
   
   const [dados, setDados] = React.useState([]);
 
@@ -34,24 +34,25 @@ function CadastroEstoque() {
     if (idParam == null) {
         setId('');
         setProduto('');
-        setCodigoBarras('');
+        
         setPontoRessuprimento('');
         setCapacidadeMaxima('');
         setCapacidadeMinima('');
-        setMetaMensal('');
+        setQuantidade('');
+        
     } else {
         setId(dados.id);
         setProduto(dados.produto);
-        setCodigoBarras(dados.codigoBarras);
+        
         setPontoRessuprimento(dados.pontoRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
-        setMetaMensal(dados.metaMensal);
+        setQuantidade(dados.quantidade);
     }
   }
 
   async function salvar() {
-    let data = { id, produto, codigoBarras,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,metaMensal};
+    let data = { id, produto,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,quantidade};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -87,9 +88,7 @@ function CadastroEstoque() {
       });
         setId(dados.id);
         setProduto(dados.produto);
-        setCodigoBarras(dados.codigoBarras);
         setPontoRessuprimento(dados.pontoRessuprimento);
-        setMetaMensal(dados.metaMensal);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
     }
@@ -134,16 +133,17 @@ function CadastroEstoque() {
                     ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
+              <FormGroup label='Quantidade *' htmlFor='inputQuantidade'>
                 <input
                   type='text'
-                  id='inputCodigoBarras'
-                  value={codigoBarras}
+                  id='inputQuantidade'
+                  value={capacidadeMinima}
                   className='form-control'
-                  name='codigoBarras'
-                  onChange={(e) => setCodigoBarras(e.target.value)}
+                  name='quantidade'
+                  onChange={(e) => setQuantidade(e.target.value)}
                 />
               </FormGroup>
+             
               <FormGroup label='Capacidade Maxima: *' htmlFor='inputCapacidadeMaxima'>
                 <input
                   type='text'
@@ -174,16 +174,8 @@ function CadastroEstoque() {
                   onChange={(e) => setPontoRessuprimento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Meta Mensal: *' htmlFor='inputMetaMensal'>
-                <input
-                  type='text'
-                  id='inputMetaMensal'
-                  value={metaMensal}
-                  className='form-control'
-                  name='metaMensal'
-                  onChange={(e) => setMetaMensal(e.target.value)}
-                />
-              </FormGroup>
+             
+              
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
