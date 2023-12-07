@@ -175,6 +175,7 @@ function CadastroVendas() {
         produto: "",
         quantidade: 0,
         volume : 0,
+        valor : 0,
        
       };
   
@@ -204,6 +205,7 @@ function CadastroVendas() {
               <th scope="col">Produto</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Tamanho</th>
+              <th scope="col">Valor</th>
             </tr>
           </thead>
           <tbody>
@@ -248,6 +250,14 @@ function CadastroVendas() {
                       </option>
                     ))}
                   </select>
+                </td>
+                <td>
+                  <input
+                    type='text'
+                    className='form-control'
+                    value = {row.valor}
+                    onChange={(e) => handleChange(row.id, 'valor', e.target.value)}>
+                  </input>
                 </td>
                 <td>
                   <IconButton
