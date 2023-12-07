@@ -115,7 +115,7 @@ function CadastroVendas() {
       setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
       setVolume(dados.volume);
-      setTabela(dados.produto)
+      //setTabela(dados.produto)
     }
   }
   const [dadosClientes, setDadosClientes] = React.useState(null);
@@ -320,22 +320,6 @@ function CadastroVendas() {
                 </select>
               </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
-                {/* <select
-                id='inputListaProdutos'
-                value={produto}
-                className='form-select'
-                name='produto'
-                onChange={(e) => setListaProdutos(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosListaProdutos.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.produto}
-                      </option>
-                    ))}
-                </select> */}
                 <div class = "card">
                   <div class = "card-body">
                         <InteractiveTable/>

@@ -112,7 +112,7 @@ function CadastroPedido() {
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
         setVolume(dados.volume);
-      setTabela(dados.produto)
+      //setTabela(dados.produto)
     }
   }
 

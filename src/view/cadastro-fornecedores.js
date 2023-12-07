@@ -38,7 +38,7 @@ function CadastroFornecedores() {
   const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
-  const [tabela, setTabela] = useState([]);
+  const [tabela, setTabela] = React.useState([]);
 
   function inicializar() {
     if (idParam == null) {
@@ -103,23 +103,23 @@ function CadastroFornecedores() {
   }
 
   async function buscar() {
-    if (idParam != null) {
+    if(idParam != null){
       await axios.get(`${baseURL}/${idParam}`).then((response) => {
-        setId(dados.id);
-      setNome(dados.nome);
-      setCnpj(dados.cnpj);
-      setEmail(dados.email);
-      setNumeroTelefone(dados.numeroTelefone);
-      setLogradouro(dados.logradouro);
-      setNumero(dados.numero);
-      setComplemento(dados.complemento);
-      setBairro(dados.bairro);
-      setCidade(dados.cidade);
-      setEstado(dados.estado);
-      setCep(dados.cep);
-      setTabela(dados.produto)
+        setDados(response.data);
       });
-    }
+        setId(dados.id);
+        setNome(dados.nome);
+        setCnpj(dados.cnpj);
+        setEmail(dados.email);
+        setNumeroTelefone(dados.numeroTelefone);
+        setLogradouro(dados.logradouro);
+        setNumero(dados.numero);
+        setComplemento(dados.complemento);
+        setBairro(dados.bairro);
+        setCidade(dados.cidade);
+        setEstado(dados.estado);
+        setCep(dados.cep);
+   }
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
@@ -146,13 +146,10 @@ function CadastroFornecedores() {
     buscar(); // eslint-disable-next-line
   }, [id]);
   const InteractiveTable = () => {
-    // const [tableData, setTableData] = useState([]);
-    //setTableData = var16;
     const addRow = () => {
       const newRow = {
         id: tabela.length + 1,
         produto: "null",
-      
       };
   
       setTabela([...tabela, newRow]);
@@ -166,7 +163,7 @@ function CadastroFornecedores() {
   
     const handleChange = (id, column, value) => {
       const updatedRows = tabela.map((row) =>
-        row.id === id ? { ...row, [column]: value } : row
+        row.id === id ? {...row, [column]: value } : row
       );
       setTabela(updatedRows);
     };
@@ -349,14 +346,13 @@ function CadastroFornecedores() {
                   onChange={(e) => setCep(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Produtos: *' htmlFor='inputListaProdutos'>
+              <FormGroup label='Produtos: *' htmlFor='selectListaProdutos'>
                 <div class = "card">
                   <div class = "card-body">
                         <InteractiveTable/>
                   </div>
                 </div>
               </FormGroup>
-              
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}
