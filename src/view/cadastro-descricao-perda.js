@@ -44,7 +44,7 @@ function CadastroDescricaoPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda cadastrado com sucesso!`);
+          mensagemSucesso(`Perda cadastrada com sucesso!`);
           navigate(`/listagem-perdas`);
         })
         .catch(function (error) {
@@ -56,7 +56,7 @@ function CadastroDescricaoPerda() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda alterado com sucesso!`);
+          mensagemSucesso(`Perda alterada com sucesso!`);
           navigate(`/listagem-descricao-perda`);
         })
         .catch(function (error) {
