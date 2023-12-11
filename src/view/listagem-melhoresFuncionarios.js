@@ -55,7 +55,7 @@ function ListagemMelhoresFuncionarios() {
                     <th scope='col'>Posição</th>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Quantidade de Vendas</th>
-                    <th scope='col'>Data de Inicio</th>
+                    <th scope='col'>Data de Início</th>
                     <th scope='col'>Data de Fim</th>
                   </tr>
                 </thead>
