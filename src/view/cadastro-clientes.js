@@ -136,7 +136,7 @@ function CadastroClientes() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Telefone: *' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='Número de Telefone: *' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'

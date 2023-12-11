@@ -111,6 +111,24 @@ function CadastroPerda() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
+            <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
+                <select
+                  className='form-select'
+                  id='inputCodigoDeBarras'
+                  name='codigoBarras'
+                  value={codigoBarras}
+                  onChange={(e) => setCodigoDeBarras(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                    {' '}
+                  </option>
+                  {dadosPerdaProduto.map((dado) => (
+                    <option key={dado.id} value={dado.id}>
+                      {dado.codigoBarras}
+                    </option>
+                  ))}
+                </select>
+              </FormGroup>
             <FormGroup label='Descrição: *' htmlFor='selectPerdaProduto'>
                 <select
                   className='form-select'
@@ -125,25 +143,6 @@ function CadastroPerda() {
                   {dadosPerdaProduto.map((dado) => (
                     <option key={dado.id} value={dado.id}>
                       {dado.descricaoPerda}
-                    </option>
-                  ))}
-                </select>
-              </FormGroup>
-
-              <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
-                <select
-                  className='form-select'
-                  id='inputCodigoDeBarras'
-                  name='codigoBarras'
-                  value={codigoBarras}
-                  onChange={(e) => setCodigoDeBarras(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                    {' '}
-                  </option>
-                  {dadosPerdaProduto.map((dado) => (
-                    <option key={dado.id} value={dado.id}>
-                      {dado.codigoBarras}
                     </option>
                   ))}
                 </select>
