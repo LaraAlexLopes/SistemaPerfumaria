@@ -59,7 +59,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produtos ${produto} cadastrado com sucesso!`);
+          mensagemSucesso(`Produtos ${produto} cadastrado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -71,7 +71,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${produto} alterado com sucesso!`);
+          mensagemSucesso(`Produto ${produto} alterado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -144,7 +144,7 @@ function CadastroEstoque() {
                 />
               </FormGroup>
              
-              <FormGroup label='Capacidade Maxima: *' htmlFor='inputCapacidadeMaxima'>
+              <FormGroup label='Capacidade Máxima: *' htmlFor='inputCapacidadeMaxima'>
                 <input
                   type='text'
                   id='inputCapacidadeMaxima'
@@ -154,7 +154,7 @@ function CadastroEstoque() {
                   onChange={(e) => setCapacidadeMaxima(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Capacidade Minima: *' htmlFor='inputCapacidadeMinima'>
+              <FormGroup label='Capacidade Mínima: *' htmlFor='inputCapacidadeMinima'>
                 <input
                   type='text'
                   id='inputCapacidadeMinima'
