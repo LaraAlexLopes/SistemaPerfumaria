@@ -277,7 +277,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setLogradouro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Numero: *' htmlFor='inputNumero'>
+              <FormGroup label='Número: *' htmlFor='inputNumero'>
                 <input
                   type='text'
                   id='inputNumero'
