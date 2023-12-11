@@ -59,7 +59,7 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Funcionario ${produto} cadastrado com sucesso!`);
+          mensagemSucesso(`$ Produto {produto} cadastrado com sucesso!`);
           navigate(`/listagem-produtos`);
         })
         .catch(function (error) {
@@ -71,7 +71,7 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Funcionario ${produto} alterado com sucesso!`);
+          mensagemSucesso(`Produto ${produto} alterado com sucesso!`);
          navigate(`/listagem-produtos`);
         })
         .catch(function (error) {
@@ -147,7 +147,7 @@ function CadastroProduto() {
                   onChange={(e) => setProduto(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
+              <FormGroup label='Código de Barras: *' htmlFor='inputCodigoBarras'>
                 <input
                   type='text'
                   id='inputCodigoBarras'
@@ -175,6 +175,24 @@ function CadastroProduto() {
                     ))}
                 </select>
               </FormGroup>
+              <FormGroup label='Fragrância: *' htmlFor='inputFragrancia'>
+                <select
+                id='inputFragrancia'
+                value={fragrancia}
+                className='form-select'
+                name='fragrancia'
+                onChange={(e) => setFragrancia(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosFragrancia.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.descricao}
+                      </option>
+                    ))}
+                </select>
+              </FormGroup>
               <FormGroup label='Tamanho: *' htmlFor='inputTamanho'>
                 <select
                 id='inputTamanho'
@@ -189,24 +207,6 @@ function CadastroProduto() {
                     {dadosTamanho.map((dado) => (
                       <option key={dado.id} value={dado.id}>
                         {dado.volume}
-                      </option>
-                    ))}
-                </select>
-              </FormGroup>
-              <FormGroup label='Fragrancia: *' htmlFor='inputFragrancia'>
-                <select
-                id='inputFragrancia'
-                value={fragrancia}
-                className='form-select'
-                name='fragrancia'
-                onChange={(e) => setFragrancia(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosFragrancia.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.descricao}
                       </option>
                     ))}
                 </select>
