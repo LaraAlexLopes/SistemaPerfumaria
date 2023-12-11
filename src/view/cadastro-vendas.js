@@ -67,7 +67,6 @@ function CadastroVendas() {
       setValor(dados.valor);
       setFormaPagamento(dados.formaPagamento);
       setVolume(dados.volume);
-      setTabela(dados.produto);
     }
   }
 

@@ -68,7 +68,6 @@ function CadastroFornecedores() {
       setCidade(dados.cidade);
       setEstado(dados.estado);
       setCep(dados.cep);
-      setTabela(dados.produto)
     }
   }
 

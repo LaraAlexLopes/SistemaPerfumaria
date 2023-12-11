@@ -43,7 +43,6 @@ function CadastroEstoque() {
     } else {
         setId(dados.id);
         setProduto(dados.produto);
-        
         setPontoRessuprimento(dados.pontoRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
@@ -88,6 +87,7 @@ function CadastroEstoque() {
       });
         setId(dados.id);
         setProduto(dados.produto);
+        setQuantidade(dados.quantidade);
         setPontoRessuprimento(dados.pontoRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
@@ -133,11 +133,11 @@ function CadastroEstoque() {
                     ))}
                 </select>
               </FormGroup>
-              <FormGroup label='Quantidade *' htmlFor='inputQuantidade'>
+              <FormGroup label='Quantidade: *' htmlFor='inputQuantidade'>
                 <input
                   type='text'
                   id='inputQuantidade'
-                  value={capacidadeMinima}
+                  value={quantidade}
                   className='form-control'
                   name='quantidade'
                   onChange={(e) => setQuantidade(e.target.value)}

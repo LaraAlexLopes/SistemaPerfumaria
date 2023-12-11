@@ -21,7 +21,7 @@ function CadastroDescricaoPerda() {
   const baseURL = `${BASE_URL_CPC}/perdaProduto`;
 
   const [id, setId] = useState('');
-  const [idPerdaProduto, setIdPerdaProduto] = useState('');
+  const [descricaoPerda, setIdPerdaProduto] = useState('');
   
   const [dados, setDados] = React.useState([]);
 
@@ -31,12 +31,12 @@ function CadastroDescricaoPerda() {
       setIdPerdaProduto('');
     } else {
       setId(dados.id);
-        setIdPerdaProduto(dados.idPerdaProduto);
+      setIdPerdaProduto(dados.descricaoPerda);
     }
   }
 
   async function salvar() {
-    let data = { id,idPerdaProduto};
+    let data = { id,descricaoPerda};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -57,7 +57,7 @@ function CadastroDescricaoPerda() {
         })
         .then(function (response) {
           mensagemSucesso(`Perda alterado com sucesso!`);
-          navigate(`/listagem-perdas`);
+          navigate(`/listagem-descricao-perda`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -71,7 +71,7 @@ function CadastroDescricaoPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-       setIdPerdaProduto(dados.perdaProduto);
+       setIdPerdaProduto(dados.descricaoPerda);
     }
   }
   const [dadosPerda, setDadosPerda] = React.useState(null);
@@ -99,9 +99,9 @@ function CadastroDescricaoPerda() {
                 <input
                   type='text'
                   id='inputIdPerdaProduto'
-                  value={idPerdaProduto}
+                  value={descricaoPerda}
                   className='form-control'
-                  name='idPerdaProduto'
+                  name='descricaoPerda'
                   onChange={(e) => setIdPerdaProduto(e.target.value)}
                 />
               </FormGroup>
