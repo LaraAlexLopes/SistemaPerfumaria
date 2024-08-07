@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_C} from '../config/bdC';
 
-const baseURL = `${BASE_URL_C}/estoque`;
+const baseURL = `${BASE_URL_C}/estoques`;
 
 function ListagemCadastro() {
   const navigate = useNavigate();

@@ -122,22 +122,11 @@ function CadastroFornecedores() {
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
-  const [dadosEstado, setDadosEstado] = React.useState(null);
-  const [dadosListaProdutos, setDadosListaProdutos] = React.useState(null);
+  
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
       setDadosFornecedores(response.data);
-    });
-  }, []);
-  useEffect(() => {
-    axios.get(`${BASE_URL_C}/estado`).then((response) => {
-      setDadosEstado(response.data);
-    });
-  }, []);
-  useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
-      setDadosListaProdutos(response.data);
     });
   }, []);
 
@@ -180,20 +169,7 @@ function CadastroFornecedores() {
             {tabela.map(row => (
               <tr key={row.id} className="table-light">
                 <td>
-                  <select
-                    className='form-select'
-                    value={row.produto}
-                    onChange={(e) => handleChange(row.id, 'produto', e.target.value)}
-                  >
-                    <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosListaProdutos.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.produto}
-                      </option>
-                    ))}
-                  </select>
+              
                 </td>
                 <td>
                   <IconButton
@@ -218,7 +194,7 @@ function CadastroFornecedores() {
   };
   if (!dados) return null;
   if (!dadosFornecedores) return null;
-  if (!dadosEstado) return null;
+ 
 
   return (
     <div className='container'>
@@ -318,26 +294,17 @@ function CadastroFornecedores() {
                 />
               </FormGroup>
               <FormGroup label='Estado: *' htmlFor='inputEstado'>
-              <select
+              <input
                 id='inputEstado'
                 value={estado}
-                className='form-select'
-                name='estado'
-                onChange={(e) => setEstado(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosEstado.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.nome}
-                      </option>
-                    ))}
-                </select>
+                className='form-control'
+                  name='estado'
+                  onChange={(e) => setEstado(e.target.value)}
+                />
               </FormGroup>
               <FormGroup label='CEP: *' htmlFor='inputCep'>
                 <input
-                  type='text'
+                type='text'
                   id='inputCep'
                   value={cep}
                   className='form-control'
@@ -345,13 +312,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setCep(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Produtos: *' htmlFor='selectListaProdutos'>
-                <div class = "card">
-                  <div class = "card-body">
-                        <InteractiveTable/>
-                  </div>
-                </div>
-              </FormGroup>
+            
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}
                   onClick={salvar}

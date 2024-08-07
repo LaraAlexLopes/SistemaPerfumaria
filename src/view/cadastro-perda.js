@@ -18,7 +18,7 @@ function CadastroPerda() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_CPC}/perdaProduto`;
+  const baseURL = `${BASE_URL_CPC}/perdas`;
 
   const [id, setId] = useState('');
   const [idPerdaProduto, setIdPerdaProduto] = useState(0);

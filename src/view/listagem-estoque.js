@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_C} from '../config/bdC';
 
-const baseURL = `${BASE_URL_C}/estoque`;
+const baseURL = `${BASE_URL_C}/estoques`;
 
 function ListagemEstoque() {
   const navigate = useNavigate();
@@ -90,10 +90,10 @@ function ListagemEstoque() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.produto}</td>
+                      <td >{dado.idProduto}</td>
                       <td >{dado.capacidadeMaxima}</td>
                       <td >{dado.capacidadeMinima}</td>
-                      <td >{dado.pontoRessuprimento}</td>
+                      <td >{dado.pontoDeRessuprimento}</td>
                       <td >
                         <Stack spacing={1} padding={0} direction='row' style={{color: '#4AA228' }}>
                           <IconButton style={{color: 'black' }}

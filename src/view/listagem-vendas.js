@@ -89,9 +89,9 @@ function ListagemVendas() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.nomeCliente}</td>
-                      <td >{dado.valor}</td>
-                      <td >{new Date(dado['dataVenda']).toLocaleDateString()}</td>
+                      <td >{dado.idCliente}</td>
+                      <td >{dado.valor_total}</td>
+                      <td >{new Date(dado['data']).toLocaleDateString()}</td>
                       <td >
                         <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
                           <IconButton style={{ color: 'black' }}

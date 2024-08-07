@@ -18,7 +18,7 @@ function CadastroTamanho() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FT}/tamanho`;
+  const baseURL = `${BASE_URL_FT}/tamanhos`;
 
   const [id, setId] = useState('');
   const [volume, setVolume] = useState('');

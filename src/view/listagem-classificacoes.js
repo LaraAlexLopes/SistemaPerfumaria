@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
 
-const baseURL = `${BASE_URL_CPC}/classificacao`;
+const baseURL = `${BASE_URL_CPC}/classificacoes`;
 
 function ListagemClassificao() {
   const navigate = useNavigate();

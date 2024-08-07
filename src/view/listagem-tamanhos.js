@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_FT} from '../config/bdFT';
 
-const baseURL = `${BASE_URL_FT}/tamanho`;
+const baseURL = `${BASE_URL_FT}/tamanhos`;
 
 function ListagemTamanhos() {
   const navigate = useNavigate();

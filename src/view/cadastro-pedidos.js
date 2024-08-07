@@ -23,7 +23,7 @@ function CadastroPedido() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FPP}/pedido`;
+  const baseURL = `${BASE_URL_FPP}/pedidos`;
 
   const [id, setId] = useState('');
   const [idFornecedor, setIdFornecedor] = useState(0);
@@ -127,27 +127,27 @@ function CadastroPedido() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_C}/estoque`).then((response) => {
+    axios.get(`${BASE_URL_C}/estoques`).then((response) => {
       setDadosEstoque(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosProdutos(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+    axios.get(`${BASE_URL_FT}/tamanhos`).then((response) => {
       setDadosVolume(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosListaProdutos(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/listaPedido`).then((response) => {
+    axios.get(`${BASE_URL_FT}/listaPedidos`).then((response) => {
       setDadosListaPedidos(response.data);
     });
   }, []);

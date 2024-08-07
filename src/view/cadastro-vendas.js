@@ -140,17 +140,17 @@ function CadastroVendas() {
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosListaProdutos(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/cupomDesconto`).then((response) => {
+    axios.get(`${BASE_URL_CPC}/cupons`).then((response) => {
       setDadosCupom(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+    axios.get(`${BASE_URL_FT}/tamanhos`).then((response) => {
       setDadosVolume(response.data);
     });
   }, []);

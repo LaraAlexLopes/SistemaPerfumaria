@@ -18,7 +18,7 @@ function CadastroCupom() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_CPC}/cupomDesconto`;
+  const baseURL = `${BASE_URL_CPC}/cupons`;
 
   const [id, setId] = useState('');
   const [desconto, setDesconto] = useState('');

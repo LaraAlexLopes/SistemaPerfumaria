@@ -18,7 +18,7 @@ function CadastroFragancia() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FT}/fragrancia`;
+  const baseURL = `${BASE_URL_FT}/fragrancias`;
 
   const [id, setId] = useState('');
   const [descricao, setDescricao] = useState('');

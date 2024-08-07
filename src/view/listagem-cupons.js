@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
 
-const baseURL = `${BASE_URL_CPC}/cupomDesconto`;
+const baseURL = `${BASE_URL_CPC}/cupons`;
 
 function ListagemCupons() {
   const navigate = useNavigate();

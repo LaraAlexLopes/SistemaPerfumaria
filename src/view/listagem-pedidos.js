@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
 
-const baseURL = `${BASE_URL_FPP}/pedido`;
+const baseURL = `${BASE_URL_FPP}/pedidos`;
 
 function ListagemPedidos() {
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ function ListagemPedidos() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.fornecedor}</td>
+                      <td >{dado.idFornecedor}</td>
                       <td >{new Date(dado['dataPedido']).toLocaleDateString()}</td>
                       <td >{new Date(dado['dataEntrega']).toLocaleDateString()}</td>
                       <td>

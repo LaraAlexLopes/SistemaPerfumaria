@@ -19,7 +19,7 @@ function CadastroProduto() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_FPP}/produto`;
+  const baseURL = `${BASE_URL_FPP}/produtos`;
 
   const [id, setId] = useState('');
   const [produto, setProduto] = useState('');
@@ -101,22 +101,22 @@ function CadastroProduto() {
   
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/produto`).then((response) => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosProduto(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/fragrancia`).then((response) => {
+    axios.get(`${BASE_URL_FT}/fragrancias`).then((response) => {
       setDadosFragancia(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+    axios.get(`${BASE_URL_FT}/tamanhos`).then((response) => {
       setDadosTamanho(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/classificacao`).then((response) => {
+    axios.get(`${BASE_URL_FT}/classificacoes`).then((response) => {
       setDadosClassificacao(response.data);
     });
   }, []);

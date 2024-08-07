@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
 
-const baseURL = `${BASE_URL_CPC}/perdaProduto`;
+const baseURL = `${BASE_URL_CPC}/perdas`;
 
 function ListagemPerdas() {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ function ListagemPerdas() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Código Barras</th>
+                    <th scope='col'>Id Da Perda</th>
                     <th scope='col'>Data de Perda</th>
                     <th scope='col'>Descrição da Perda</th>
                   </tr>
@@ -92,9 +92,9 @@ function ListagemPerdas() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.codigoBarras}</td>
-                      <td>{new Date(dado['dataPerda']).toLocaleDateString()}</td>
-                      <td>{dado.descricaoPerda}</td>
+                      <td>{dado.id}</td>
+                      <td>{dado.data}</td>
+                      <td>{dado.descricao}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                         <IconButton style={{ color: 'black' }}

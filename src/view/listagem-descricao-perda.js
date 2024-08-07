@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
 
-const baseURL = `${BASE_URL_CPC}/perdaProduto`;
+const baseURL = `${BASE_URL_CPC}/perdas`;
 
 function ListagemDescricao() {
   const navigate = useNavigate();

@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
 
-const baseURL = `${BASE_URL_FPP}/produto`;
+const baseURL = `${BASE_URL_FPP}/produtos`;
 
 function ListagemProdutos() {
   const navigate = useNavigate();
@@ -59,6 +59,7 @@ function ListagemProdutos() {
       setDados(response.data);
     });
   }, []);
+ 
 
   if (!dados) return null;
 
@@ -94,9 +95,9 @@ function ListagemProdutos() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.produto}</td>
-                      <td >{dado.classificacao}</td>
-                      <td >{dado.fragrancia}</td>
+                      <td >{dado.nome}</td>
+                      <td >{dado.idClassificacao}</td>
+                      <td >{dado.idFagrancia}</td>
                       <td >
                         <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
                           <IconButton style={{ color: 'black' }}

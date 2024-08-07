@@ -18,7 +18,7 @@ function CadastroClassificação() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_CPC}/classificacao`;
+  const baseURL = `${BASE_URL_CPC}/classificacoes`;
 
   const [id, setId] = useState('');
   const [descricao, setDescricao] = useState('');

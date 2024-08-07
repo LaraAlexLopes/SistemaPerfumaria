@@ -18,13 +18,13 @@ function CadastroEstoque() {
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_C}/estoque`;
+  const baseURL = `${BASE_URL_C}/estoques`;
 
   const [id, setId] = useState('');
   const [produto, setProduto] = useState('');
   const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
   const [capacidadeMinima, setCapacidadeMinima] = useState('');
-  const [pontoRessuprimento, setPontoRessuprimento] = useState('');
+  const [pontoDeRessuprimento, setPontoDeRessuprimento] = useState('');
   const [quantidade, setQuantidade] = useState('');
  
   
@@ -35,7 +35,7 @@ function CadastroEstoque() {
         setId('');
         setProduto('');
         
-        setPontoRessuprimento('');
+        setPontoDeRessuprimento('');
         setCapacidadeMaxima('');
         setCapacidadeMinima('');
         setQuantidade('');
@@ -43,7 +43,7 @@ function CadastroEstoque() {
     } else {
         setId(dados.id);
         setProduto(dados.produto);
-        setPontoRessuprimento(dados.pontoRessuprimento);
+        setPontoDeRessuprimento(dados.pontoDeRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
         setQuantidade(dados.quantidade);
@@ -51,7 +51,7 @@ function CadastroEstoque() {
   }
 
   async function salvar() {
-    let data = { id, produto,capacidadeMaxima,capacidadeMinima,pontoRessuprimento,quantidade};
+    let data = { id, produto,capacidadeMaxima,capacidadeMinima,pontoDeRessuprimento,quantidade};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -88,7 +88,7 @@ function CadastroEstoque() {
         setId(dados.id);
         setProduto(dados.produto);
         setQuantidade(dados.quantidade);
-        setPontoRessuprimento(dados.pontoRessuprimento);
+        setPontoDeRessuprimento(dados.pontoDeRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
     }
@@ -164,14 +164,14 @@ function CadastroEstoque() {
                   onChange={(e) => setCapacidadeMinima(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Ponto de Ressuprimento: *' htmlFor='inputPontoRessuprimento'>
+              <FormGroup label='Ponto de Ressuprimento: *' htmlFor='inputPontoDeRessuprimento'>
                 <input
                   type='text'
-                  id='inputPontoRessuprimento'
-                  value={pontoRessuprimento}
+                  id='inputPontoDeRessuprimento'
+                  value={pontoDeRessuprimento}
                   className='form-control'
-                  name='pontoRessuprimento'
-                  onChange={(e) => setPontoRessuprimento(e.target.value)}
+                  name='pontoDeRessuprimento'
+                  onChange={(e) => setPontoDeRessuprimento(e.target.value)}
                 />
               </FormGroup>
              
