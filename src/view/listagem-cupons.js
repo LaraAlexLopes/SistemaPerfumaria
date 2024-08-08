@@ -84,7 +84,7 @@ function ListagemCupons() {
                     <tr key={dado.id}>
                       <td>{dado.codigo}</td>                      
                       <td>{dado.desconto}</td>
-                      <td>{new Date(dado['dataExpiracao']).toLocaleDateString()}</td>
+                      <td>{dado.dataExpiracao}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row' style={{  color: 'white' }}>
                           <IconButton style={{ color: 'black' }}

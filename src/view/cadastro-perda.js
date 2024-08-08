@@ -12,6 +12,8 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
+import {BASE_URL_FPP} from '../config/bdFPP';
+
 
 function CadastroPerda() {
   const { idParam } = useParams();
@@ -21,28 +23,33 @@ function CadastroPerda() {
   const baseURL = `${BASE_URL_CPC}/perdas`;
 
   const [id, setId] = useState('');
-  const [idPerdaProduto, setIdPerdaProduto] = useState(0);
-  const [codigoBarras, setCodigoDeBarras] = useState('');
-  const [dataPerda, setData] = useState('');
+  const [idTipoPerda, setIdTipoPerda] = useState(0);
+  const [idProduto, setIdProduto] = useState(0);
+  const [codigoBarras, setCodigoBarras] = useState('');
+  const [data, setData] = useState('');
 
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setIdPerdaProduto(0);
-      setCodigoDeBarras('');
+      setIdTipoPerda(0);
+      setIdProduto(0);
+      setCodigoBarras('');
       setData('');
     } else {
       setId(dados.id);
   
-      setCodigoDeBarras(dados.codigoBarras);
-      setData(dados.dataPerda);
+      setCodigoBarras(dados.codigoBarras);
+      setData(dados.data);
+      setIdProduto(dados.idProduto);
+      setIdTipoPerda(dados.idTipoPerda);
+
     }
   }
 
   async function salvar() {
-    let data = { id,codigoBarras,dataPerda};
+    let data = { id,codigoBarras,data,idProduto,idTipoPerda};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -77,33 +84,46 @@ function CadastroPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-       setIdPerdaProduto(dados.perdaProduto);
-       setCodigoDeBarras(dados.codigoBarras);
-       setData(dados.dataPerda);
+       setIdTipoPerda(dados.tipoPerda);
+       setIdProduto(dados.produto);
+       setCodigoBarras(dados.codigoBarras);
+       setData(dados.data);
+
     }
   }
 
   const [dadosPerda, setDadosPerda] = React.useState(null);
-  const [dadosPerdaProduto, setDadosPerdaProduto] = React.useState(null);
+  const [dadosTipoPerda, setDadosTipoPerda] = React.useState(null);
+  const [dadosProduto, setDadosProduto] = React.useState(null);
+
+
 
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
+    axios.get(`${BASE_URL_CPC}/perdas`).then((response) => {
       setDadosPerda(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
-      setDadosPerdaProduto(response.data);
+    axios.get(`${BASE_URL_FPP}/tipoPerdas`).then((response) => {
+      setDadosTipoPerda(response.data);
     });
   }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
+      setDadosProduto(response.data);
+    });
+  }, []);
+  
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosPerda) return null;
-  if (!dadosPerdaProduto) return null;
+  if (!dadosTipoPerda) return null;
+  if (!dadosProduto) return null;
+
+ 
 
   return (
     <div className='container'>
@@ -111,38 +131,38 @@ function CadastroPerda() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-            <FormGroup label='Codigo de barras: *' htmlFor='inputCodigoDeBarras'>
+            <FormGroup label='Produto: *' htmlFor='selectProduto'>
                 <select
                   className='form-select'
-                  id='inputCodigoDeBarras'
-                  name='codigoBarras'
-                  value={codigoBarras}
-                  onChange={(e) => setCodigoDeBarras(e.target.value)}
+                  id='selectProduto'
+                  name='idProduto'
+                  value={idProduto}
+                  onChange={(e) => setIdProduto(e.target.value)}
                 >
                   <option key='0' value='0'>
                     {' '}
                   </option>
-                  {dadosPerdaProduto.map((dado) => (
+                  {dados.map((dado) => (
                     <option key={dado.id} value={dado.id}>
-                      {dado.codigoBarras}
+                      {dado.nome}
                     </option>
                   ))}
                 </select>
               </FormGroup>
-            <FormGroup label='Descrição: *' htmlFor='selectPerdaProduto'>
+            <FormGroup label='Descrição: *' htmlFor='selectTipoPerda'>
                 <select
                   className='form-select'
-                  id='selectPerdaProduto'
-                  name='idPerdaProduto'
-                  value={idPerdaProduto}
-                  onChange={(e) => setIdPerdaProduto(e.target.value)}
+                  id='selectTipoPerda'
+                  name='idTipoPerda'
+                  value={idTipoPerda}
+                  onChange={(e) => setIdTipoPerda(e.target.value)}
                 >
                   <option key='0' value='0'>
                     {' '}
                   </option>
-                  {dadosPerdaProduto.map((dado) => (
+                  {dadosTipoPerda.map((dado) => (
                     <option key={dado.id} value={dado.id}>
-                      {dado.descricaoPerda}
+                      {dado.descricao}
                     </option>
                   ))}
                 </select>
@@ -151,12 +171,23 @@ function CadastroPerda() {
                 <input
                   type='date'
                   id='inputData'
-                  value={dataPerda}
+                  value={data}
                   className='form-control'
                   name='data'
                   onChange={(e) => setData(e.target.value)}
                 />
               </FormGroup>
+              <FormGroup label='Codigo de Barras: *' htmlFor='inputCodigoBarras'>
+                <input
+                  type='text'
+                  id='inputCodigoBarras'
+                  value={codigoBarras}
+                  className='form-control'
+                  name='codigoBarras'
+                  onChange={(e) => setData(e.target.value)}
+                />
+              </FormGroup>
+
 
               <Stack spacing={1} padding={1} direction='row'>
                 <button style={{ backgroundColor: '#4AA228', color: 'white',borderColor : '#4AA228', fontWeight : "500" }}

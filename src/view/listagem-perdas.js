@@ -24,7 +24,7 @@ function ListagemPerdas() {
    navigate(`/cadastro-perda`);
   };
   const verCadastro = () => {
-    navigate(`/cadastro-descricao-perda`);
+    navigate(`/cadastro-tipo-perda`);
    };
 
   const editar = (id) => {
@@ -84,7 +84,7 @@ function ListagemPerdas() {
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th scope='col'>Id Da Perda</th>
+                    <th scope='col'>Codigo de Barras</th>
                     <th scope='col'>Data de Perda</th>
                     <th scope='col'>Descrição da Perda</th>
                   </tr>
@@ -92,9 +92,9 @@ function ListagemPerdas() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{dado.id}</td>
+                      <td>{dado.codigoBarras}</td>
                       <td>{dado.data}</td>
-                      <td>{dado.descricao}</td>
+                      <td>{dado.idTipoPerda}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                         <IconButton style={{ color: 'black' }}

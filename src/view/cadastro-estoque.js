@@ -12,6 +12,7 @@ import '../custom.css';
 
 import axios from 'axios';
 import {BASE_URL_C} from '../config/bdC';
+import {BASE_URL_FPP} from '../config/bdFPP';
 
 function CadastroEstoque() {
   const { idParam } = useParams();
@@ -21,7 +22,7 @@ function CadastroEstoque() {
   const baseURL = `${BASE_URL_C}/estoques`;
 
   const [id, setId] = useState('');
-  const [produto, setProduto] = useState('');
+  const [idProduto, setIdProduto] = useState('');
   const [capacidadeMaxima, setCapacidadeMaxima] = useState('');
   const [capacidadeMinima, setCapacidadeMinima] = useState('');
   const [pontoDeRessuprimento, setPontoDeRessuprimento] = useState('');
@@ -33,7 +34,7 @@ function CadastroEstoque() {
   function inicializar() {
     if (idParam == null) {
         setId('');
-        setProduto('');
+        setIdProduto(0);
         
         setPontoDeRessuprimento('');
         setCapacidadeMaxima('');
@@ -42,7 +43,7 @@ function CadastroEstoque() {
         
     } else {
         setId(dados.id);
-        setProduto(dados.produto);
+        setIdProduto(dados.idProduto);
         setPontoDeRessuprimento(dados.pontoDeRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
         setCapacidadeMinima(dados.capacidadeMinima);
@@ -51,7 +52,7 @@ function CadastroEstoque() {
   }
 
   async function salvar() {
-    let data = { id, produto,capacidadeMaxima,capacidadeMinima,pontoDeRessuprimento,quantidade};
+    let data = { id, idProduto,capacidadeMaxima,capacidadeMinima,pontoDeRessuprimento,quantidade};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -59,7 +60,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produtos ${produto} cadastrado no estoque com sucesso!`);
+          mensagemSucesso(`Produtos ${idProduto} cadastrado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -71,7 +72,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${produto} alterado no estoque com sucesso!`);
+          mensagemSucesso(`Produto ${idProduto} alterado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -86,7 +87,7 @@ function CadastroEstoque() {
         setDados(response.data);
       });
         setId(dados.id);
-        setProduto(dados.produto);
+        setIdProduto(dados.produto);
         setQuantidade(dados.quantidade);
         setPontoDeRessuprimento(dados.pontoDeRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
@@ -97,7 +98,12 @@ function CadastroEstoque() {
   const [dadosProduto, setDadosProduto] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_C}/estoque`).then((response) => {
+    axios.get(`${BASE_URL_C}/estoques`).then((response) => {
+      setDadosProduto(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosProduto(response.data);
     });
   }, []);
@@ -115,20 +121,20 @@ function CadastroEstoque() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <FormGroup label='Produto: *' htmlFor='inputNome'>
+            <FormGroup label='Produto: *' htmlFor='selectProduto'>
                 <select
-                id='inputNome'
-                value={produto}
+                id='selectProduto'
+                value={idProduto}
                 className='form-select'
-                name='produto'
-                onChange={(e) => setProduto(e.target.value)}
+                name='idProduto'
+                onChange={(e) => setIdProduto(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
                     </option>
                     {dadosProduto.map((dado) => (
                       <option key={dado.id} value={dado.id}>
-                        {dado.produto}
+                        {dado.nome}
                       </option>
                     ))}
                 </select>

@@ -78,7 +78,7 @@ function CadastroFragancia() {
   const [dadosFragancia, setDadosFragancia] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/fragrancia`).then((response) => {
+    axios.get(`${BASE_URL_FT}/fragrancias`).then((response) => {
       setDadosFragancia(response.data);
     });
   }, []);

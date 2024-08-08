@@ -17,18 +17,18 @@ import {BASE_URL_CPC} from '../config/bdCPC';
 
 const baseURL = `${BASE_URL_CPC}/perdas`;
 
-function ListagemDescricao() {
+function ListagemTipoPerda() {
   const navigate = useNavigate();
 
   const cadastrar = () => {
-   navigate(`/cadastro-descricao-perda`);
+   navigate(`/cadastro-tipo-perda`);
   };
   const verCadastro = () => {
     navigate(`/listagem-cadastro`);
    };
 
   const editar = (id) => {
-   navigate(`/cadastro-descricao-perda/${id}`);
+   navigate(`/cadastro-tipo-perda/${id}`);
   };
 
   const [dados, setDados] = React.useState(null);
@@ -90,8 +90,8 @@ function ListagemDescricao() {
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
-                    <tr key={dado.idPerdaProduto}>
-                      <td>{dado.descricaoPerda}</td>
+                    <tr key={dado.idTipoProduto}>
+                      <td>{dado.descricao}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row'>
                           <IconButton style={{ color: 'black' }}
@@ -120,4 +120,4 @@ function ListagemDescricao() {
   );
 }
 
-export default ListagemDescricao;
+export default ListagemTipoPerda;

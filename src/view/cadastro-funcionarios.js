@@ -34,7 +34,7 @@ function CadastroFuncionarios() {
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
+  const [idEstado, setIdEstado] = useState('');
   const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
@@ -54,7 +54,7 @@ function CadastroFuncionarios() {
       setComplemento('');
       setBairro('');
       setCidade('');
-      setEstado('');
+      setIdEstado(0);
       setCep('');
     } else {
       setId(dados.id);
@@ -71,13 +71,13 @@ function CadastroFuncionarios() {
       setComplemento(dados.complemento);
       setBairro(dados.bairro);
       setCidade(dados.cidade);
-      setEstado(dados.estado);
+      setIdEstado(dados.idEstado);
       setCep(dados.cep);
     }
   }
 
   async function salvar() {
-    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario, cep,logradouro, numero, complemento, bairro, cidade, estado };
+    let data = { id,nome,cpf,dataNascimento,email,numeroTelefone,idCargo,salario, cep,logradouro, numero, complemento, bairro, cidade, idEstado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -124,7 +124,7 @@ function CadastroFuncionarios() {
         setComplemento(dados.complemento);
         setBairro(dados.bairro);
         setCidade(dados.cidade);
-        setEstado(dados.estado);
+        setIdEstado(dados.estado);
         setCep(dados.cep);
     }
   }
@@ -132,12 +132,12 @@ function CadastroFuncionarios() {
   const [dadosEstado, setDadosEstado] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_C}/cargo`).then((response) => {
+    axios.get(`${BASE_URL_C}/cargos`).then((response) => {
       setDadosCargo(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${BASE_URL_C}/estado`).then((response) => {
+    axios.get(`${BASE_URL_C}/estados`).then((response) => {
       setDadosEstado(response.data);
     });
   }, []);
@@ -257,13 +257,13 @@ function CadastroFuncionarios() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Estado: *' htmlFor='inputEstado'>
+              <FormGroup label='Estado: *' htmlFor='selectEstado'>
                 <select
-                id='inputEstado'
-                value={estado}
+                id='selectEstado'
+                value={idEstado}
                 className='form-select'
-                name='estado'
-                onChange={(e) => setEstado(e.target.value)}
+                name='idEstado'
+                onChange={(e) => setIdEstado(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
@@ -274,16 +274,6 @@ function CadastroFuncionarios() {
                       </option>
                     ))}
                 </select>
-              </FormGroup>
-              <FormGroup label='CEP: *' htmlFor='inputCep'>
-                <input
-                  type='text'
-                  id='inputCep'
-                  value={cep}
-                  className='form-control'
-                  name='cep'
-                  onChange={(e) => setCep(e.target.value)}
-                />
               </FormGroup>
               <FormGroup label='Cargo: *' htmlFor='selectCargo'>
                 <select
@@ -303,6 +293,17 @@ function CadastroFuncionarios() {
                   ))}
                 </select>
               </FormGroup>
+              <FormGroup label='CEP: *' htmlFor='inputCep'>
+                <input
+                  type='text'
+                  id='inputCep'
+                  value={cep}
+                  className='form-control'
+                  name='cep'
+                  onChange={(e) => setCep(e.target.value)}
+                />
+              </FormGroup>
+              
               <FormGroup label='Salário: *' htmlFor='inputSalario'>
                 <input
                   type='text'

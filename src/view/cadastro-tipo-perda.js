@@ -11,32 +11,32 @@ import { mensagemSucesso, mensagemErro } from '../components/toastr';
 import '../custom.css';
 
 import axios from 'axios';
-import {BASE_URL_CPC} from '../config/bdCPC';
+import {BASE_URL_FPP} from '../config/bdFPP';
 
-function CadastroDescricaoPerda() {
+function CadastroTipoPerda(){
   const { idParam } = useParams();
 
   const navigate = useNavigate();
 
-  const baseURL = `${BASE_URL_CPC}/perdaProduto`;
+  const baseURL = `${BASE_URL_FPP}/tipoPerdas`;
 
   const [id, setId] = useState('');
-  const [descricaoPerda, setIdPerdaProduto] = useState('');
+  const [descricao, setDescricao] = useState('');
   
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setIdPerdaProduto('');
+      setDescricao('');
     } else {
       setId(dados.id);
-      setIdPerdaProduto(dados.descricaoPerda);
+      setDescricao(dados.descricao);
     }
   }
 
   async function salvar() {
-    let data = { id,descricaoPerda};
+    let data = { id,descricao};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -45,7 +45,7 @@ function CadastroDescricaoPerda() {
         })
         .then(function (response) {
           mensagemSucesso(`Perda cadastrada com sucesso!`);
-          navigate(`/listagem-perdas`);
+          navigate(`/listagem-tipo-perda`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -57,7 +57,7 @@ function CadastroDescricaoPerda() {
         })
         .then(function (response) {
           mensagemSucesso(`Perda alterada com sucesso!`);
-          navigate(`/listagem-descricao-perda`);
+          navigate(`/listagem-tipo-perda`);
         })
         .catch(function (error) {
           mensagemErro(error.response.data);
@@ -71,14 +71,14 @@ function CadastroDescricaoPerda() {
         setDados(response.data);
       });
         setId(dados.id);
-       setIdPerdaProduto(dados.descricaoPerda);
-    }
-  }
-  const [dadosPerda, setDadosPerda] = React.useState(null);
+       setDescricao(dados.descricao);
+
+  }}
+  const [dadosTipoPerda, setDadosTipoPerda] = React.useState(null);
   
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/perdaProduto`).then((response) => {
-      setDadosPerda(response.data);
+    axios.get(`${BASE_URL_FPP}/tipoPerdas`).then((response) => {
+      setDadosTipoPerda(response.data);
     });
   }, []);
   
@@ -87,7 +87,6 @@ function CadastroDescricaoPerda() {
   }, [id]);
 
   if (!dados) return null;
-  if (!dadosPerda) return null;
 
   return (
     <div className='container'>
@@ -95,14 +94,14 @@ function CadastroDescricaoPerda() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-            <FormGroup label='Descrição: *' htmlFor='selectPerdaProduto'>
+            <FormGroup label='Descrição: *' htmlFor='inputDescricao'>
                 <input
                   type='text'
-                  id='inputIdPerdaProduto'
-                  value={descricaoPerda}
+                  id='inputDescricao'
+                  value={descricao}
                   className='form-control'
-                  name='descricaoPerda'
-                  onChange={(e) => setIdPerdaProduto(e.target.value)}
+                  name='descricao'
+                  onChange={(e) => setDescricao(e.target.value)}
                 />
               </FormGroup>
               <Stack spacing={1} padding={1} direction='row'>
@@ -128,4 +127,4 @@ function CadastroDescricaoPerda() {
     </div>
   );
 }
-export default CadastroDescricaoPerda;
+export default CadastroTipoPerda;

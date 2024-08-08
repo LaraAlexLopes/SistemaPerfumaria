@@ -78,7 +78,7 @@ function CadastroClassificação() {
   const [dadosFornecedores, setDadosClassificacao] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/classificacao`).then((response) => {
+    axios.get(`${BASE_URL_CPC}/classificacoes`).then((response) => {
       setDadosClassificacao(response.data);
     });
   }, []);

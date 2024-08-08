@@ -16,7 +16,7 @@ import ListagemMelhoresFuncionarios from './view/listagem-melhoresFuncionarios';
 import ListagemProdutosMaisVendido from './view/listagem-produtos-mais-vendidos';
 import ListagemMelhoresClientes from './view/listagem-melhoresClientes';
 import ListagemCadastro from './view/listagem-cadastro.js';
-import ListagemDescricao from './view/listagem-descricao-perda.js';
+import ListagemTipoPerda from './view/listagem-tipo-perda.js';
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import CadastroFornecedores from './view/cadastro-fornecedores';
@@ -32,7 +32,7 @@ import CadastroFuncionarios from './view/cadastro-funcionarios';
 import CadastroVendas from './view/cadastro-vendas';
 import CadastroEstoque from './view/cadastro-estoque';
 import CadastroFuncionariosMelhor from './view/cadastro-funcionario-melhor';
-import CadastroDescricaoPerda from './view/cadastro-descricao-perda.js';
+import CadastroTipoPerda from './view/cadastro-tipo-perda.js';
 
 
 import Imagem from './view';
@@ -58,7 +58,7 @@ function Rotas(props) {
         <Route path='/cadastro-vendas/:idParam?' element={<CadastroVendas />} />
         <Route path='/cadastro-estoque/:idParam?' element={<CadastroEstoque />} />
         <Route path='/cadastro-funcionario-melhor/:idParam?' element={<CadastroFuncionariosMelhor />} />
-        <Route path='/cadastro-descricao-perda/:idParam?' element={<CadastroDescricaoPerda />} />
+        <Route path='/cadastro-tipo-perda/:idParam?' element={<CadastroTipoPerda />} />
         <Route path='/listagem-fornecedores' element={<ListagemFornecedores/>} />
         <Route path='/listagem-pedidos' element={<ListagemPedidos/>} />
         <Route path='/listagem-produtos' element={<ListagemProdutos/>} />
@@ -75,7 +75,7 @@ function Rotas(props) {
         <Route path='/listagem-produtos-mais-vendidos' element={<ListagemProdutosMaisVendido/>} />
         <Route path='/listagem-melhoresClientes' element={<ListagemMelhoresClientes/>} />
         <Route path='/listagem-cadastro' element={<ListagemCadastro/>} />
-        <Route path='/listagem-descricao-perda' element={<ListagemDescricao/>} />
+        <Route path='/listagem-tipo-perda' element={<ListagemTipoPerda/>} />
         <Route path='/index' element={<Imagem/>} />
       </Routes>
     </BrowserRouter>
