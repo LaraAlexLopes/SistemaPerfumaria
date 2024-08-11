@@ -16,31 +16,31 @@ import axios from 'axios';
 import {BASE_URL_FPP} from '../config/bdFPP';
 
 const baseURL = `${BASE_URL_FPP}/produtos`;
+const classificacoesURL = `${BASE_URL_FPP}/classificacoes`;
+const fragranciasURL = `${BASE_URL_FPP}/fragrancias`;
 
 function ListagemProdutos() {
   const navigate = useNavigate();
+  const [dados, setDados] = React.useState(null);
+  const [classificacoes, setClassificacoes] = React.useState([]);
+  const [fragrancias, setFragrancias] = React.useState([]);
 
   const cadastrar = () => {
     navigate(`/cadastro-produto`);
   };
+
   const editar = (id) => {
     navigate(`/cadastro-produto/${id}`);
   };
-  const maisVendidos= () => {
+
+  const maisVendidos = () => {
     navigate(`/listagem-produtos-mais-vendidos`);
   };
- 
-
-  const [dados, setDados] = React.useState(null);
 
   async function excluir(id) {
-    let data = JSON.stringify({ id });
     let url = `${baseURL}/${id}`;
-    console.log(url);
     await axios
-      .delete(url, data, {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      .delete(url)
       .then(function (response) {
         mensagemSucesso(`Produto excluído com sucesso!`);
         setDados(
@@ -58,10 +58,27 @@ function ListagemProdutos() {
     axios.get(baseURL).then((response) => {
       setDados(response.data);
     });
+
+    axios.get(classificacoesURL).then((response) => {
+      setClassificacoes(response.data);
+    });
+
+    axios.get(fragranciasURL).then((response) => {
+      setFragrancias(response.data);
+    });
   }, []);
- 
 
   if (!dados) return null;
+
+  const obterNomeClassificacao = (idClassificacao) => {
+    const classificacao = classificacoes.find((c) => c.id === idClassificacao);
+    return classificacao ? classificacao.descricao : 'Desconhecido';
+  };
+
+  const obterNomeFragrancia = (idFragrancia) => {
+    const fragrancia = fragrancias.find((f) => f.id === idFragrancia);
+    return fragrancia ? fragrancia.descricao : 'Desconhecido';
+  };
 
   return (
     <div className='container'>
@@ -69,44 +86,48 @@ function ListagemProdutos() {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
+              <button
+                style={{ backgroundColor: 'black', color: 'white', borderColor: 'black', fontWeight: '500' }}
                 type='button'
                 className='btn btn-warning'
                 onClick={() => cadastrar()}
               >
                 Novo Produto
-              </button>   
+              </button>
               &nbsp;
-              <button  style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                  type='button'
-                  className='btn btn-warning'
-                  onClick={() => maisVendidos()}
-                >
-                 Mais Vendidos
-                </button>
+              <button
+                style={{ backgroundColor: 'black', color: 'white', borderColor: 'black', fontWeight: '500' }}
+                type='button'
+                className='btn btn-warning'
+                onClick={() => maisVendidos()}
+              >
+                Mais Vendidos
+              </button>
               <table className='table table-hover'>
                 <thead>
                   <tr>
-                    <th  scope='col'>Produto</th>
-                    <th  scope='col'>Classificação</th>
+                    <th scope='col'>Produto</th>
+                    <th scope='col'>Classificação</th>
                     <th scope='col'>Fragrância</th>
                   </tr>
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td >{dado.nome}</td>
-                      <td >{dado.idClassificacao}</td>
-                      <td >{dado.idFagrancia}</td>
-                      <td >
+                      <td>{dado.produto}</td>
+                      <td>{obterNomeClassificacao(dado.idClassificacao)}</td>
+                      <td>{obterNomeFragrancia(dado.idFragrancia)}</td>
+                      <td>
                         <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
-                          <IconButton style={{ color: 'black' }}
+                          <IconButton
+                            style={{ color: 'black' }}
                             aria-label='edit'
                             onClick={() => editar(dado.id)}
                           >
                             <EditIcon />
                           </IconButton>
-                          <IconButton style={{ color: 'black' }}
+                          <IconButton
+                            style={{ color: 'black' }}
                             aria-label='delete'
                             onClick={() => excluir(dado.id)}
                           >
@@ -121,9 +142,7 @@ function ListagemProdutos() {
             </div>
           </div>
         </div>
-     
       </Card>
-      
     </div>
   );
 }
