@@ -16,34 +16,33 @@ import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
 
 const baseURL = `${BASE_URL_CFV}/funcionarios`;
-
+const cargosURL = `${BASE_URL_CFV}/cargos`;
 
 function ListagemFuncionarios() {
   const navigate = useNavigate();
+  
+  const [dados, setDados] = React.useState(null);
+  const [cargos, setCargos] = React.useState([]);
 
   const cadastrar = () => {
-   navigate(`/cadastro-funcionarios`);
+    navigate(`/cadastro-funcionarios`);
   };
 
   const editar = (id) => {
-   navigate(`/cadastro-funcionarios/${id}`);
+    navigate(`/cadastro-funcionarios/${id}`);
   };
+
   const verMelhoresFuncionarios= () => {
     navigate(`/listagem-melhoresFuncionarios`);
   };
-  
-  const [dados, setDados] = React.useState(null);
 
   async function excluir(id) {
-    let data = JSON.stringify({ id });
     let url = `${baseURL}/${id}`;
     console.log(url);
     await axios
-      .delete(url, data, {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      .delete(url)
       .then(function (response) {
-        mensagemSucesso(`Funcionario excluído com sucesso!`);
+        mensagemSucesso(`Funcionário excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -51,7 +50,7 @@ function ListagemFuncionarios() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o funcionario`);
+        mensagemErro(`Erro ao excluir o funcionário`);
       });
   }
 
@@ -59,13 +58,23 @@ function ListagemFuncionarios() {
     axios.get(baseURL).then((response) => {
       setDados(response.data);
     });
+
+    // Buscando a lista de cargos
+    axios.get(cargosURL).then((response) => {
+      setCargos(response.data);
+    });
   }, []);
 
   if (!dados) return null;
 
+  const obterNomeCargo = (idCargo) => {
+    const cargo = cargos.find((cargo) => cargo.id === idCargo);
+    return cargo ? cargo.cargo : 'Desconhecido';
+  };
+
   return (
     <div className='container'>
-      <Card title=' Funcionários'>
+      <Card title='Funcionários'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
@@ -100,7 +109,7 @@ function ListagemFuncionarios() {
                       <td >{dado.cpf}</td>
                       <td >{dado.email}</td>
                       <td >{dado.numeroTelefone}</td>
-                      <td >{dado.idCargo}</td>
+                      <td >{obterNomeCargo(dado.idCargo)}</td>
                       <td> 
                         <Stack spacing={1} padding={0} direction='row' style={{ color: 'white' }}>
                           <IconButton style={{ color: 'black' }}
