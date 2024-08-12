@@ -110,7 +110,7 @@ function ListagemEstoque() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{obterNomeProduto(dado.idProduto)}</td>
+                      <td>{obterNomeProduto(dado.idProduto.nome)}</td>
                       <td>{dado.capacidadeMaxima}</td>
                       <td>{dado.capacidadeMinima}</td>
                       <td>{dado.pontoDeRessuprimento}</td>

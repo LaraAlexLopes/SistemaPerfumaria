@@ -13,9 +13,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
-import {BASE_URL_CPC} from '../config/bdCPC';
+import {BASE_URL_FPP} from '../config/bdFPP';
 
-const baseURL = `${BASE_URL_CPC}/perdas`;
+const baseURL = `${BASE_URL_FPP}/tipoPerdas`;
 
 function ListagemTipoPerda() {
   const navigate = useNavigate();
@@ -90,7 +90,7 @@ function ListagemTipoPerda() {
                 </thead>
                 <tbody>
                   {dados.map((dado) => (
-                    <tr key={dado.idTipoProduto}>
+                    <tr key={dado.descricao}>
                       <td>{dado.descricao}</td>
                       <td>
                       <Stack spacing={1} padding={0} direction='row'>

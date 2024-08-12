@@ -14,11 +14,16 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
 import {BASE_URL_CPC} from '../config/bdCPC';
+import {BASE_URL_FPP} from '../config/bdFPP';
+
 
 const baseURL = `${BASE_URL_CPC}/perdas`;
+const tipoPerdasURL = `${BASE_URL_FPP}/tipoPerdas`;
 
 function ListagemPerdas() {
   const navigate = useNavigate();
+  const [dados, setDados] = React.useState(null);
+  const [tipoPerdas, setTipoPerdas] = React.useState([]);
 
   const cadastrar = () => {
    navigate(`/cadastro-perda`);
@@ -31,8 +36,6 @@ function ListagemPerdas() {
    navigate(`/cadastro-perda/${id}`);
   };
 
-  const [dados, setDados] = React.useState(null);
-
   async function excluir(id) {
     let data = JSON.stringify({ id });
     let url = `${baseURL}/${id}`;
@@ -42,7 +45,7 @@ function ListagemPerdas() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Perda excluído com sucesso!`);
+        mensagemSucesso(`Perda excluída com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -58,9 +61,20 @@ function ListagemPerdas() {
     axios.get(baseURL).then((response) => {
       setDados(response.data);
     });
-  }, []);
+ 
+  axios.get(tipoPerdasURL).then((response) => {
+    setTipoPerdas(response.data);
+  });
+
+}, []);
 
   if (!dados) return null;
+
+  const obterNomePerda = (idTipoPerda) => {
+    const tipoPerda = tipoPerdas.find((tp) => tp.id === idTipoPerda);
+    return tipoPerda ? tipoPerda.descricao : 'Desconhecido';
+  };
+
 
   return (
     <div className='container'>
@@ -94,7 +108,7 @@ function ListagemPerdas() {
                     <tr key={dado.id}>
                       <td>{dado.codigoBarras}</td>
                       <td>{dado.data}</td>
-                      <td>{dado.idTipoPerda}</td>
+                      <td>{obterNomePerda(dado.idTipoPerda)}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                         <IconButton style={{ color: 'black' }}

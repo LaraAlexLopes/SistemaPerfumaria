@@ -25,7 +25,7 @@ function ListagemCadastro() {
   };
   
   const verPerdas = () => {
-    navigate(`/listagem-descricao-perda`);
+    navigate(`/listagem-tipo-perda`);
   };
   const verFragancia = () => {
     navigate(`/listagem-fragancias`);

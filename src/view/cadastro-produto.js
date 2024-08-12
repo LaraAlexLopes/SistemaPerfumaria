@@ -157,9 +157,9 @@ function CadastroProduto() {
                   onChange={(e) => setCodigoBarras(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Classificação : *' htmlFor='inputClassificao'>
+              <FormGroup label='Classificação : *' htmlFor='inputClassificacao'>
                 <select
-                id='inputClassificao'
+                id='inputClassificacao'
                 value={classificacao}
                 className='form-select'
                 name='classificacao'

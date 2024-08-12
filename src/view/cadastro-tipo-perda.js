@@ -22,7 +22,6 @@ function CadastroTipoPerda(){
 
   const [id, setId] = useState('');
   const [descricao, setDescricao] = useState('');
-  
   const [dados, setDados] = React.useState([]);
 
   function inicializar() {
@@ -44,7 +43,7 @@ function CadastroTipoPerda(){
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Perda cadastrada com sucesso!`);
+          mensagemSucesso(`Tipo de perda cadastrada com sucesso!`);
           navigate(`/listagem-tipo-perda`);
         })
         .catch(function (error) {
@@ -74,13 +73,6 @@ function CadastroTipoPerda(){
        setDescricao(dados.descricao);
 
   }}
-  const [dadosTipoPerda, setDadosTipoPerda] = React.useState(null);
-  
-  useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/tipoPerdas`).then((response) => {
-      setDadosTipoPerda(response.data);
-    });
-  }, []);
   
   useEffect(() => {
     buscar(); // eslint-disable-next-line
@@ -94,7 +86,7 @@ function CadastroTipoPerda(){
         <div className='row'>
           <div className='col-lg-12'>
             <div className='bs-component'>
-            <FormGroup label='Descrição: *' htmlFor='inputDescricao'>
+            <FormGroup label='Descrição *' htmlFor='inputDescricao'>
                 <input
                   type='text'
                   id='inputDescricao'
