@@ -27,14 +27,6 @@ function ListagemVendas() {
     navigate(`/cadastro-vendas/${id}`);
   };
 
-  const listagemMetasProdutos = (id) => {
-    navigate(`/listagem-metasProdutos`);
-  };
-
-  const listagemCupons = (id) => {
-    navigate(`/listagem-cupons`);
-  };
-
   async function excluir(id) {
     let url = `${baseURL}/${id}`;
     console.log(url);

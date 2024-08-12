@@ -14,11 +14,17 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
 import {BASE_URL_C} from '../config/bdC';
+import {BASE_URL_FPP} from '../config/bdFPP';
+
 
 const baseURL = `${BASE_URL_C}/estoques`;
+const produtosURL = `${BASE_URL_FPP}/produtos`;
+
 
 function ListagemProdutosMaisVendido() {
   const navigate = useNavigate();
+  const [produtos, setProdutos] = React.useState([]);
+
 
   const verProduto= () => {
     navigate(`/listagem-produtos`);
@@ -36,10 +42,18 @@ function ListagemProdutosMaisVendido() {
     axios.get(baseURL).then((response) => {
       setDados(response.data);
     });
+    axios.get(produtosURL).then((response) => {
+      setProdutos(response.data);
+    });
   }, []);
 
   if (!dados) return null;
+  const obterProdutos = (idProduto) => {
+    const produto = produtos.find((p) => p.id === idProduto);
+    return produto ? produto.descricao : 'Desconhecido';
+  };
 
+  
   return (
     <div className='container'>
       <Card title='Produtos Mais Vendidos'>
@@ -66,8 +80,8 @@ function ListagemProdutosMaisVendido() {
                   {dados.map((dado) => (
                     <tr key={dado.id}>
                       <td >{dado.id}</td>
-                      <td>{dado.produto}</td>
-                      <td>{dado.codigoBarras}</td>
+                      <td>{obterProdutos(dado.idProduto.produto)}</td>
+                      <td>{obterProdutos(dado.idProduto.codigoBarras)}</td>
                       <td>
                         
                       </td>

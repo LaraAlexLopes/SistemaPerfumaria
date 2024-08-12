@@ -108,7 +108,7 @@ function ListagemPerdas() {
                     <tr key={dado.id}>
                       <td>{dado.codigoBarras}</td>
                       <td>{dado.data}</td>
-                      <td>{obterNomePerda(dado.idTipoPerda)}</td>
+                      <td>{obterNomePerda(dado.descricao)}</td>
                       <td>
                         <Stack spacing={1} padding={0} direction='row'>
                         <IconButton style={{ color: 'black' }}
