@@ -187,7 +187,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setDataNascimento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='E-mail: *' htmlFor='inputEmail'>
+              <FormGroup label='E-mail: ' htmlFor='inputEmail'>
                 <input
                   type='email'
                   id='inputEmail'
@@ -207,7 +207,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setNumeroTelefone(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Logradouro: *' htmlFor='inputLogradouro'>
+              <FormGroup label='Logradouro: ' htmlFor='inputLogradouro'>
                 <input
                   type='text'
                   id='inputLogradouro'
@@ -217,7 +217,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setLogradouro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Número: *' htmlFor='inputNumero'>
+              <FormGroup label='Número: ' htmlFor='inputNumero'>
                 <input
                   type='text'
                   id='inputNumero'
@@ -227,7 +227,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setNumero(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Complemento: *' htmlFor='inputComplemento'>
+              <FormGroup label='Complemento: ' htmlFor='inputComplemento'>
                 <input
                   type='text'
                   id='inputComplemento'
@@ -237,7 +237,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setComplemento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Bairro: *' htmlFor='inputBairro'>
+              <FormGroup label='Bairro: ' htmlFor='inputBairro'>
                 <input
                   type='text'
                   id='inputBairro'
@@ -247,7 +247,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setBairro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Cidade: *' htmlFor='inputCidade'>
+              <FormGroup label='Cidade: ' htmlFor='inputCidade'>
                 <input
                   type='text'
                   id='inputCidade'
@@ -257,7 +257,7 @@ function CadastroFuncionarios() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Estado: *' htmlFor='selectEstado'>
+              <FormGroup label='Estado: ' htmlFor='selectEstado'>
                 <select
                 id='selectEstado'
                 value={idEstado}
@@ -293,7 +293,7 @@ function CadastroFuncionarios() {
                   ))}
                 </select>
               </FormGroup>
-              <FormGroup label='CEP: *' htmlFor='inputCep'>
+              <FormGroup label='CEP: ' htmlFor='inputCep'>
                 <input
                   type='text'
                   id='inputCep'

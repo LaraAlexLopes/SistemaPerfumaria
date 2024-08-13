@@ -126,7 +126,7 @@ function CadastroClientes() {
                   onChange={(e) => setCpf(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Email: *' htmlFor='inputEmail'>
+              <FormGroup label='Email: ' htmlFor='inputEmail'>
                 <input
                   type='email'
                   id='inputEmail'
@@ -136,7 +136,7 @@ function CadastroClientes() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Número de Telefone: *' htmlFor='inputNumeroTelefone'>
+              <FormGroup label='Número de Telefone: ' htmlFor='inputNumeroTelefone'>
                 <input
                   type='text'
                   id='inputNumeroTelefone'
@@ -146,7 +146,7 @@ function CadastroClientes() {
                   onChange={(e) => setNumeroTelefone(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Data de Nascimento: *' htmlFor='inputDataNascimento'>
+              <FormGroup label='Data de Nascimento: ' htmlFor='inputDataNascimento'>
                 <input
                   type='date'
                   id='inputDataNascimento'

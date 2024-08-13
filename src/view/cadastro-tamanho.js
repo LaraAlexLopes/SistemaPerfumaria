@@ -78,7 +78,7 @@ function CadastroTamanho() {
   const [dadosTamanho, setDadosVolume] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_FT}/tamanho`).then((response) => {
+    axios.get(`${BASE_URL_FT}/tamanhos`).then((response) => {
       setDadosVolume(response.data);
     });
   }, []);

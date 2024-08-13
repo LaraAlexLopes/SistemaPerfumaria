@@ -59,7 +59,7 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`$ Produto {produto} cadastrado com sucesso!`);
+          mensagemSucesso(`$ Produto cadastrado com sucesso!`);
           navigate(`/listagem-produtos`);
         })
         .catch(function (error) {
@@ -71,7 +71,7 @@ function CadastroProduto() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${produto} alterado com sucesso!`);
+          mensagemSucesso(`Produto alterado com sucesso!`);
          navigate(`/listagem-produtos`);
         })
         .catch(function (error) {

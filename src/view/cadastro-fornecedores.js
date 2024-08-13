@@ -243,7 +243,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setNumeroTelefone(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Logradouro: *' htmlFor='inputLogradouro'>
+              <FormGroup label='Logradouro: ' htmlFor='inputLogradouro'>
                 <input
                   type='text'
                   id='inputLogradouro'
@@ -253,7 +253,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setLogradouro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Número: *' htmlFor='inputNumero'>
+              <FormGroup label='Número: ' htmlFor='inputNumero'>
                 <input
                   type='text'
                   id='inputNumero'
@@ -263,7 +263,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setNumero(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Complemento: *' htmlFor='inputComplemento'>
+              <FormGroup label='Complemento: ' htmlFor='inputComplemento'>
                 <input
                   type='text'
                   id='inputComplemento'
@@ -273,7 +273,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setComplemento(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Bairro: *' htmlFor='inputBairro'>
+              <FormGroup label='Bairro: ' htmlFor='inputBairro'>
                 <input
                   type='text'
                   id='inputBairro'
@@ -283,7 +283,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setBairro(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Cidade: *' htmlFor='inputCidade'>
+              <FormGroup label='Cidade: ' htmlFor='inputCidade'>
                 <input
                   type='text'
                   id='inputCidade'
@@ -293,7 +293,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Estado: *' htmlFor='inputEstado'>
+              <FormGroup label='Estado: ' htmlFor='inputEstado'>
               <input
                 id='inputEstado'
                 value={estado}
@@ -302,7 +302,7 @@ function CadastroFornecedores() {
                   onChange={(e) => setEstado(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='CEP: *' htmlFor='inputCep'>
+              <FormGroup label='CEP: ' htmlFor='inputCep'>
                 <input
                 type='text'
                   id='inputCep'

@@ -86,7 +86,7 @@ function CadastroCupom() {
   const [dadosCupom, setDadosCupom] = React.useState(null);
 
   useEffect(() => {
-    axios.get(`${BASE_URL_CPC}/cupomDesconto`).then((response) => {
+    axios.get(`${BASE_URL_CPC}/cupons`).then((response) => {
       setDadosCupom(response.data);
     });
   }, []);
@@ -105,22 +105,14 @@ function CadastroCupom() {
           <div className='col-lg-12'>
             <div className='bs-component'>
             <FormGroup label='Código: *' htmlFor='inputCodigo'>
-                <select
-                  className='form-select'
+            <input
+                  type='text'
                   id='inputCodigo'
-                  name='codigo'
                   value={codigo}
+                  className='form-control'
+                  name='codigo'
                   onChange={(e) => setCodigo(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                    {' '}
-                  </option>
-                  {dadosCupom.map((dado) => (
-                    <option key={dado.id} value={dado.id}>
-                      {dado.codigo}
-                    </option>
-                  ))}
-                </select>
+                />
               </FormGroup>
               <FormGroup label='Desconto: *' htmlFor='inputDesconto'>
                 <input
