@@ -50,7 +50,7 @@ function ListagemFuncionarios() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o funcionário`);
+        mensagemErro(`Erro ao excluir funcionário, tem uma venda vinculada a ele.`);
       });
   }
 
@@ -59,7 +59,6 @@ function ListagemFuncionarios() {
       setDados(response.data);
     });
 
-    // Buscando a lista de cargos
     axios.get(cargosURL).then((response) => {
       setCargos(response.data);
     });

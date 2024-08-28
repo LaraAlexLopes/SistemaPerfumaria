@@ -24,9 +24,9 @@ function CadastroProduto() {
   const [id, setId] = useState('');
   const [produto, setProduto] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
-  const [classificacao, setClassificacao] = useState('');
-  const [tamanho, setTamanho] = useState('');
-  const [fragrancia, setFragrancia] = useState('');
+  const [idClassificacao, setIdClassificacao] = useState('');
+  const [idTamanho, setIdTamanho] = useState('');
+  const [idFragrancia, setIdFragrancia] = useState('');
   
 
   const [dados, setDados] = React.useState([]);
@@ -36,22 +36,22 @@ function CadastroProduto() {
         setId('');
         setProduto('');
         setCodigoBarras('');
-        setClassificacao('');
-        setTamanho('');
-        setFragrancia('');
+        setIdClassificacao('');
+        setIdTamanho('');
+        setIdFragrancia('');
        
     } else{
         setId(dados.id);
         setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
-        setClassificacao(dados.classificacao);
-        setTamanho(dados.tamanho);
-        setFragrancia(dados.fragrancia);     
+        setIdClassificacao(dados.idClassificacao);
+        setIdTamanho(dados.idTamanho);
+        setIdFragrancia(dados.idFragrancia);     
     }
   }
 
   async function salvar() {
-    let data = { id, produto, codigoBarras, classificacao,tamanho,fragrancia};
+    let data = { id, produto, codigoBarras, idClassificacao,idTamanho,idFragrancia};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -88,9 +88,9 @@ function CadastroProduto() {
         setId(dados.id);
         setProduto(dados.produto);
         setCodigoBarras(dados.codigoBarras);
-        setClassificacao(dados.classificacao);
-        setTamanho(dados.tamanho);
-        setFragrancia(dados.fragrancia);
+        setIdClassificacao(dados.idClassificacao);
+        setIdTamanho(dados.idTamanho);
+        setIdFragrancia(dados.idFragrancia);
         
     }
   }
@@ -160,10 +160,10 @@ function CadastroProduto() {
               <FormGroup label='Classificação : *' htmlFor='inputClassificacao'>
                 <select
                 id='inputClassificacao'
-                value={classificacao}
+                value={idClassificacao}
                 className='form-select'
                 name='classificacao'
-                onChange={(e) => setClassificacao(e.target.value)}
+                onChange={(e) => setIdClassificacao(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
@@ -178,10 +178,10 @@ function CadastroProduto() {
               <FormGroup label='Fragrância: *' htmlFor='inputFragrancia'>
                 <select
                 id='inputFragrancia'
-                value={fragrancia}
+                value={idFragrancia}
                 className='form-select'
                 name='fragrancia'
-                onChange={(e) => setFragrancia(e.target.value)}
+                onChange={(e) => setIdFragrancia(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}
@@ -196,10 +196,10 @@ function CadastroProduto() {
               <FormGroup label='Tamanho: *' htmlFor='inputTamanho'>
                 <select
                 id='inputTamanho'
-                value={tamanho}
+                value={idTamanho}
                 className='form-select'
                 name='tamanho'
-                onChange={(e) => setTamanho(e.target.value)}
+                onChange={(e) => setIdTamanho(e.target.value)}
                 >
                   <option key='0' value='0'>
                       {' '}

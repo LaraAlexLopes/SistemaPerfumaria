@@ -43,7 +43,7 @@ function ListagemClientes() {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(function (response) {
-        mensagemSucesso(`Produto excluído com sucesso!`);
+        mensagemSucesso(`Cliente excluído com sucesso!`);
         setDados(
           dados.filter((dado) => {
             return dado.id !== id;
@@ -51,7 +51,7 @@ function ListagemClientes() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o produto`);
+        mensagemErro(`Erro ao excluir cliente, tem uma venda vinculada a ele.`);
       });
   }
 

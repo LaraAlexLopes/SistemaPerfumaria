@@ -34,8 +34,7 @@ function CadastroEstoque() {
   function inicializar() {
     if (idParam == null) {
         setId('');
-        setIdProduto(0);
-        
+        setIdProduto('');
         setPontoDeRessuprimento('');
         setCapacidadeMaxima('');
         setCapacidadeMinima('');
@@ -72,7 +71,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${idProduto} alterado no estoque com sucesso!`);
+          mensagemSucesso(`Produto ${idProduto.nome} alterado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -87,7 +86,7 @@ function CadastroEstoque() {
         setDados(response.data);
       });
         setId(dados.id);
-        setIdProduto(dados.produto);
+        setIdProduto(dados.idProduto);
         setQuantidade(dados.quantidade);
         setPontoDeRessuprimento(dados.pontoDeRessuprimento);
         setCapacidadeMaxima(dados.capacidadeMaxima);
@@ -96,6 +95,7 @@ function CadastroEstoque() {
   }
 
   const [dadosProduto, setDadosProduto] = React.useState(null);
+  
 
   useEffect(() => {
     axios.get(`${BASE_URL_C}/estoques`).then((response) => {
@@ -107,6 +107,7 @@ function CadastroEstoque() {
       setDadosProduto(response.data);
     });
   }, []);
+  
 
   useEffect(() => {
     buscar(); // eslint-disable-next-line

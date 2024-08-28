@@ -34,7 +34,7 @@ function CadastroFornecedores() {
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
+  const [idEstado, setIdEstado] = useState('');
   const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
@@ -52,7 +52,7 @@ function CadastroFornecedores() {
       setComplemento('');
       setBairro('');
       setCidade('');
-      setEstado('');
+      setIdEstado('');
       setCep('');
       setTabela([]);
     } else {
@@ -66,13 +66,13 @@ function CadastroFornecedores() {
       setComplemento(dados.complemento);
       setBairro(dados.bairro);
       setCidade(dados.cidade);
-      setEstado(dados.estado);
+      setIdEstado(dados.idEstado);
       setCep(dados.cep);
     }
   }
 
   async function salvar() {
-    let data = { id,  nome, cnpj, email, numeroTelefone, logradouro, cep,numero, complemento, bairro, cidade, estado };
+    let data = { id,  nome, cnpj, email, numeroTelefone, logradouro, cep,numero, complemento, bairro, cidade, idEstado };
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -116,17 +116,23 @@ function CadastroFornecedores() {
         setComplemento(dados.complemento);
         setBairro(dados.bairro);
         setCidade(dados.cidade);
-        setEstado(dados.estado);
+        setIdEstado(dados.idEstado);
         setCep(dados.cep);
    }
   }
 
   const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
+  const [dadosEstado, setDadosEstado] = React.useState(null);
   
 
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
       setDadosFornecedores(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get(`${BASE_URL_C}/estados`).then((response) => {
+      setDadosEstado(response.data);
     });
   }, []);
 
@@ -194,7 +200,7 @@ function CadastroFornecedores() {
   };
   if (!dados) return null;
   if (!dadosFornecedores) return null;
- 
+  if (!dadosEstado) return null;
 
   return (
     <div className='container'>
@@ -293,14 +299,23 @@ function CadastroFornecedores() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </FormGroup>
-              <FormGroup label='Estado: ' htmlFor='inputEstado'>
-              <input
-                id='inputEstado'
-                value={estado}
-                className='form-control'
-                  name='estado'
-                  onChange={(e) => setEstado(e.target.value)}
-                />
+              <FormGroup label='Estado: ' htmlFor='selectEstado'>
+                <select
+                id='selectEstado'
+                value={idEstado}
+                className='form-select'
+                name='idEstado'
+                onChange={(e) => setIdEstado(e.target.value)}
+                >
+                  <option key='0' value='0'>
+                      {' '}
+                    </option>
+                    {dadosEstado.map((dado) => (
+                      <option key={dado.id} value={dado.id}>
+                        {dado.nome}
+                      </option>
+                    ))}
+                </select>
               </FormGroup>
               <FormGroup label='CEP: ' htmlFor='inputCep'>
                 <input

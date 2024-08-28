@@ -27,14 +27,14 @@ function CadastroFuncionarios() {
   const [dataNascimento, setDataNascimento] = useState('');
   const [email, setEmail] = useState('');
   const [numeroTelefone, setNumeroTelefone] = useState('');
-  const [idCargo, setIdCargo] = useState(0);
+  const [idCargo, setIdCargo] = useState();
   const [salario, setSalario] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [numero, setNumero] = useState('');
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
-  const [idEstado, setIdEstado] = useState('');
+  const [idEstado, setIdEstado] = useState();
   const [cep, setCep] = useState('');
 
   const [dados, setDados] = React.useState([]);
@@ -47,14 +47,14 @@ function CadastroFuncionarios() {
       setDataNascimento('');
       setEmail('');
       setNumeroTelefone('');
-      setIdCargo(0);
+      setIdCargo('');
       setSalario('');
       setLogradouro('');
       setNumero('');
       setComplemento('');
       setBairro('');
       setCidade('');
-      setIdEstado(0);
+      setIdEstado('');
       setCep('');
     } else {
       setId(dados.id);
@@ -117,14 +117,14 @@ function CadastroFuncionarios() {
         setDataNascimento(dados.dataNascimento);
         setEmail(dados.email);
         setNumeroTelefone(dados.numeroTelefone);
-        setIdCargo(dados.cargo);
+        setIdCargo(dados.idCargo);
         setSalario(dados.salario);
         setLogradouro(dados.logradouro);
         setNumero(dados.numero);
         setComplemento(dados.complemento);
         setBairro(dados.bairro);
         setCidade(dados.cidade);
-        setIdEstado(dados.estado);
+        setIdEstado(dados.idEstado);
         setCep(dados.cep);
     }
   }

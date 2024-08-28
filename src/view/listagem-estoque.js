@@ -11,7 +11,7 @@ import axios from 'axios';
 import { BASE_URL_C } from '../config/bdC';
 
 const baseURL = `${BASE_URL_C}/estoques`;
-const produtosURL = `${BASE_URL_C}/produtos`; // Supondo que você tenha um endpoint para produtos
+const produtosURL = `${BASE_URL_C}/produtos`; 
 
 function ListagemEstoque() {
   const navigate = useNavigate();
@@ -50,18 +50,15 @@ function ListagemEstoque() {
   }
 
   React.useEffect(() => {
-    // Buscando a lista de estoques
     axios.get(baseURL).then((response) => {
       setDados(response.data);
     });
-
-    // Buscando a lista de produtos
     axios.get(produtosURL).then((response) => {
       setProdutos(response.data);
     });
   }, []);
 
-  if (!dados || !produtos) return null;
+  if (!dados) return null;
 
   const obterNomeProduto = (idProduto) => {
     const produto = produtos.find((produto) => produto.id === idProduto);
@@ -110,7 +107,7 @@ function ListagemEstoque() {
                 <tbody>
                   {dados.map((dado) => (
                     <tr key={dado.id}>
-                      <td>{obterNomeProduto(dado.idProduto.nome)}</td>
+                      <td>{obterNomeProduto(dado.idProduto)}</td>
                       <td>{dado.capacidadeMaxima}</td>
                       <td>{dado.capacidadeMinima}</td>
                       <td>{dado.pontoDeRessuprimento}</td>

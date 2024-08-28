@@ -50,7 +50,7 @@ function ListagemProdutos() {
         );
       })
       .catch(function (error) {
-        mensagemErro(`Erro ao excluir o produto`);
+        mensagemErro(`Erro ao excluir produto, está vinculado a um estoque.`);
       });
   }
 
