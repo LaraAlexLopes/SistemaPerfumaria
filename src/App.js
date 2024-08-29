@@ -7,6 +7,7 @@ import Rotas from './rotas.js';
 import Login from './view/login.js';
 
 class App extends React.Component {
+  
   render() {
     return (
       <div className='container'>

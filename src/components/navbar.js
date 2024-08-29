@@ -30,6 +30,9 @@ function Navbar(props) {
               label ='Clientes'
             />
           </ul>
+          <ul className='navbar-nav'>
+            <NavbarItem render='true' href='/login' label='Login ' />
+          </ul>
           <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>
             <NavbarItem render='true' href='/listagem-funcionarios' label='Funcionários' />
           </ul>

@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack';
-import { IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-
 
 import Card from '../components/card';
 import FormGroup from '../components/form-group';
@@ -17,9 +13,6 @@ import '../custom.css';
 import axios from 'axios';
 import {BASE_URL_CFV} from '../config/bdCFV';
 import { BASE_URL_CPC } from '../config/bdCPC'; 
-import { BASE_URL_FPP} from '../config/bdFPP'; 
-import { BASE_URL_FT} from '../config/bdFT'; 
-
 
 function CadastroVendas() {
   const { idParam } = useParams();
@@ -28,7 +21,6 @@ function CadastroVendas() {
 
   const baseURL = `${BASE_URL_CFV}/vendas`;
   
-
   const [id, setId] = useState('');
   const [idCliente, setIdCliente] = useState(0);
   const [idFuncionario, setIdFuncionario] = useState(0);
@@ -45,10 +37,10 @@ function CadastroVendas() {
   function inicializar() {
     if (idParam == null) {
       setId('');
-      setIdCliente(0);
-      setIdFuncionario(0);
+      setIdCliente('');
+      setIdFuncionario('');
       setData('');
-      setIdCupom(0);
+      setIdCupom('');
       setValor_total('');
       setFormaPagamento('');
       setTabela([]);
@@ -97,10 +89,10 @@ function CadastroVendas() {
         setDados(response.data);
       });
       setId(dados.id);
-      setIdCliente(dados.cliente);
-      setIdFuncionario(dados.funcionario);
+      setIdCliente(dados.idCliente);
+      setIdFuncionario(dados.idFuncionario);
       setData(dados.data);
-      setIdCupom(dados.cupom);
+      setIdCupom(dados.idCupom);
       setValor_total(dados.valor_total);
       setFormaPagamento(dados.formaPagamento);
       //setTabela(dados.produto)
