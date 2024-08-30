@@ -21,6 +21,7 @@ import ListagemProdutosMaisVendido from './view/listagem-produtos-mais-vendidos'
 import ListagemMelhoresClientes from './view/listagem-melhoresClientes';
 import ListagemCadastro from './view/listagem-cadastro';
 import ListagemTipoPerda from './view/listagem-tipo-perda';
+import ListagemUsuarios from './view/listagem-usuario';
 
 import CadastroFornecedores from './view/cadastro-fornecedores';
 import CadastroPerda from './view/cadastro-perda';
@@ -36,6 +37,7 @@ import CadastroVendas from './view/cadastro-vendas';
 import CadastroEstoque from './view/cadastro-estoque';
 import CadastroFuncionariosMelhor from './view/cadastro-funcionario-melhor';
 import CadastroTipoPerda from './view/cadastro-tipo-perda';
+import CadastroUsuario from './view/cadastro-usuário';
 
 import Imagem from './view';
 
@@ -69,6 +71,7 @@ function Rotas() {
         <Route path="/cadastro-estoque/:idParam?" element={<PrivateRoute element={<CadastroEstoque />} />} />
         <Route path="/cadastro-funcionario-melhor/:idParam?" element={<PrivateRoute element={<CadastroFuncionariosMelhor />} />} />
         <Route path="/cadastro-tipo-perda/:idParam?" element={<PrivateRoute element={<CadastroTipoPerda />} />} />
+        <Route path="/cadastro-usuario/:idParam?" element={<PrivateRoute element={<CadastroUsuario />} />} />
         
         {/* Rotas de listagem protegidas */}
         <Route path="/listagem-fornecedores" element={<PrivateRoute element={<ListagemFornecedores />} />} />
@@ -87,7 +90,8 @@ function Rotas() {
         <Route path="/listagem-produtos-mais-vendidos" element={<PrivateRoute element={<ListagemProdutosMaisVendido />} />} />
         <Route path="/listagem-melhoresClientes" element={<PrivateRoute element={<ListagemMelhoresClientes />} />} />
         <Route path="/listagem-cadastro" element={<PrivateRoute element={<ListagemCadastro />} />} />
-        <Route path="/listagem-tipo-perda" element={<PrivateRoute element={<ListagemTipoPerda />} />} />
+        <Route path="/listagem-usuario" element={<PrivateRoute element={<ListagemUsuarios />} />} />
+        
       </Routes>
     </BrowserRouter>
   );
