@@ -24,14 +24,7 @@ function Navbar(props) {
         </button >
         <div className='collapse navbar-collapse' id='navbarResponsive' style={{ color: 'white',fontWeight: "500" }}>
           <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>
-            <NavbarItem
-              render='true'
-              href='/listagem-clientes'
-              label ='Clientes'
-            />
-          </ul>
-          <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/login' label='Login ' />
+            <NavbarItem render='true' href='/listagem-clientes' label ='Clientes' />
           </ul>
           <ul className='navbar-nav' style={{ color: 'white',fontWeight: "500" }}>
             <NavbarItem render='true' href='/listagem-funcionarios' label='Funcionários' />
@@ -60,6 +53,9 @@ function Navbar(props) {
           </ul>
           <ul className='navbar-nav'>
             <NavbarItem render='true' href='/listagem-perdas' label='Perdas ' />
+          </ul>
+          <ul className='navbar-nav'>
+            <NavbarItem render='true' href='/login' label='Logout ' />
           </ul>
         </div>
       </div>

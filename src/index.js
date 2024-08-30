@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'; // Importe createRoot
 import { AuthProvider } from './view/authContext'; // Importar o AuthProvider
-import Rotas from './rotas'; // Ou onde você está gerenciando suas rotas
 import App from './App';
 
-ReactDOM.render(
+// Crie uma raiz
+const root = createRoot(document.getElementById('root'));
+
+// Renderize o aplicativo usando createRoot
+root.render(
   <AuthProvider>
     <App />
-  </AuthProvider>,
-  document.getElementById('root')
+  </AuthProvider>
 );

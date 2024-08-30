@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from '../components/navbar.js';
+
 
 function Imagem() {
       const imagemStyle = {
@@ -10,6 +12,7 @@ function Imagem() {
           };
   return (
     <div style={imagemStyle} >
+      <Navbar />
       <img src='https://i.pinimg.com/564x/41/e8/28/41e828130a43aa54f0101eb92980ec58.jpg' style={{ maxWidth: '100%', maxHeight: '100%' }}/>
     </div>
   );
