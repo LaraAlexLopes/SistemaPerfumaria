@@ -32,7 +32,7 @@ function CadastroPedido() {
   const [lote, setLote] = useState('');
   const [validade, setValidade] = useState('');
   const [valor, setValor] = useState('');
-  const [volume, setVolume] = useState('');
+  const [idVolume, setIdVolume] = useState('');
   const [dataEntrega, setDataEntrega] = useState('');
   const [dataPedido, setDataPedido] = useState('');
   
@@ -43,31 +43,33 @@ function CadastroPedido() {
   function inicializar() {
     if (idParam == null) {
         setId('');
-        setIdFornecedor(0);
-        setListaPedidos('');
+        setIdFornecedor('');
+        //setListaPedidos('');
         setValor('');
-        setQuantidade('');
-        setLote('');
-        setValidade('');
+        //setQuantidade('');
+        //setLote('');
+        //setValidade('');
         setDataEntrega('');
         setDataPedido('');
-        setVolume('');
-      setTabela([])
+        //setIdVolume('');
+        setTabela([])
     } else {
         setId(dados.id);
-        setListaPedidos(dados.produto);
+        setIdFornecedor(dados.idFornecedor);
+        //setListaPedidos(dados.produto);
         setValor(dados.valor);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
+        //setQuantidade(dados.quantidade);
+        //setLote(dados.lote);
+        //setValidade(dados.validade);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
-        setVolume(dados.volume);
+        //setIdVolume(dados.idVolume);
+        setTabela(dados.tabela || []);
     }
   }
 
   async function salvar() {
-    let data = { id, produto, dataPedido, valor, dataEntrega, quantidade,lote,validade, volume};
+    let data = { id, idFornecedor,dataPedido, valor, dataEntrega,tabela};
     data = JSON.stringify(data);
     if (idParam == null) {
       await axios
@@ -75,7 +77,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${produto} cadastrado com sucesso!`);
+          mensagemSucesso(`Pedido cadastrado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -87,7 +89,7 @@ function CadastroPedido() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Pedido ${produto} alterado com sucesso!`);
+          mensagemSucesso(`Pedido alterado com sucesso!`);
           navigate(`/listagem-pedidos`);
         })
         .catch(function (error) {
@@ -102,15 +104,16 @@ function CadastroPedido() {
         setDados(response.data);
       });
         setId(dados.id);
-        setIdFornecedor(dados.fornecedor);
+        setIdFornecedor(dados.idFornecedor);
         setValor(dados.valor);
-        setListaPedidos(dados.produto);
-        setQuantidade(dados.quantidade);
-        setLote(dados.lote);
-        setValidade(dados.validade);
+        //setListaPedidos(dados.produto);
+        //setQuantidade(dados.quantidade);
+        //setLote(dados.lote);
+        //setValidade(dados.validade);
         setDataEntrega(dados.dataEntrega);
         setDataPedido(dados.dataPedido);
-        setVolume(dados.volume);
+        setTabela(dados.tabela || []);
+        //setIdVolume(dados.idVolume);
     }
   }
 
@@ -263,20 +266,12 @@ function CadastroPedido() {
                   </select>
                 </td>
                 <td>
-                  <select
-                    className='form-select'
-                    value={row.listaPedido}
-                    onChange={(e) => handleChange(row.id, 'listaPedido', e.target.value)}
-                  >
-                    <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosListaPedidos.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.valor}
-                      </option>
-                    ))}
-                  </select>
+                <input
+                    type='text'
+                    className='form-control'
+                    value = {row.lote}
+                    onChange={(e) => handleChange(row.id, 'lote', e.target.value)}>
+                  </input>
                 </td>
                 <td>
                   <IconButton
@@ -330,22 +325,6 @@ function CadastroPedido() {
                 </select>
               </FormGroup>
               <FormGroup label='Produto: *' htmlFor='inputListaProdutos'>
-                {/* <select
-                id='inputListaProdutos'
-                value={produto}
-                className='form-select'
-                name='produto'
-                onChange={(e) => setListaProdutos(e.target.value)}
-                >
-                  <option key='0' value='0'>
-                      {' '}
-                    </option>
-                    {dadosListaProdutos.map((dado) => (
-                      <option key={dado.id} value={dado.id}>
-                        {dado.produto}
-                      </option>
-                    ))}
-                </select> */}
                 <div class = "card">
                   <div class = "card-body">
                         <InteractiveTable/>

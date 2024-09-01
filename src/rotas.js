@@ -91,6 +91,7 @@ function Rotas() {
         <Route path="/listagem-melhoresClientes" element={<PrivateRoute element={<ListagemMelhoresClientes />} />} />
         <Route path="/listagem-cadastro" element={<PrivateRoute element={<ListagemCadastro />} />} />
         <Route path="/listagem-usuario" element={<PrivateRoute element={<ListagemUsuarios />} />} />
+        <Route path="/listagem-tipo-perda" element={<PrivateRoute element={<ListagemTipoPerda />} />} />
         
       </Routes>
     </BrowserRouter>
