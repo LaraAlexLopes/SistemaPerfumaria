@@ -59,7 +59,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produtos ${idProduto} cadastrado no estoque com sucesso!`);
+          mensagemSucesso(`Produto cadastrado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -71,7 +71,7 @@ function CadastroEstoque() {
           headers: { 'Content-Type': 'application/json' },
         })
         .then(function (response) {
-          mensagemSucesso(`Produto ${idProduto.nome} alterado no estoque com sucesso!`);
+          mensagemSucesso(`Produto alterado no estoque com sucesso!`);
           navigate(`/listagem-estoque`);
         })
         .catch(function (error) {
@@ -97,11 +97,7 @@ function CadastroEstoque() {
   const [dadosProduto, setDadosProduto] = React.useState(null);
   
 
-  useEffect(() => {
-    axios.get(`${BASE_URL_C}/estoques`).then((response) => {
-      setDadosProduto(response.data);
-    });
-  }, []);
+
   useEffect(() => {
     axios.get(`${BASE_URL_FPP}/produtos`).then((response) => {
       setDadosProduto(response.data);

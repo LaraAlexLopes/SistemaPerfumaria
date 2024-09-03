@@ -142,7 +142,7 @@ function CadastroPerda() {
                   <option key='0' value='0'>
                     {' '}
                   </option>
-                  {dados.map((dado) => (
+                  {dadosProduto.map((dado) => (
                     <option key={dado.id} value={dado.id}>
                       {dado.produto}
                     </option>

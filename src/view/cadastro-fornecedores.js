@@ -121,15 +121,9 @@ function CadastroFornecedores() {
    }
   }
 
-  const [dadosFornecedores, setDadosFornecedores] = React.useState(null);
   const [dadosEstado, setDadosEstado] = React.useState(null);
   
 
-  useEffect(() => {
-    axios.get(`${BASE_URL_FPP}/fornecedores`).then((response) => {
-      setDadosFornecedores(response.data);
-    });
-  }, []);
   useEffect(() => {
     axios.get(`${BASE_URL_C}/estados`).then((response) => {
       setDadosEstado(response.data);
@@ -199,7 +193,6 @@ function CadastroFornecedores() {
     );
   };
   if (!dados) return null;
-  if (!dadosFornecedores) return null;
   if (!dadosEstado) return null;
 
   return (

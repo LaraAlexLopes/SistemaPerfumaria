@@ -34,7 +34,8 @@ function ListagemFuncionarios() {
 
   const verMelhoresFuncionarios= () => {
     navigate(`/listagem-melhoresFuncionarios`);
-  };
+  }; 
+  
 
   async function excluir(id) {
     let url = `${baseURL}/${id}`;
@@ -83,14 +84,8 @@ function ListagemFuncionarios() {
                 onClick={() => cadastrar()}
               >
                 Novo Funcionário
-              </button>
-              <button style={{ backgroundColor: 'black', color: 'white',borderColor : 'black', fontWeight : "500" }}
-                type='button'
-                className='btn btn-warning'
-                onClick={() => verMelhoresFuncionarios()}
-              >
-                Melhores Funcionários
-              </button>
+                 </button>
+          
               <table className='table table-hover'>
                 <thead>
                   <tr >
